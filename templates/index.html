@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gada Electronics</title>
+
+    <!-- Google Font: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <!-- 
+      CSS is included here in a <style> tag. 
+      You can copy all the code inside this <style>...</style> block 
+      and paste it into a new file (e.g., "styles.css"). 
+      
+      If you do that, remove this <style> block and add this line instead:
+      <link rel="stylesheet" href="styles.css">
+    -->
+    <style>
+        /* --- Global Reset & Base Styles --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #ffffff;
+        }
+
+        .container {
+            max-width: 85%;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* --- Header & Navigation --- */
+        header {
+            background-color: #fff;
+
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .logo h1 {
+            font-size: 24px;
+            font-weight: 700;
+            color: #222;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            font-weight: 500;
+            color: #555;
+            transition: color 0.3s ease;
+            padding: 5px 0;
+        }
+
+        .nav-links a:hover {
+            color: #007bff;
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .search-box input {
+            border: 1px solid #ccc;
+            border-radius: 20px;
+            /* Rounded rectangle */
+            padding: 8px 15px;
+            font-size: 14px;
+            font-family: 'Inter', sans-serif;
+            min-width: 200px;
+        }
+
+        .nav-icons {
+            display: flex;
+            gap: 20px;
+            font-size: 20px;
+            color: #444;
+        }
+
+        .nav-icons a {
+            transition: color 0.3s ease;
+        }
+
+        .nav-icons a:hover {
+            color: #007bff;
+        }
+
+        .mobile-nav-toggle {
+            display: none;
+            /* For hamburger menu */
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        /* --- Hero Section --- */
+        .hero {
+            background-color: rgb(229, 229, 229);
+            /* Light blue/grey from design */
+            padding: 100px 0;
+            text-align: left;
+        }
+
+        .hero-content h2 {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: #222;
+        }
+
+        .hero-content p {
+            font-size: 20px;
+            color: #666;
+            margin-bottom: 30px;
+            max-width: 500px;
+        }
+
+        .cta-button {
+            background-color: #333;
+            /* Dark button from design */
+            color: #fff;
+            padding: 12px 28px;
+            border-radius: 30px;
+            font-weight: 600;
+            display: inline-block;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .cta-button:hover {
+            background-color: #555;
+            transform: translateY(-2px);
+        }
+
+        /* --- Galaxy AI Banner --- */
+        .galaxy-banner {
+            background-color: #e0e3ff;
+            /* Light blue/purple from image */
+            padding: 60px 0;
+        }
+
+        .galaxy-banner .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 40px;
+            flex-wrap: wrap;
+            /* For smaller screens */
+        }
+
+        .banner-text {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .banner-text h2 {
+            font-size: 42px;
+            font-weight: 700;
+            color: #222;
+            line-height: 1.2;
+            margin: 0;
+        }
+
+        .banner-text h3 {
+            font-size: 24px;
+            font-weight: 600;
+            color: #333;
+            margin-top: 15px;
+            margin-bottom: 30px;
+        }
+
+        .banner-links {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+        }
+
+        .banner-links a {
+            font-weight: 600;
+            color: #333;
+            font-size: 16px;
+        }
+
+        .banner-links a.buy-button {
+            border: 2px solid #555;
+            padding: 8px 24px;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .banner-links a.buy-button:hover {
+            background-color: #333;
+            color: #fff;
+            border-color: #333;
+        }
+
+        .banner-image {
+            flex: 1;
+            min-width: 300px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .banner-image img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 12px;
+            /* Placeholder has rounded corners */
+        }
+
+        /* Responsive adjustment for banner */
+        @media (max-width: 768px) {
+            .galaxy-banner .container {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .banner-links {
+                justify-content: center;
+            }
+        }
+
+        /* --- Products Section --- */
+        .products {
+            padding: 80px 0;
+            background-color: #fff;
+        }
+
+        .section-title {
+            background-color: #333;
+            /* Dark title box from design */
+            color: #fff;
+            padding: 15px 30px;
+            display: inline-block;
+            font-size: 28px;
+            font-weight: 700;
+            margin: 0 auto 50px;
+            display: block;
+            text-align: center;
+            max-width: 450px;
+            border-radius: 8px;
+        }
+
+        .banner {
+            margin: 20px 0;
+            background-color: bisque;
+        }
+
+        .product-grid {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .product-card {
+            max-width: 400px;
+            width: 100%;
+        }
+
+
+
+        .product-image {
+            background-color: transparent;
+        }
+
+        .product-image img {
+            width: 100%;
+        }
+
+        /* The pale yellow from the design seems to be part of the product image.
+           I'll use a clean white background for the product info. */
+        .product-info {
+            padding: 20px;
+        }
+
+        .product-info h4 {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 5px;
+            color: #222;
+        }
+
+        .product-category {
+            font-size: 14px;
+            color: #888;
+            margin-bottom: 10px;
+        }
+
+        .product-price {
+            font-size: 17px;
+            font-weight: 700;
+            color: #007bff;
+            margin-bottom: 15px;
+        }
+
+        .details-button {
+            background-color: #007bff;
+            color: #fff;
+            padding: 8px 18px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 500;
+            display: inline-block;
+            text-align: center;
+            transition: background-color 0.3s ease;
+        }
+
+        .details-button:hover {
+            background-color: #0056b3;
+        }
+
+        /* --- Footer --- */
+        footer {
+            background-color: #2b2b2b;
+            /* Dark grey from design */
+            color: #f0f0f0;
+            padding-top: 60px;
+        }
+
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 40px;
+            padding-bottom: 40px;
+        }
+
+        .footer-brand {
+            flex-basis: 300px;
+            /* Give it some base width */
+            flex-grow: 2;
+        }
+
+        .footer-brand h4 {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .footer-brand p {
+            font-size: 18px;
+            margin-bottom: 20px;
+            color: #ccc;
+        }
+
+        .footer-brand input {
+            background-color: #fff;
+            border: none;
+            border-radius: 8px;
+            padding: 12px 15px;
+            font-size: 16px;
+            width: 100%;
+            max-width: 320px;
+            font-family: 'Inter', sans-serif;
+            color: #333;
+        }
+
+        .footer-links {
+            display: flex;
+            flex-grow: 3;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 30px;
+            min-width: 400px;
+        }
+
+        .footer-column h5 {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            color: #fff;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 12px;
+        }
+
+        .footer-column ul a {
+            color: #ccc;
+            transition: color 0.3s ease, padding-left 0.3s ease;
+        }
+
+        .footer-column ul a:hover {
+            color: #fff;
+            padding-left: 5px;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #444;
+            padding: 30px 0;
+            font-size: 14px;
+            color: #aaa;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .footer-bottom-links a {
+            color: #aaa;
+            margin-left: 20px;
+            transition: color 0.3s ease;
+        }
+
+        .footer-bottom-links a:hover {
+            color: #fff;
+        }
+
+        /* --- Responsive Design --- */
+
+        @media (max-width: 992px) {
+            .nav-links {
+                display: none;
+                /* Hide desktop nav */
+                /* In a real site, you'd add JS to toggle this */
+            }
+
+            .mobile-nav-toggle {
+                display: block;
+                /* Show hamburger icon */
+            }
+
+            header .container {
+                justify-content: space-between;
+            }
+
+            .nav-right {
+                gap: 15px;
+            }
+
+            .search-box input {
+                min-width: 150px;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+
+            .footer-links {
+                width: 100%;
+                justify-content: space-around;
+                text-align: center;
+                min-width: unset;
+            }
+
+            .footer-brand input {
+                max-width: 400px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero {
+                padding: 60px 0;
+                text-align: center;
+            }
+
+            .hero-content h2 {
+                font-size: 36px;
+            }
+
+            .hero-content p {
+                font-size: 18px;
+            }
+
+            .section-title {
+                font-size: 24px;
+                max-width: 90%;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+                gap: 10px;
+            }
+
+            .footer-bottom-links a {
+                margin: 0 10px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            header .container {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .nav-right {
+                width: 100%;
+                justify-content: space-between;
+            }
+
+            .search-box {
+                flex-grow: 1;
+            }
+
+            .search-box input {
+                width: 100%;
+            }
+
+            .footer-links {
+                flex-direction: column;
+                align-items: center;
+                gap: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- --- Header --- -->
+    <header>
+        <div class="container">
+            <div class="logo">
+                <h1>Hustle Cart</h1>
+            </div>
+
+            <!-- Desktop Navigation -->
+            <nav class="main-nav">
+                <ul class="nav-links">
+                    <li><a href="#">Mobile</a></li>
+                    <li><a href="#">Laptop</a></li>
+                    <li><a href="#">TV</a></li>
+                    <li><a href="#">Sound System</a></li>
+                </ul>
+            </nav>
+
+            <!-- Search & Icons -->
+            <div class="nav-right">
+                <div class="search-box">
+                    <input type="text" placeholder="Search...">
+                </div>
+                <div class="nav-icons">
+                    <a href="#" aria-label="Shopping Cart"><i class="fas fa-shopping-cart"></i></a>
+                    <a href="#" aria-label="User Account"><i class="fas fa-user-circle"></i></a>
+                </div>
+                <div class="mobile-nav-toggle">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- --- Hero Section --- -->
+        <section class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <!-- Updated text to match "Electronics" theme -->
+                    <h2>Find Your Perfect Tech</h2>
+                    <p>Shop the latest trends in electronics, gadgets, and accessories.</p>
+                    <a href="#" class="cta-button">Shop now</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- --- Most Visited Products --- -->\
+         <h3 class="section-title">Most Visited Products</h3>
+        <section class="galaxy-banner">
+            
+            <div class="container">
+                <div class="banner-text">
+                    <!-- <h2>You speak<br>We understand</h2> -->
+                    <h3>Galaxy AI ✨</h3>
+                    <!-- <div class="banner-links">
+                        <a href="#">Learn more</a>
+                        <a href="#" class="buy-button">Buy</a>
+                    </div> -->
+                </div>
+                <div class="banner-image">
+                    <img src = "{{ url_for('static', filename='1.png') }}" alt="Galaxy AI Products">
+                </div>
+            </div>
+        </section>
+        <section class="products">
+            <div class="container">
+                
+
+
+                <div class="product-grid">
+                    <!-- Product Card 1 -->
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="https://placehold.co/400x300/007bff/white?text=Laptop+Pro" alt="Modern Laptop">
+                        </div>
+                        <div class="product-info">
+                            <h4>Laptop Pro X1</h4>
+                            <p class="product-category">Laptops</p>
+                            <p class="product-price">$1299.99</p>
+                            <a href="#" class="details-button">View Details</a>
+                        </div>
+                    </div>
+
+                    <!-- Product Card 2 -->
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="https://placehold.co/400x300/333/white?text=Smartphone" alt="Smartphone">
+                        </div>
+                        <div class="product-info">
+                            <h4>Smartphone Z</h4>
+                            <p class="product-category">Mobile</p>
+                            <p class="product-price">$799.00</p>
+                            <a href="#" class="details-button">View Details</a>
+                        </div>
+                    </div>
+
+                    <!-- Product Card 3 -->
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="https://placehold.co/400x300/28a745/white?text=Sound+System" alt="Sound System">
+                        </div>
+                        <div class="product-info">
+                            <h4>Surround SoundBar</h4>
+                            <p class="product-category">Sound System</p>
+                            <p class="product-price">$349.50</p>
+                            <a href="#" class="details-button">View Details</a>
+                        </div>
+                    </div>
+
+                    <!-- Product Card 4 -->
+                    <!-- <div class="product-card">
+                        <div class="product-image">
+                            <img src="https://placehold.co/400x300/dc3545/white?text=Smart+TV" alt="Smart TV">
+                        </div>
+                        <div class="product-info">
+                            <h4>65" 4K Smart TV</h4>
+                            <p class="product-category">TV</p>
+                            <p class="product-price">$899.99</p>
+                            <a href="#" class="details-button">View Details</a>
+                        </div>
+                    </div> -->
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- --- Footer --- -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <!-- Footer Brand & Newsletter -->
+                <div class="footer-brand">
+                    <h4>Hustle Cart</h4>
+                    <p>Stay Connected</p>
+                    <form action="#" method="post" aria-label="Newsletter signup">
+                        <input type="email" name="email" placeholder="Enter Your Email" aria-label="Enter Your Email">
+                        <!-- The design doesn't show a button, but it's good for accessibility.
+                             You could add one or submit with 'Enter' key. -->
+                    </form>
+                </div>
+
+                <!-- Footer Links Columns -->
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h5>Shop</h5>
+                        <ul>
+                            <li><a href="#">New arrivals</a></li>
+                            <li><a href="#">Sales</a></li>
+                            <li><a href="#">Collections</a></li>
+                            <li><a href="#">Gift Cards</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-column">
+                        <h5>Accounts</h5>
+                        <ul>
+                            <li><a href="#">My Accounts</a></li>
+                            <li><a href="#">Order History</a></li>
+                            <li><a href="#">Wishlist</a></li>
+                            <li><a href="#">Cart</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-column">
+                        <h5>Support</h5>
+                        <ul>
+                            <li><a href="#">Help Center</a></li>
+                            <li><a href="#">Shipping & Returns</a></li>
+                            <li><a href="#">Contact Us</a></li>
+                            <li><a href="#">FAQs</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer Bottom Bar -->
+            <div class="footer-bottom">
+                <p>&copy; 2025 Hustle Cart. All right reserved.</p>
+                <div class="footer-bottom-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms Of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+</body>
+
+</html>
