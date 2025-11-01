@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gada Electronics</title>
+    <title>Hustle Cart</title>
 
     <!-- Google Font: Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -179,18 +179,18 @@
             background-color: #e0e3ff;
             /* Light blue/purple from image */
             padding: 60px 0;
+
         }
 
         .galaxy-banner .container {
             display: flex;
             align-items: center;
-            justify-content: space-between;
-            gap: 40px;
+            justify-content: center;
             flex-wrap: wrap;
             /* For smaller screens */
         }
 
-        .banner-text {
+        /* .banner-text {
             flex: 1;
             min-width: 300px;
         }
@@ -234,11 +234,13 @@
             background-color: #333;
             color: #fff;
             border-color: #333;
-        }
+        } */
 
         .banner-image {
-            flex: 1;
-            min-width: 300px;
+            max-width: 1500px;
+            display: flex;
+            max-height: fit-content;
+            height: 100%;
             width: 100%;
             text-align: center;
         }
@@ -291,30 +293,53 @@
         .product-grid {
             display: flex;
             flex-direction: row;
-            align-items: center;
-            gap: 30px;
+            justify-content: center;
+            gap: 100px;
+            padding: 20px 0;
+            flex-wrap: wrap;
         }
+
+        /* .product-card {
+            max-width: 400px;
+            width: 100%;
+            background-color: rgb(180, 180, 180);
+            border-radius: 30px;
+            opacity: 0.6;
+        } */
 
         .product-card {
             max-width: 400px;
             width: 100%;
-        }
+    /* opacity: 0.8; */   /* <-- MAKE SURE THIS IS DELETED */
+            border-radius: 30px;   /* <-- ADD THIS */
+            overflow: hidden;      /* <-- ADD THIS */
+            box-shadow: 6px 4px 12px rgba(0, 0, 0, 0.05); /* Optional: adds a nice shadow */
+}
 
 
 
         .product-image {
             background-color: transparent;
+            height: 400px;
+            
         }
 
         .product-image img {
-            width: 100%;
+    width: 100%;
+    height: 100%;        /* <-- ADD THIS LINE */
+    object-fit: cover;  /* <-- ADD THIS LINE */
+
+            border-radius: 30px 30px 0 0;
+
         }
 
         /* The pale yellow from the design seems to be part of the product image.
            I'll use a clean white background for the product info. */
         .product-info {
-            padding: 20px;
-        }
+    padding: 20px;
+    text-align: center;
+    background-color: rgba(230, 230, 230, 0.9); /* <-- ADD THIS (light grey + 70% transparent) */
+}
 
         .product-info h4 {
             font-size: 18px;
@@ -323,7 +348,7 @@
             color: #222;
         }
 
-        .product-category {
+        /* .product-category {
             font-size: 14px;
             color: #888;
             margin-bottom: 10px;
@@ -334,7 +359,7 @@
             font-weight: 700;
             color: #007bff;
             margin-bottom: 15px;
-        }
+        } */ 
 
         .details-button {
             background-color: #007bff;
@@ -607,7 +632,7 @@
             <div class="container">
                 <div class="banner-text">
                     <!-- <h2>You speak<br>We understand</h2> -->
-                    <h3>Galaxy AI ✨</h3>
+                    <!-- <h3>Galaxy AI ✨</h3> -->
                     <!-- <div class="banner-links">
                         <a href="#">Learn more</a>
                         <a href="#" class="buy-button">Buy</a>
@@ -627,57 +652,159 @@
                     <!-- Product Card 1 -->
                     <div class="product-card">
                         <div class="product-image">
-                            <img src="https://placehold.co/400x300/007bff/white?text=Laptop+Pro" alt="Modern Laptop">
+                            <img src="static/iphoner1.png" alt="Iphone 17">
                         </div>
                         <div class="product-info">
-                            <h4>Laptop Pro X1</h4>
-                            <p class="product-category">Laptops</p>
-                            <p class="product-price">$1299.99</p>
-                            <a href="#" class="details-button">View Details</a>
+                            <h4>Iphone 17</h4>
+                            
                         </div>
                     </div>
 
                     <!-- Product Card 2 -->
                     <div class="product-card">
                         <div class="product-image">
-                            <img src="https://placehold.co/400x300/333/white?text=Smartphone" alt="Smartphone">
+                            <img src="static/s25r1.png" alt="Samsung Galaxy S25">
                         </div>
                         <div class="product-info">
-                            <h4>Smartphone Z</h4>
-                            <p class="product-category">Mobile</p>
-                            <p class="product-price">$799.00</p>
-                            <a href="#" class="details-button">View Details</a>
+                            <h4>Samsung Galaxy S25</h4>
+                            
                         </div>
                     </div>
 
                     <!-- Product Card 3 -->
                     <div class="product-card">
                         <div class="product-image">
-                            <img src="https://placehold.co/400x300/28a745/white?text=Sound+System" alt="Sound System">
+                            <img src="static/onep13.png" alt="OnePlus 15">
                         </div>
                         <div class="product-info">
-                            <h4>Surround SoundBar</h4>
-                            <p class="product-category">Sound System</p>
-                            <p class="product-price">$349.50</p>
-                            <a href="#" class="details-button">View Details</a>
+                            <h4>OnePlus 15</h4>
+                            
                         </div>
                     </div>
 
-                    <!-- Product Card 4 -->
-                    <!-- <div class="product-card">
-                        <div class="product-image">
-                            <img src="https://placehold.co/400x300/dc3545/white?text=Smart+TV" alt="Smart TV">
-                        </div>
-                        <div class="product-info">
-                            <h4>65" 4K Smart TV</h4>
-                            <p class="product-category">TV</p>
-                            <p class="product-price">$899.99</p>
-                            <a href="#" class="details-button">View Details</a>
-                        </div>
-                    </div> -->
+                   
                 </div>
             </div>
         </section>
+         <section class="galaxy-banner">
+            
+            <div class="container">
+                <div class="banner-text">
+                    <!-- <h2>You speak<br>We understand</h2> -->
+                    <!-- <h3>Galaxy AI ✨</h3> -->
+                    <!-- <div class="banner-links">
+                        <a href="#">Learn more</a>
+                        <a href="#" class="buy-button">Buy</a>
+                    </div> -->
+                </div>
+                <div class="banner-image">
+                    <img src = "{{ url_for('static', filename='2.png') }}" alt="Galaxy AI Products">
+                </div>
+            </div>
+        </section>
+        <section class="products">
+            <div class="container">
+                
+
+
+                <div class="product-grid">
+                    <!-- Product Card 1 -->
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="static/sonyr1.png" alt="Iphone 17">
+                        </div>
+                        <div class="product-info">
+                            <h4>Sony Bravia 8</h4>
+                            
+                        </div>
+                    </div>
+
+                    <!-- Product Card 2 -->
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="static/tvr2.png" alt="Samsung Galaxy S25">
+                        </div>
+                        <div class="product-info">
+                            <h4>Samsung Crystal UHD</h4>
+                            
+                        </div>
+                    </div>
+
+                    <!-- Product Card 3 -->
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="static/lgr1.png" alt="OnePlus 15">
+                        </div>
+                        <div class="product-info">
+                            <h4>LG QNED 4K</h4>
+                            
+                        </div>
+                    </div>
+
+                   
+                </div>
+            </div>
+        <section class="custom-image-section">
+                <section class="galaxy-banner">
+            
+            <div class="container">
+                <div class="banner-text">
+                    <!-- <h2>You speak<br>We understand</h2> -->
+                    <!-- <h3>Galaxy AI ✨</h3> -->
+                    <!-- <div class="banner-links">
+                        <a href="#">Learn more</a>
+                        <a href="#" class="buy-button">Buy</a>
+                    </div> -->
+                </div>
+                <div class="banner-image">
+                    <img src = "{{ url_for('static', filename='lapban.png') }}" alt="Galaxy AI Products">
+                </div>
+            </div>
+        </section>
+        <section class="products">
+            <div class="container">
+                
+
+
+                <div class="product-grid">
+                    <!-- Product Card 1 -->
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="static/lap1.png" alt="Iphone 17">
+                        </div>
+                        <div class="product-info">
+                            <h4>Lenovo LOQ</h4>
+                            
+                        </div>
+                    </div>
+
+                    <!-- Product Card 2 -->
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="static/lap2.png" alt="Samsung Galaxy S25">
+                        </div>
+                        <div class="product-info">
+                            <h4>HP 7000 series</h4>
+                            
+                        </div>
+                    </div>
+
+                    <!-- Product Card 3 -->
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="static/g152r1.png" alt="OnePlus 15">
+                        </div>
+                        <div class="product-info">
+                            <h4>Dell G15</h4>
+                            
+                        </div>
+                    </div>
+
+                   
+                </div>
+            </div>
+        </section>
+</section>
     </main>
 
     <!-- --- Footer --- -->
