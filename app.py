@@ -23,8 +23,8 @@ def ss():
     return render_template('ss.html')
 
 @app.route('/cart')
-def cart():
-    return render_template('cart.html')
+def account():
+    return render_template('account.html')
 
 
 if __name__ == '__main__':

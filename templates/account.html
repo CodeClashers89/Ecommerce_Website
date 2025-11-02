@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hustlecart</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #e0e0e0;
+        }
+
+        .container {
+            display: flex;
+            height: 100vh;
+        }
+
+        /* Sidebar Styles */
+        .sidebar {
+            width: 400px;
+            background-color: #3a3a3a;
+            padding: 30px 0;
+            color: white;
+
+            /* --- ADD THESE TWO LINES --- */
+            display: flex;
+            flex-direction: column;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            padding: 0 20px 30px 20px;
+            border-bottom: 1px solid #555;
+            margin-bottom: 10px;
+        }
+
+        .nav-menu {
+            display: flex;
+            flex-direction: column;
+            row-gap: 20px;
+            text-align: center;
+            font-size: 25px;
+            font-weight: lighter;
+        }
+
+        .nav-item {
+            display: flex;
+            align-items: center;
+            padding: 15px 20px;
+            color: white;
+            text-decoration: none;
+            transition: background-color 0.3s;
+            text-align: center;
+        }
+
+        hr {
+            border: none;
+            height: 5px;
+            background-color: #c0c0c0;
+            margin-top: 300px;
+            margin-left: 50px;
+            margin-right: 50px;
+        }
+
+        .logout {
+            display: flex;
+            align-items: center;
+            padding: 15px 20px;
+            color: white;
+            text-decoration: none;
+            transition: background-color 0.3s;
+            text-align: center;
+            justify-content: center;
+            font-size: 25px;
+            font-weight: lighter;
+            margin-top: auto;
+            /* This pushes the logout link to the bottom */
+        }
+
+        .nav-item:hover {
+            background-color: #4a4a4a;
+        }
+
+        .nav-item .icon {
+            margin-right: 15px;
+            font-size: 18px;
+        }
+
+        /* --- ADD THIS NEW RULE --- */
+        /* This targets the logout link (which is now a direct child of .sidebar) 
+   and pushes it to the bottom */
+        .sidebar>.nav-item {
+            margin-top: auto;
+        }
+
+        h5{
+            margin-left: 100px;
+            margin-top:45px;
+            font-size: 35px;
+            font-weight: bold;
+        }
+
+        .Headings{
+            display: flex;
+            max-height: 150px;
+            max-width: 100vw;
+            flex-direction: column;
+            background-color: aqua;
+        }
+
+
+        /* Main Content Styles */
+        .main-content {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 40px;
+        }
+
+        .profile-section {
+            background-color: #d0d0d0;
+            padding: 40px;
+            border-radius: 15px;
+            width: 100%;
+            max-width: 1000px;
+        }
+
+        .profile-avatar {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+        }
+
+        .profile-avatar svg {
+            width: 160px;
+            height: 160px;
+            border-radius: 50%;
+        }
+
+        .profile-form {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            font-size: 25px;
+            font-weight: lighter;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: row;
+            /* Puts label and input side-by-side */
+            align-items: center;
+            font-size: 45px;
+            font-weight: lighter;
+        }
+
+        .form-group label {
+            font-size: 22px;     /* Increased font size for visibility */
+    font-weight: 600;
+    color: #1a1a1a;
+    width: 200px;        /* Gives all labels a fixed width to align inputs */
+    margin-right: 20px;
+        }
+
+        .form-group input {
+            flex: 1; /* Makes the input box fill the remaining space */
+    padding: 15px;
+    border: none;
+    border-radius: 8px;
+    background-color: #eeeeee; /* Changed background to match image */
+    font-size: 18px; /* Increased font size for input text */
+    outline: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <h1 class="logo">Hustlecart</h1>
+            <nav class="nav-menu">
+                <a href="#" class="nav-item">
+                    <span class="icon">📦</span>
+                    <span>My Order</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <span class="icon">🏠</span>
+                    <span>Current Address</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <span class="icon">🎫</span>
+                    <span>Coupons</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <span class="icon">❓</span>
+                    <span>Help</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <span class="icon">📄</span>
+                    <span>Terms & Conditions</span>
+                </a>
+
+            </nav>
+            <hr>
+            <a href="#" class="logout">
+                <span class="icon">↪️</span>
+                <span>Log Out</span>
+            </a>
+        </aside>
+        <section class="Headings">
+            <h5>My Account</h5>
+        </section>
+        
+        <!-- Main Content -->
+        <main class="main-content">
+
+            <div class="profile-section">
+                <div class="profile-avatar">
+                    <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="100" cy="100" r="100" fill="#c0c0c0" />
+                        <circle cx="100" cy="70" r="30" fill="#ffffff" />
+                        <ellipse cx="100" cy="155" rx="50" ry="60" fill="#ffffff" />
+                    </svg>
+                </div>
+
+                <form class="profile-form">
+                    <div class="form-group">
+                        <label for="username">Full Name :</label>
+                        <input type="text" id="username" name="username">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="address">Current Address :</label>
+                        <input type="text" id="address" name="address">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email ID :</label>
+                        <input type="text" id="email" name="email">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="mobile">Mobile Number :</label>
+                        <input type="text" id="mobile" name="mobile">
+                    </div>
+                </form>
+            </div>
+        </main>
+    </div>
+</body>
+
+</html>
