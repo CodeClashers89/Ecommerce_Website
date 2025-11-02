@@ -102,11 +102,28 @@
             margin-top: auto;
         }
 
+        .content-wrapper {
+            display: flex;
+            flex-direction: column; /* Stacks heading on top of content */
+            flex: 1;                 /* Makes this wrapper fill the remaining width */
+            height: 100vh;           /* Matches the container height */
+            overflow-y: auto;        /* Adds scroll if content is too long */
+        }
+
         h5{
-            margin-left: 100px;
-            margin-top:45px;
+            margin-left: 50px;
+            margin-top:15px;
+            margin-bottom: 25px;
             font-size: 35px;
             font-weight: bold;
+            padding: 20px 0;
+            color:aliceblue
+        }
+
+        p{
+            font-size: 20px;
+            font-weight: lighter;
+            color: #1a1a1a;
         }
 
         .Headings{
@@ -114,7 +131,7 @@
             max-height: 150px;
             max-width: 100vw;
             flex-direction: column;
-            background-color: aqua;
+            background-color: rgb(208, 208, 208);
         }
 
 
@@ -186,7 +203,6 @@
 
 <body>
     <div class="container">
-        <!-- Sidebar -->
         <aside class="sidebar">
             <h1 class="logo">Hustlecart</h1>
             <nav class="nav-menu">
@@ -218,46 +234,46 @@
                 <span>Log Out</span>
             </a>
         </aside>
-        <section class="Headings">
-            <h5>My Account</h5>
-        </section>
-        
-        <!-- Main Content -->
-        <main class="main-content">
 
-            <div class="profile-section">
-                <div class="profile-avatar">
-                    <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-                        <circle cx="100" cy="100" r="100" fill="#c0c0c0" />
-                        <circle cx="100" cy="70" r="30" fill="#ffffff" />
-                        <ellipse cx="100" cy="155" rx="50" ry="60" fill="#ffffff" />
-                    </svg>
+        <div class="content-wrapper">
+
+            <section class="Headings">
+                <h5>MY ACCOUNT<br><br><p>Manage your personal information</p></h5>
+            </section>
+    
+            <main class="main-content">
+                <div class="profile-section">
+                    <div class="profile-avatar">
+                        <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="100" cy="100" r="100" fill="#c0c0c0" />
+                            <circle cx="100" cy="70" r="30" fill="#ffffff" />
+                            <ellipse cx="100" cy="155" rx="50" ry="60" fill="#ffffff" />
+                        </svg>
+                    </div>
+
+                    <form class="profile-form">
+                        <div class="form-group">
+                            <label for="username">Full Name :</label>
+                            <input type="text" id="username" name="username">
+                        </div>
+                        <div class="form-group">
+                            <label for="address">Current Address :</label>
+                            <input type="text" id="address" name="address">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email ID :</label>
+                            <input type="text" id="email" name="email">
+                        </div>
+                        <div class="form-group">
+                            <label for="mobile">Mobile Number :</label>
+                            <input type="text" id="mobile" name="mobile">
+                        </div>
+                    </form>
                 </div>
+            </main>
 
-                <form class="profile-form">
-                    <div class="form-group">
-                        <label for="username">Full Name :</label>
-                        <input type="text" id="username" name="username">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="address">Current Address :</label>
-                        <input type="text" id="address" name="address">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="email">Email ID :</label>
-                        <input type="text" id="email" name="email">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="mobile">Mobile Number :</label>
-                        <input type="text" id="mobile" name="mobile">
-                    </div>
-                </form>
-            </div>
-        </main>
-    </div>
+        </div>
+        </div>
 </body>
 
 </html>
