@@ -1,0 +1,948 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hustle Cart</title>
+
+    <!-- Google Font: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <style>
+        /* --- Global Reset & Base Styles --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #ffffff;
+        }
+
+        .container {
+            max-width: 85%;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* --- NEW CONTAINER-FLUID CLASS --- */
+        .container-fluid {
+            width: 100%;
+            margin: 0 auto;
+            padding: 0 30px; /* Adds padding on the sides */
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* --- Header & Navigation --- */
+        header {
+            background-color: #fff;
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .logo h1 {
+            font-size: 24px;
+            font-weight: 700;
+            color: #222;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            font-weight: 500;
+            color: #555;
+            transition: color 0.3s ease;
+            padding: 5px 0;
+        }
+
+        .nav-links a:hover {
+            color: #007bff;
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .search-box input {
+            border: 1px solid #ccc;
+            border-radius: 20px;
+            padding: 8px 15px;
+            font-size: 14px;
+            font-family: 'Inter', sans-serif;
+            min-width: 200px;
+        }
+
+        .nav-icons {
+            display: flex;
+            gap: 20px;
+            font-size: 20px;
+            color: #444;
+        }
+
+        .nav-icons a {
+            transition: color 0.3s ease;
+        }
+
+        .nav-icons a:hover {
+            color: #007bff;
+        }
+
+        .mobile-nav-toggle {
+            display: none;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        /* --- Hero Section --- */
+        .hero {
+            background-color: rgb(229, 229, 229);
+            padding: 100px 0;
+            text-align: left;
+        }
+
+        .hero-content h2 {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: #222;
+            text-align: center;
+        }
+
+        .highlight {
+            color: #007bff;
+            /* Accent color from design */
+        }
+        
+        /* --- Brand Links Section (NEW) --- */
+        .brand-links {
+            padding: 40px 0;
+            background-color: #fff;
+        }
+
+        .brand-links .container {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .brand-item {
+    text-align: center;
+    color: #333;
+    text-decoration: none;
+    transition: transform 0.3s ease;
+
+    /* --- NEW --- */
+    /* Give each of the 3 items a fixed width.
+      This forces them to be the same size and helps them 
+      form a clean row.
+    */
+    width: 200px; 
+}
+
+        .brand-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .brand-image-placeholder {
+    width: 100%; /* This is fine (100% of the 200px above) */
+
+    /* --- NEW --- */
+    /* Give the card a fixed height to make all 3 identical */
+    height: 120px; 
+
+    background-color: #ffffff;
+    border-radius: 12px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+
+    /* --- NEW --- */
+    /* This clips any part of the image that tries to overflow */
+    overflow: hidden; 
+
+    /* --- NEW (Recommended) --- */
+    /* These properties center the logo perfectly inside the box */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px; /* Adds a nice internal space */
+}
+
+       .brand-image-placeholder img {
+    width: 100%;
+    height: 100%;
+
+    /* This is the key property.
+      It scales the image down (preserving aspect ratio) 
+      to fit completely INSIDE the box without being cut off.
+    */
+    object-fit: contain; 
+}
+
+        .brand-item h4 {
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        /* --- New Section Heading Style (NEW) --- */
+        .section-heading {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 40px;
+            padding-left: 140px;
+        }
+
+        /* --- Products Section --- */
+        .products {
+            padding: 80px 0;
+            background-color: #fff;
+        }
+        
+        /* --- Product Grid (MODIFIED) --- */
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, 425px);
+            background-color: rgb(218, 218, 218);
+            /* Creates a responsive 3-column grid */
+            gap: 70px;
+            border-radius: 70px;
+            padding: 75px 0;
+            justify-content: center;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .product-card {
+            max-width: 400px;
+            width: 100%;
+            border-radius: 30px;
+            overflow: hidden;
+            box-shadow: 6px 4px 12px rgba(0, 0, 0, 0.05);
+        }
+
+        .product-image {
+            background-color: transparent;
+            height: 400px;
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 30px 30px 0 0;
+        }
+
+        .product-info {
+            padding: 20px;
+            text-align: center;
+            background-color: rgba(230, 230, 230, 0.9);
+        }
+
+        .product-info h4 {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 5px;
+            color: #222;
+        }
+        
+        /* --- New Product Card Info (NEW) --- */
+        .product-price {
+            font-size: 16px;
+            font-weight: 500;
+            margin-bottom: 15px;
+        }
+
+        .add-to-cart-btn {
+            background-color: #007bff;
+            color: #fff !important; /* !important to override .a color */
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+            display: inline-block;
+            transition: background-color 0.3s ease;
+        }
+
+        .add-to-cart-btn:hover {
+            background-color: #0056b3;
+        }
+        
+        /* --- Apple Section Styling (NEW) --- */
+        #apple-section {
+            background: #fff; /* Dark grey background */
+        }
+
+        #apple-section .section-heading {
+            color: #333; /* White text */
+        }
+
+        #apple-section .product-card {
+            background-color: #f9f9f9;
+            border: 1px solid #eee;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        #apple-section .product-info {
+            background-color: rgba(230, 230, 230, 0.9); /* Darker transparent */
+        }
+
+        #apple-section .product-info h4,
+        #apple-section .product-price {
+            color: #333; /* White text */
+        }
+
+        /* --- Samsung Section Styling (NEW) --- */
+        #samsung-section {
+            background-color: #fff;
+            /* White background */
+        }
+
+        #samsung-section .section-heading {
+            color: #333;
+            /* Black text */
+        }
+
+        #samsung-section .product-card {
+            background-color: #f9f9f9;
+            border: 1px solid #eee;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        #samsung-section .product-info {
+            background-color: rgba(230, 230, 230, 0.9);
+            /* Lighter transparent */
+        }
+
+        #samsung-section .product-info h4,
+        #samsung-section .product-price {
+            color: #333;
+            /* Black text */
+        }
+        
+        /* --- Footer --- */
+        footer {
+            background-color: #2b2b2b;
+            color: #f0f0f0;
+            padding-top: 60px;
+        }
+
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 40px;
+            padding-bottom: 40px;
+        }
+
+        .footer-brand {
+            flex-basis: 300px;
+            flex-grow: 2;
+        }
+
+        .footer-brand h4 {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .footer-brand p {
+            font-size: 18px;
+            margin-bottom: 20px;
+            color: #ccc;
+        }
+
+        .footer-brand input {
+            background-color: #fff;
+            border: none;
+            border-radius: 8px;
+            padding: 12px 15px;
+            font-size: 16px;
+            width: 100%;
+            max-width: 320px;
+            font-family: 'Inter', sans-serif;
+            color: #333;
+        }
+
+        .footer-links {
+            display: flex;
+            flex-grow: 3;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 30px;
+            min-width: 400px;
+        }
+
+        .footer-column h5 {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            color: #fff;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 12px;
+        }
+
+        .footer-column ul a {
+            color: #ccc;
+            transition: color 0.3s ease, padding-left 0.3s ease;
+        }
+
+        .footer-column ul a:hover {
+            color: #fff;
+            padding-left: 5px;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #444;
+            padding: 30px 0;
+            font-size: 14px;
+            color: #aaa;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .footer-bottom-links a {
+            color: #aaa;
+            margin-left: 20px;
+            transition: color 0.3s ease;
+        }
+
+        .footer-bottom-links a:hover {
+            color: #fff;
+        }
+
+        /* --- Responsive Design --- */
+        @media (max-width: 992px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-nav-toggle {
+                display: block;
+            }
+
+            header .container {
+                justify-content: space-between;
+            }
+
+            .nav-right {
+                gap: 15px;
+            }
+
+            .search-box input {
+                min-width: 150px;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+
+            .footer-links {
+                width: 100%;
+                justify-content: space-around;
+                text-align: center;
+                min-width: unset;
+            }
+
+            .footer-brand input {
+                max-width: 400px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero {
+                padding: 60px 0;
+                text-align: center;
+            }
+
+            .hero-content h2 {
+                font-size: 36px;
+            }
+
+            .hero-content p {
+                font-size: 18px;
+            }
+            
+            .brand-image-placeholder {
+                width: 120px;
+                height: 80px;
+            }
+            
+            .brand-item h4 {
+                font-size: 16px;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+                gap: 10px;
+            }
+
+            .footer-bottom-links a {
+                margin: 0 10px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            header .container {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .nav-right {
+                width: 100%;
+                justify-content: space-between;
+            }
+
+            .search-box {
+                flex-grow: 1;
+            }
+
+            .search-box input {
+                width: 100%;
+            }
+
+            .footer-links {
+                flex-direction: column;
+                align-items: center;
+                gap: 20px;
+            }
+
+            /* --- Make fluid container padding smaller on mobile --- */
+            .container-fluid {
+                padding: 0 15px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- --- Header --- -->
+    <header>
+        <div class="container">
+            <div class="logo">
+                <h1>Hustle Cart</h1>
+            </div>
+
+            <!-- Desktop Navigation -->
+            <nav class="main-nav">
+                <ul class="nav-links">
+                    <li><a href="{{ url_for('home') }}">Home</a></li>
+                    <li><a href="{{ url_for('mobile') }}">Mobile</a></li>
+                    <li><a href="{{ url_for('laptop') }}">Laptop</a></li>
+                    <li><a href="{{ url_for('tv') }}">TV</a></li>
+                    <li><a href="{{ url_for('ss') }}">Sound System</a></li>
+                </ul>
+            </nav>
+            <!-- Search & Icons -->
+            <div class="nav-right">
+                <div class="search-box">
+                    <input type="text" placeholder="Search...">
+                </div>
+                <div class="nav-icons">
+                    <a href="#" aria-label="Shopping Cart"><i class="fas fa-shopping-cart"></i></a>
+<a href="{{ url_for('cart') }}" aria-label="User Account"><i class="fas fa-user-circle"></i></a>
+                </div>
+                <div class="mobile-nav-toggle">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- --- Hero Section --- -->
+        <section class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <h2>Explore <span class="highlight">Hustle Cart</span></h2>
+                </div>
+            </div>
+        </section>
+
+        <!-- --- Brand Links Section (NEW) --- -->
+        <section class="brand-links">
+            <div class="container">
+                <a href="#apple-section" class="brand-item">
+                    <div class="brand-image-placeholder">
+                        <img src="static/appler1.png" alt="">
+                    </div>
+                    <h4>Apple</h4>
+                </a>
+                <a href="#samsung-section" class="brand-item">
+                    <div class="brand-image-placeholder">
+                        <img src="static/samsr1.png" alt="">
+                    </div>
+                    <h4>Samsung</h4>
+                </a>
+                <a href="#oneplus-section" class="brand-item">
+                    <!-- You can add a link for Oneplus later -->
+                    <div class="brand-image-placeholder">
+                        <img src="static/onepr1.png" alt="">
+                    </div>
+                    <h4>Oneplus</h4>
+                </a>
+            </div>
+        </section>
+
+        <!-- --- Apple Products Section (MODIFIED) --- -->
+        <section class="products" id="apple-section">
+            <div class="container-fluid"> <!-- CHANGED -->
+                <!-- New Section Title -->
+                <h2 class="section-heading">Apple <span class="highlight">Mobile</span></h2>
+
+                <div class="product-grid">
+                    <!-- Product Card 1 -->
+                    <div class="product-card">
+                        <div class="product-image">
+                            <!-- Corrected image path -->
+                            <img src="{{ url_for('static', filename='iphoner1.png') }}" alt="Iphone 15 Pro Max">
+                        </div>
+                        <div class="product-info">
+                            <h4>iPhone 15 Pro Max</h4>
+                            <p class="product-price">₹ 1,59,000</p>
+                            <a href="#" class="add-to-cart-btn">Add To Cart</a>
+                        </div>
+                    </div>
+
+                    <!-- Product Card 2 -->
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="{{ url_for('static', filename='iphoner1.png') }}" alt="Iphone 15 Pro">
+                        </div>
+                        <div class="product-info">
+                            <h4>iPhone 15 Pro</h4>
+                            <p class="product-price">₹ 1,34,900</p>
+                            <a href="#" class="add-to-cart-btn">Add To Cart</a>
+                        </div>
+                    </div>
+
+                    <!-- Product Card 3 -->
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="{{ url_for('static', filename='iphoner1.png') }}" alt="Iphone 15">
+                        </div>
+                        <div class="product-info">
+                            <h4>iPhone 15</h4>
+                            <p class="product-price">₹ 79,900</p>
+                            <a href="#" class="add-to-cart-btn">Add To Cart</a>
+                        </div>
+                    </div>
+
+                    <!-- Product Card 4 -->
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="{{ url_for('static', filename='iphoner1.png') }}" alt="Iphone 14">
+                        </div>
+                        <div class="product-info">
+                            <h4>iPhone 14</h4>
+                            <p class="product-price">₹ 64,090</p>
+                            <a href="#" class="add-to-cart-btn">Add To Cart</a>
+                        </div>
+                    </div>
+
+                    <!-- Product Card 5 -->
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="{{ url_for('static', filename='iphoner1.png') }}" alt="Iphone 14 (128GB)">
+                        </div>
+                        <div class="product-info">
+                            <h4>iPhone 14 (128GB)</h4>
+                            <p class="product-price">₹ 54,090</p>
+                            <a href="#" class="add-to-cart-btn">Add To Cart</a>
+                        </div>
+                    </div>
+
+                    <!-- Product Card 6 -->
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="{{ url_for('static', filename='iphoner1.png') }}" alt="Iphone SE">
+                        </div>
+                        <div class="product-info">
+                            <h4>iPhone SE</h4>
+                            <p class="product-price">₹ 49,990</p>
+                            <a href="#" class="add-to-cart-btn">Add To Cart</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- --- Samsung Products Section (MODIFIED) --- -->
+        <section class="products" id="samsung-section">
+            <div class="container-fluid"> <!-- CHANGED -->
+                <!-- New Section Title -->
+                <h2 class="section-heading">Samsung <span class="highlight">Mobile</span></h2>
+
+                <div class="product-grid">
+                    <!-- Product Card 1 -->
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="{{ url_for('static', filename='s25r1.png') }}" alt="Samsung Galaxy S24 Ultra">
+                        </div>
+                        <div class="product-info">
+                            <h4>Galaxy S24 Ultra</h4>
+                            <p class="product-price">₹ 1,29,999</p>
+                            <a href="#" class="add-to-cart-btn">Add To Cart</a>
+                        </div>
+                    </div>
+
+                    <!-- Product Card 2 -->
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="{{ url_for('static', filename='s25r1.png') }}" alt="Samsung Galaxy S24">
+                        </div>
+                        <div class="product-info">
+                            <h4>Galaxy S24</h4>
+                            <p class="product-price">₹ 79,999</p>
+                            <a href="#" class="add-to-cart-btn">Add To Cart</a>
+                        </div>
+                    </div>
+
+                    <!-- Product Card 3 -->
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="{{ url_for('static', filename='s25r1.png') }}" alt="Samsung Galaxy S23 FE">
+                        </div>
+                        <div class="product-info">
+                            <h4>Galaxy S23 FE</h4>
+                            <p class="product-price">₹ 54,999</p>
+                            <a href="#" class="add-to-cart-btn">Add To Cart</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Product Card 4 -->
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="{{ url_for('static', filename='s25r1.png') }}" alt="Samsung Galaxy A55">
+                        </div>
+                        <div class="product-info">
+                            <h4>Galaxy A55 5G</h4>
+                            <p class="product-price">₹ 39,999</p>
+                            <a href="#" class="add-to-cart-btn">Add To Cart</a>
+                        </div>
+                    </div>
+
+                    <!-- Product Card 5 -->
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="{{ url_for('static', filename='s25r1.png') }}" alt="Samsung Galaxy M34">
+                        </div>
+                        <div class="product-info">
+                            <h4>Galaxy M34 5G</h4>
+                            <p class="product-price">₹ 15,999</p>
+                            <a href="#" class="add-to-cart-btn">Add To Cart</a>
+                        </div>
+                    </div>
+
+                    <!-- Product Card 6 -->
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="{{ url_for('static', filename='s25r1.png') }}" alt="Samsung Galaxy F15">
+                        </div>
+                        <div class="product-info">
+                            <h4>Galaxy F15 5G</h4>
+                            <p class="product-price">₹ 12,999</p>
+                            <a href="#" class="add-to-cart-btn">Add To Cart</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+
+                <section class="products" id="oneplus-section">
+            <div class="container-fluid"> <!-- CHANGED -->
+                <!-- New Section Title -->
+                <h2 class="section-heading">Oneplus <span class="highlight">Mobile</span></h2>
+
+                <div class="product-grid">
+                    <!-- Product Card 1 -->
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="{{ url_for('static', filename='onep13.png') }}" alt="Samsung Galaxy S24 Ultra">
+                        </div>
+                        <div class="product-info">
+                            <h4>OnePlus13</h4>
+                            <p class="product-price">₹ 1,29,999</p>
+                            <a href="#" class="add-to-cart-btn">Add To Cart</a>
+                        </div>
+                    </div>
+
+                    <!-- Product Card 2 -->
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="{{ url_for('static', filename='onep13.png') }}" alt="Samsung Galaxy S24">
+                        </div>
+                        <div class="product-info">
+                            <h4>OnePlus12</h4>
+                            <p class="product-price">₹ 79,999</p>
+                            <a href="#" class="add-to-cart-btn">Add To Cart</a>
+                        </div>
+                    </div>
+
+                    <!-- Product Card 3 -->
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="{{ url_for('static', filename='onep13.png') }}" alt="Samsung Galaxy S23 FE">
+                        </div>
+                        <div class="product-info">
+                            <h4>OnePlus13s</h4>
+                            <p class="product-price">₹ 54,999</p>
+                            <a href="#" class="add-to-cart-btn">Add To Cart</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Product Card 4 -->
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="{{ url_for('static', filename='onep13.png') }}" alt="Samsung Galaxy A55">
+                        </div>
+                        <div class="product-info">
+                            <h4>OnePlus11</h4>
+                            <p class="product-price">₹ 39,999</p>
+                            <a href="#" class="add-to-cart-btn">Add To Cart</a>
+                        </div>
+                    </div>
+
+                    <!-- Product Card 5 -->
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="{{ url_for('static', filename='onep13.png') }}" alt="Samsung Galaxy M34">
+                        </div>
+                        <div class="product-info">
+                            <h4>OnePlus12R</h4>
+                            <p class="product-price">₹ 15,999</p>
+                            <a href="#" class="add-to-cart-btn">Add To Cart</a>
+                        </div>
+                    </div>
+
+                    <!-- Product Card 6 -->
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="{{ url_for('static', filename='onep13.png') }}" alt="Samsung Galaxy F15">
+                        </div>
+                        <div class="product-info">
+                            <h4>OnePlus Open</h4>
+                            <p class="product-price">₹ 12,999</p>
+                            <a href="#" class="add-to-cart-btn">Add To Cart</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- The third product section for laptops has been removed -->
+
+    </main>
+
+    <!-- --- Footer --- -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <!-- Footer Brand & Newsletter -->
+                <div class="footer-brand">
+                    <h4>Hustle Cart</h4>
+                    <p>Stay Connected</p>
+                    <form action="#" method="post" aria-label="Newsletter signup">
+                        <input type="email" name="email" placeholder="Enter Your Email" aria-label="Enter YourLabel">
+                    </form>
+                </div>
+
+                <!-- Footer Links Columns -->
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h5>Shop</h5>
+                        <ul>
+                            <li><a href="#">New arrivals</a></li>
+                            <li><a href="#">Sales</a></li>
+                            <li><a href="#">Collections</a></li>
+                            <li><a href="#">Gift Cards</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-column">
+                        <h5>Accounts</h5>
+                        <ul>
+                            <li><a href="#">My Accounts</a></li>
+                            <li><a href="#">Order History</a></li>
+                            <li><a href="#">Wishlist</a></li>
+                            <li><a href="#">Cart</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-column">
+                        <h5>Support</h5>
+                        <ul>
+                            <li><a href="#">Help Center</a></li>
+                            <li><a href="#">Shipping & Returns</a></li>
+                            <li><a href="#">Contact Us</a></li>
+                            <li><a href="#">FAQs</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer Bottom Bar -->
+            <div class="footer-bottom">
+                <p>&copy; 2025 Hustle Cart. All right reserved.</p>
+                <div class="footer-bottom-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms Of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+</body>
+
+</html>
+

@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hustlecart</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #e0e0e0;
+}
+
+.container {
+    display: flex;
+    height: 100vh;
+}
+
+/* Sidebar Styles */
+.sidebar {
+    width: 400px;
+    background-color: #3a3a3a;
+    padding: 30px 0;
+    color: white;
+}
+
+.logo {
+    font-size: 28px;
+    font-weight: bold;
+    padding: 0 20px 30px 20px;
+    border-bottom: 1px solid #555;
+    margin-bottom: 10px;
+}
+
+.nav-menu {
+    display: flex;
+    flex-direction: column;
+    row-gap: 45px;
+}
+
+.nav-item {
+    display: flex;
+    align-items: center;
+    padding: 15px 20px;
+    color: white;
+    text-decoration: none;
+    transition: background-color 0.3s;
+}
+
+.nav-item:hover {
+    background-color: #4a4a4a;
+}
+
+.nav-item .icon {
+    margin-right: 15px;
+    font-size: 18px;
+}
+
+/* Main Content Styles */
+.main-content {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+}
+
+.profile-section {
+    background-color: #d0d0d0;
+    padding: 40px;
+    border-radius: 15px;
+    width: 100%;
+    max-width: 1000px;
+}
+
+.profile-avatar {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
+.profile-avatar svg {
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+}
+
+.profile-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #1a1a1a;
+}
+
+.form-group input {
+    padding: 12px 15px;
+    border: none;
+    border-radius: 8px;
+    background-color: white;
+    font-size: 14px;
+    outline: none;
+}
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <h1 class="logo">Hustlecart</h1>
+            <nav class="nav-menu">
+                <a href="#" class="nav-item">
+                    <span class="icon">📦</span>
+                    <span>My Order</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <span class="icon">🏠</span>
+                    <span>Current Address</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <span class="icon">🎫</span>
+                    <span>Coupons</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <span class="icon">❓</span>
+                    <span>Help</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <span class="icon">📄</span>
+                    <span>Terms & Conditions</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <span class="icon">↪️</span>
+                    <span>Log Out</span>
+                </a>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="profile-section">
+                <div class="profile-avatar">
+                    <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="100" cy="100" r="100" fill="#c0c0c0"/>
+                        <circle cx="100" cy="70" r="30" fill="#ffffff"/>
+                        <ellipse cx="100" cy="155" rx="50" ry="60" fill="#ffffff"/>
+                    </svg>
+                </div>
+
+                <form class="profile-form">
+                    <div class="form-group">
+                        <label for="username">User Name :</label>
+                        <input type="text" id="username" name="username">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="mobile">Mobile Number :</label>
+                        <input type="text" id="mobile" name="mobile">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="address">Current Address :</label>
+                        <input type="text" id="address" name="address">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email ID :</label>
+                        <input type="text" id="email" name="email">
+                    </div>
+                </form>
+            </div>
+        </main>
+    </div>
+</body>
+</html>
