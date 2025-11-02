@@ -587,12 +587,40 @@
                 padding: 0 15px;
             }
         }
+        .nav-icons {
+    display: flex;
+    gap: 20px;
+    font-size: 20px;
+    color: #444;
+    position: relative;
+}
+
+.nav-icons a {
+    transition: color 0.3s ease;
+    position: relative;
+}
+
+.cart-count {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    background: #ff4444;
+    color: white;
+    border-radius: 50%;
+    width: 18px;
+    height: 18px;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
     </style>
 </head>
 
 <body>
 
     <!-- --- Header --- -->
+        <!-- --- Header --- -->
     <header>
         <div class="container">
             <div class="logo">
@@ -600,7 +628,7 @@
             </div>
 
             <!-- Desktop Navigation -->
-           <nav class="main-nav">
+            <nav class="main-nav">
                 <ul class="nav-links">
                     <li><a href="{{ url_for('home') }}">Home</a></li>
                     <li><a href="{{ url_for('mobile') }}">Mobile</a></li>
@@ -616,7 +644,10 @@
                     <input type="text" placeholder="Search...">
                 </div>
                 <div class="nav-icons">
-                    <a href="#" aria-label="Shopping Cart"><i class="fas fa-shopping-cart"></i></a>
+                    <a href="{{ url_for('cart') }}" aria-label="Shopping Cart">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-count" id="cart-count">0</span>
+                    </a>
                     <a href="{{ url_for('account') }}" aria-label="User Account"><i class="fas fa-user-circle"></i></a>
                 </div>
                 <div class="mobile-nav-toggle">
@@ -972,6 +1003,74 @@
     </footer>
 
 </body>
+<script>
+    // Add to Cart functionality
+    function addToCart(productName, productPrice, productImage) {
+        const productData = {
+            name: productName,
+            price: productPrice,
+            img: productImage
+        };
 
+        fetch('/add_to_cart', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(productData)
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                alert(data.message || 'Product added to cart!');
+                updateCartCount();
+            } else {
+                alert('Error: ' + (data.error || 'Failed to add product to cart'));
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('Error adding product to cart');
+        });
+    }
+
+    // Update cart count
+    function updateCartCount() {
+        fetch('/get_cart_count')
+            .then(response => response.json())
+            .then(data => {
+                const cartCount = document.getElementById('cart-count');
+                if (data.count > 0) {
+                    cartCount.textContent = data.count;
+                    cartCount.style.display = 'flex';
+                } else {
+                    cartCount.style.display = 'none';
+                }
+            })
+            .catch(error => {
+                console.error('Error fetching cart count:', error);
+            });
+    }
+
+    // Initialize Add to Cart buttons and cart count
+    document.addEventListener('DOMContentLoaded', function() {
+        updateCartCount();
+        
+        // Add click event to all Add to Cart buttons
+        const addToCartButtons = document.querySelectorAll('.add-to-cart-btn');
+        addToCartButtons.forEach(button => {
+            button.onclick = function(e) {
+                e.preventDefault();
+                const productCard = this.closest('.product-card');
+                const productName = productCard.querySelector('h4').textContent;
+                const productPriceText = productCard.querySelector('.product-price').textContent;
+                const productPrice = parseInt(productPriceText.replace('₹ ', '').replace(',', ''));
+                const productImage = productCard.querySelector('img').src;
+                
+                addToCart(productName, productPrice, productImage);
+            };
+        });
+    });
+</script>
 </html>
 

@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your Cart - Hustle Cart</title>
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #e8e8e8;
+      margin: 0;
+      padding-bottom: 80px;
+    }
+
+    .header {
+      background-color: #bfbfbf;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 30px;
+      font-weight: bold;
+      font-size: 26px;
+    }
+
+    .home-btn {
+      background-color: #2d8cff;
+      color: white;
+      padding: 8px 18px;
+      border-radius: 20px;
+      font-size: 14px;
+      text-decoration: none;
+      transition: 0.2s;
+    }
+
+    .home-btn:hover {
+      background-color: #0066ff;
+    }
+
+    .container {
+      padding: 25px;
+    }
+
+    .empty-cart {
+      text-align: center;
+      padding: 50px 20px;
+      background-color: white;
+      border-radius: 15px;
+      margin-bottom: 20px;
+    }
+
+    .empty-cart h3 {
+      color: #666;
+      margin-bottom: 20px;
+      font-size: 24px;
+    }
+
+    .cart-box {
+      background-color: white;
+      padding: 25px;
+      border-radius: 15px;
+      box-shadow: 0px 6px 12px rgba(0,0,0,0.2);
+      min-height: 180px;
+    }
+
+    .cart-item {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      padding: 15px;
+      border-bottom: 1px solid #eee;
+    }
+
+    .cart-item img {
+      width: 120px;
+      height: 120px;
+      object-fit: cover;
+      border-radius: 12px;
+    }
+
+    .item-info {
+      flex-grow: 1;
+    }
+
+    .item-info strong {
+      font-size: 18px;
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    .item-info span {
+      display: block;
+      margin-bottom: 5px;
+      color: #666;
+    }
+
+    .quantity-controls {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin: 10px 0;
+    }
+
+    .quantity-btn {
+      background-color: #f0f0f0;
+      border: none;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .quantity-btn:hover {
+      background-color: #e0e0e0;
+    }
+
+    .quantity {
+      font-size: 18px;
+      font-weight: bold;
+      min-width: 30px;
+      text-align: center;
+    }
+
+    .remove-btn {
+      background-color: #ff4444;
+      color: white;
+      border: none;
+      padding: 8px 15px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    .remove-btn:hover {
+      background-color: #cc0000;
+    }
+
+    .item-total {
+      font-weight: bold;
+      font-size: 18px;
+      color: #333;
+      margin-left: 20px;
+    }
+
+    .billing-section {
+      background-color: #d8d8d8;
+      padding: 25px;
+      margin-top: 25px;
+      font-size: 18px;
+      border-radius: 10px;
+    }
+
+    .billing-section b {
+      font-size: 22px;
+    }
+
+    .billing-row {
+      margin: 10px 0;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .apply-box {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      margin-top: 8px;
+    }
+
+    .apply-box input {
+      flex: 1;
+      padding: 12px;
+      border: none;
+      border-radius: 25px;
+      font-size: 16px;
+    }
+
+    .apply-box button {
+      background-color: #2d8cff;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 25px;
+      border: none;
+      cursor: pointer;
+      font-size: 16px;
+      transition: 0.2s;
+    }
+
+    .apply-box button:hover {
+      background-color: #0066ff;
+    }
+
+    .checkout-btn {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background-color: #2d8cff;
+      color: white;
+      font-size: 22px;
+      font-weight: bold;
+      border: none;
+      padding: 20px;
+      cursor: pointer;
+      text-align: center;
+      transition: 0.2s;
+    }
+
+    .checkout-btn:hover {
+      background-color: #0066ff;
+    }
+
+    .checkout-btn:disabled {
+      background-color: #cccccc;
+      cursor: not-allowed;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="header">
+    <div>🛒 YOUR CART</div>
+    <a href="{{ url_for('home') }}" class="home-btn">Back To Home</a>
+  </div>
+
+  <div class="container">
+    <div id="empty-cart-message" class="empty-cart" style="display: none;">
+      <h3>Your cart is empty</h3>
+      <p>Add some products to your cart to see them here.</p>
+      <a href="{{ url_for('home') }}" class="home-btn">Continue Shopping</a>
+    </div>
+
+    <div class="cart-box" id="cart-items">
+      <!-- Cart items will be loaded here -->
+    </div>
+
+    <div class="billing-section" id="billing-section" style="display: none;">
+      <b>Billing Details :</b>
+      <div class="billing-row">
+        <span>Subtotal:</span>
+        <span>₹<span id="subtotal">0</span></span>
+      </div>
+      <div class="billing-row">
+        <span>Discount:</span>
+        <span>- ₹<span id="discount">0</span></span>
+      </div>
+      <div class="billing-row">
+        <span>Delivery Charge:</span>
+        <span>₹<span id="delivery">50</span></span>
+      </div>
+      <div class="billing-row">
+        <span>Apply Coins:</span>
+        <div class="apply-box">
+          <input type="number" id="coins" placeholder="Enter coins" min="0">
+          <button onclick="applyCoins()">Apply</button>
+        </div>
+      </div>
+      <div class="billing-row" style="font-size: 20px; font-weight: bold; border-top: 1px solid #999; padding-top: 10px;">
+        <span>Total Amount:</span>
+        <span>₹<span id="total">0</span></span>
+      </div>
+    </div>
+  </div>
+
+  <button class="checkout-btn" id="checkout-btn" onclick="proceedToCheckout()" disabled>Proceed To Checkout</button>
+
+  <script>
+    let appliedCoins = 0;
+
+    // Load cart items when page loads
+    document.addEventListener('DOMContentLoaded', function() {
+        loadCartItems();
+    });
+
+    function loadCartItems() {
+        fetch('/get_cart_count')
+            .then(response => response.json())
+            .then(data => {
+                if (data.count === 0) {
+                    showEmptyCart();
+                } else {
+                    // Cart has items, display them
+                    updateCartDisplay();
+                }
+            })
+            .catch(error => {
+                console.error('Error loading cart:', error);
+                showEmptyCart();
+            });
+    }
+
+    function updateCartDisplay() {
+        fetch('/get_cart_data') // We'll need to create this endpoint
+            .then(response => response.json())
+            .then(cartItems => {
+                const cartContainer = document.getElementById('cart-items');
+                const billingSection = document.getElementById('billing-section');
+                const checkoutBtn = document.getElementById('checkout-btn');
+                const emptyCartMsg = document.getElementById('empty-cart-message');
+
+                if (cartItems.length === 0) {
+                    showEmptyCart();
+                    return;
+                }
+
+                // Show billing section and enable checkout
+                billingSection.style.display = 'block';
+                checkoutBtn.disabled = false;
+                emptyCartMsg.style.display = 'none';
+
+                // Render cart items
+                cartContainer.innerHTML = '';
+                cartItems.forEach((item) => {
+                    const itemElement = document.createElement('div');
+                    itemElement.className = 'cart-item';
+                    itemElement.innerHTML = `
+                        <img src="${item.img}" alt="${item.name}" onerror="this.src='https://via.placeholder.com/120?text=Product'">
+                        <div class="item-info">
+                            <strong>${item.name}</strong>
+                            <span>Price: ₹${item.price.toLocaleString()}</span>
+                            <div class="quantity-controls">
+                                <button class="quantity-btn" onclick="updateQuantity('${item.name}', -1)">-</button>
+                                <span class="quantity">${item.quantity}</span>
+                                <button class="quantity-btn" onclick="updateQuantity('${item.name}', 1)">+</button>
+                            </div>
+                        </div>
+                        <div class="item-total">₹${(item.price * item.quantity).toLocaleString()}</div>
+                        <button class="remove-btn" onclick="removeItem('${item.name}')">Remove</button>
+                    `;
+                    cartContainer.appendChild(itemElement);
+                });
+
+                calculateTotals(cartItems);
+            })
+            .catch(error => {
+                console.error('Error loading cart items:', error);
+                showEmptyCart();
+            });
+    }
+
+    function updateQuantity(productName, change) {
+        fetch('/update_cart_quantity', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                name: productName,
+                change: change
+            })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                showPopup('Quantity updated successfully!');
+                if (data.cart_count === 0) {
+                    showEmptyCart();
+                } else {
+                    updateCartDisplay();
+                }
+                updateGlobalCartCount(data.cart_count);
+            } else {
+                showPopup('Error updating quantity');
+            }
+        })
+        .catch(error => {
+            console.error('Error updating quantity:', error);
+            showPopup('Error updating quantity');
+        });
+    }
+
+    function removeItem(productName) {
+        if (!confirm('Are you sure you want to remove this item from your cart?')) {
+            return;
+        }
+
+        fetch('/remove_from_cart', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                name: productName
+            })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                showPopup('Item removed from cart!');
+                if (data.cart_count === 0) {
+                    showEmptyCart();
+                } else {
+                    updateCartDisplay();
+                }
+                updateGlobalCartCount(data.cart_count);
+            } else {
+                showPopup('Error removing item');
+            }
+        })
+        .catch(error => {
+            console.error('Error removing item:', error);
+            showPopup('Error removing item from cart');
+        });
+    }
+
+    function showEmptyCart() {
+        const cartContainer = document.getElementById('cart-items');
+        const billingSection = document.getElementById('billing-section');
+        const checkoutBtn = document.getElementById('checkout-btn');
+        const emptyCartMsg = document.getElementById('empty-cart-message');
+
+        cartContainer.innerHTML = '';
+        billingSection.style.display = 'none';
+        checkoutBtn.disabled = true;
+        emptyCartMsg.style.display = 'block';
+        
+        // Update global cart count to 0
+        updateGlobalCartCount(0);
+    }
+
+    function calculateTotals(items) {
+        const subtotal = items.reduce((total, item) => total + (item.price * item.quantity), 0);
+        const discount = subtotal > 50000 ? 2000 : subtotal > 20000 ? 1000 : 500;
+        const delivery = 50;
+        const total = Math.max(0, subtotal - discount + delivery - appliedCoins);
+
+        document.getElementById('subtotal').textContent = subtotal.toLocaleString();
+        document.getElementById('discount').textContent = discount.toLocaleString();
+        document.getElementById('total').textContent = total.toLocaleString();
+    }
+
+    function applyCoins() {
+        const coinsInput = document.getElementById('coins');
+        const coins = parseInt(coinsInput.value) || 0;
+        
+        if (coins > 0) {
+            appliedCoins = coins;
+            // Recalculate totals with the new coins
+            updateCartDisplay();
+            coinsInput.value = '';
+            showPopup(`Applied ${coins} coins to your order!`);
+        } else {
+            showPopup('Please enter a valid number of coins');
+        }
+    }
+
+    function updateGlobalCartCount(count) {
+        // This function would update the cart count across all pages
+        // For now, we'll just log it
+        console.log('Cart count updated to:', count);
+        
+        // If we're on a page with a cart count display, update it
+        const cartCountElement = document.getElementById('cart-count');
+        if (cartCountElement) {
+            if (count > 0) {
+                cartCountElement.textContent = count;
+                cartCountElement.style.display = 'flex';
+            } else {
+                cartCountElement.style.display = 'none';
+            }
+        }
+    }
+
+    function proceedToCheckout() {
+        showPopup('Proceeding to checkout! In a real application, this would redirect to payment page.');
+        // Here you would typically redirect to a checkout page
+        // window.location.href = '/checkout';
+    }
+
+    // Popup message function
+    function showPopup(message) {
+        // Remove existing popup if any
+        const existingPopup = document.querySelector('.popup-message');
+        if (existingPopup) {
+            existingPopup.remove();
+        }
+
+        // Create popup element
+        const popup = document.createElement('div');
+        popup.className = 'popup-message';
+        popup.textContent = message;
+        
+        // Add popup styles
+        popup.style.cssText = `
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #4CAF50;
+            color: white;
+            padding: 15px 20px;
+            border-radius: 5px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            z-index: 10000;
+            font-weight: 500;
+            max-width: 300px;
+            animation: slideIn 0.3s ease-out;
+        `;
+
+        // Add CSS for animation
+        if (!document.querySelector('#popup-styles')) {
+            const style = document.createElement('style');
+            style.id = 'popup-styles';
+            style.textContent = `
+                @keyframes slideIn {
+                    from { transform: translateX(100%); opacity: 0; }
+                    to { transform: translateX(0); opacity: 1; }
+                }
+                @keyframes slideOut {
+                    from { transform: translateX(0); opacity: 1; }
+                    to { transform: translateX(100%); opacity: 0; }
+                }
+            `;
+            document.head.appendChild(style);
+        }
+
+        document.body.appendChild(popup);
+
+        // Auto remove after 3 seconds
+        setTimeout(() => {
+            popup.style.animation = 'slideOut 0.3s ease-in';
+            setTimeout(() => {
+                if (popup.parentNode) {
+                    popup.remove();
+                }
+            }, 300);
+        }, 3000);
+    }
+</script>
+
+</body>
+</html>

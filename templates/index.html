@@ -14,14 +14,6 @@
     <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
-    <!-- 
-      CSS is included here in a <style> tag. 
-      You can copy all the code inside this <style>...</style> block 
-      and paste it into a new file (e.g., "styles.css"). 
-      
-      If you do that, remove this <style> block and add this line instead:
-      <link rel="stylesheet" href="styles.css">
-    -->
     <style>
         /* --- Global Reset & Base Styles --- */
         * {
@@ -61,7 +53,6 @@
         /* --- Header & Navigation --- */
         header {
             background-color: #fff;
-
             padding: 15px 0;
             position: sticky;
             top: 0;
@@ -107,7 +98,6 @@
         .search-box input {
             border: 1px solid #ccc;
             border-radius: 20px;
-            /* Rounded rectangle */
             padding: 8px 15px;
             font-size: 14px;
             font-family: 'Inter', sans-serif;
@@ -119,19 +109,35 @@
             gap: 20px;
             font-size: 20px;
             color: #444;
+            position: relative;
         }
 
         .nav-icons a {
             transition: color 0.3s ease;
+            position: relative;
         }
 
         .nav-icons a:hover {
             color: #007bff;
         }
 
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: #ff4444;
+            color: white;
+            border-radius: 50%;
+            width: 18px;
+            height: 18px;
+            font-size: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
         .mobile-nav-toggle {
             display: none;
-            /* For hamburger menu */
             font-size: 24px;
             cursor: pointer;
         }
@@ -139,7 +145,6 @@
         /* --- Hero Section --- */
         .hero {
             background-color: rgb(229, 229, 229);
-            /* Light blue/grey from design */
             padding: 100px 0;
             text-align: left;
         }
@@ -160,7 +165,6 @@
 
         .cta-button {
             background-color: #333;
-            /* Dark button from design */
             color: #fff;
             padding: 12px 28px;
             border-radius: 30px;
@@ -177,9 +181,7 @@
         /* --- Galaxy AI Banner --- */
         .galaxy-banner {
             background-color: #e0e3ff;
-            /* Light blue/purple from image */
             padding: 60px 0;
-
         }
 
         .galaxy-banner .container {
@@ -187,54 +189,7 @@
             align-items: center;
             justify-content: center;
             flex-wrap: wrap;
-            /* For smaller screens */
         }
-
-        /* .banner-text {
-            flex: 1;
-            min-width: 300px;
-        }
-
-        .banner-text h2 {
-            font-size: 42px;
-            font-weight: 700;
-            color: #222;
-            line-height: 1.2;
-            margin: 0;
-        }
-
-        .banner-text h3 {
-            font-size: 24px;
-            font-weight: 600;
-            color: #333;
-            margin-top: 15px;
-            margin-bottom: 30px;
-        }
-
-        .banner-links {
-            display: flex;
-            align-items: center;
-            gap: 25px;
-        }
-
-        .banner-links a {
-            font-weight: 600;
-            color: #333;
-            font-size: 16px;
-        }
-
-        .banner-links a.buy-button {
-            border: 2px solid #555;
-            padding: 8px 24px;
-            border-radius: 20px;
-            transition: all 0.3s ease;
-        }
-
-        .banner-links a.buy-button:hover {
-            background-color: #333;
-            color: #fff;
-            border-color: #333;
-        } */
 
         .banner-image {
             max-width: 1500px;
@@ -249,7 +204,6 @@
             max-width: 100%;
             height: auto;
             border-radius: 12px;
-            /* Placeholder has rounded corners */
         }
 
         /* Responsive adjustment for banner */
@@ -257,10 +211,6 @@
             .galaxy-banner .container {
                 flex-direction: column;
                 text-align: center;
-            }
-
-            .banner-links {
-                justify-content: center;
             }
         }
 
@@ -272,7 +222,6 @@
 
         .section-title {
             background-color: #333;
-            /* Dark title box from design */
             color: #fff;
             padding: 15px 30px;
             display: inline-block;
@@ -299,47 +248,31 @@
             flex-wrap: wrap;
         }
 
-        /* .product-card {
-            max-width: 400px;
-            width: 100%;
-            background-color: rgb(180, 180, 180);
-            border-radius: 30px;
-            opacity: 0.6;
-        } */
-
         .product-card {
             max-width: 400px;
             width: 100%;
-    /* opacity: 0.8; */   /* <-- MAKE SURE THIS IS DELETED */
-            border-radius: 30px;   /* <-- ADD THIS */
-            overflow: hidden;      /* <-- ADD THIS */
-            box-shadow: 6px 4px 12px rgba(0, 0, 0, 0.05); /* Optional: adds a nice shadow */
-}
-
-
+            border-radius: 30px;
+            overflow: hidden;
+            box-shadow: 6px 4px 12px rgba(0, 0, 0, 0.05);
+        }
 
         .product-image {
             background-color: transparent;
             height: 400px;
-            
         }
 
         .product-image img {
-    width: 100%;
-    height: 100%;        /* <-- ADD THIS LINE */
-    object-fit: cover;  /* <-- ADD THIS LINE */
-
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
             border-radius: 30px 30px 0 0;
-
         }
 
-        /* The pale yellow from the design seems to be part of the product image.
-           I'll use a clean white background for the product info. */
         .product-info {
-    padding: 20px;
-    text-align: center;
-    background-color: rgba(230, 230, 230, 0.9); /* <-- ADD THIS (light grey + 70% transparent) */
-}
+            padding: 20px;
+            text-align: center;
+            background-color: rgba(230, 230, 230, 0.9);
+        }
 
         .product-info h4 {
             font-size: 18px;
@@ -347,19 +280,6 @@
             margin-bottom: 5px;
             color: #222;
         }
-
-        /* .product-category {
-            font-size: 14px;
-            color: #888;
-            margin-bottom: 10px;
-        }
-
-        .product-price {
-            font-size: 17px;
-            font-weight: 700;
-            color: #007bff;
-            margin-bottom: 15px;
-        } */ 
 
         .details-button {
             background-color: #007bff;
@@ -380,7 +300,6 @@
         /* --- Footer --- */
         footer {
             background-color: #2b2b2b;
-            /* Dark grey from design */
             color: #f0f0f0;
             padding-top: 60px;
         }
@@ -395,7 +314,6 @@
 
         .footer-brand {
             flex-basis: 300px;
-            /* Give it some base width */
             flex-grow: 2;
         }
 
@@ -476,17 +394,13 @@
         }
 
         /* --- Responsive Design --- */
-
         @media (max-width: 992px) {
             .nav-links {
                 display: none;
-                /* Hide desktop nav */
-                /* In a real site, you'd add JS to toggle this */
             }
 
             .mobile-nav-toggle {
                 display: block;
-                /* Show hamburger icon */
             }
 
             header .container {
@@ -603,7 +517,10 @@
                     <input type="text" placeholder="Search...">
                 </div>
                 <div class="nav-icons">
-                    <a href="#" aria-label="Shopping Cart"><i class="fas fa-shopping-cart"></i></a>
+                    <a href="{{ url_for('cart') }}" aria-label="Shopping Cart">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-count" id="cart-count">0</span>
+                    </a>
                     <a href="{{ url_for('account') }}" aria-label="User Account"><i class="fas fa-user-circle"></i></a>
                 </div>
                 <div class="mobile-nav-toggle">
@@ -618,7 +535,6 @@
         <section class="hero">
             <div class="container">
                 <div class="hero-content">
-                    <!-- Updated text to match "Electronics" theme -->
                     <h2>Find Your Perfect Tech</h2>
                     <p>Shop the latest trends in electronics, gadgets, and accessories.</p>
                     <a href="#" class="cta-button">Shop now</a>
@@ -626,204 +542,168 @@
             </div>
         </section>
 
-        <!-- --- Most Visited Products --- -->\
-         <h3 class="section-title">Most Visited Products</h3>
+        <!-- --- Most Visited Products --- -->
+        <h3 class="section-title">Most Visited Products</h3>
         <section class="galaxy-banner">
-            
             <div class="container">
                 <div class="banner-text">
-                    <!-- <h2>You speak<br>We understand</h2> -->
-                    <!-- <h3>Galaxy AI ✨</h3> -->
-                    <!-- <div class="banner-links">
-                        <a href="#">Learn more</a>
-                        <a href="#" class="buy-button">Buy</a>
-                    </div> -->
+                    <!-- Content removed to preserve layout -->
                 </div>
                 <div class="banner-image">
-                    <img src = "{{ url_for('static', filename='1.png') }}" alt="Galaxy AI Products">
+                    <img src="{{ url_for('static', filename='1.png') }}" alt="Galaxy AI Products">
                 </div>
             </div>
         </section>
+        
         <section class="products">
             <div class="container">
-                
-
-
                 <div class="product-grid">
                     <!-- Product Card 1 -->
                     <div class="product-card">
                         <a href="/Mobile#apple-section">
-                        <div class="product-image">
-                            <img src="static/iphoner1.png" alt="Iphone 17">
-                        </div>
-                        <div class="product-info">
-                            <h4>Iphone 17</h4>
-                            
-                        </div>
-                    </a>
+                            <div class="product-image">
+                                <img src="static/iphoner1.png" alt="Iphone 17">
+                            </div>
+                            <div class="product-info">
+                                <h4>Iphone 17</h4>
+                            </div>
+                        </a>
                     </div>
 
                     <!-- Product Card 2 -->
                     <div class="product-card">
                         <a href="/Mobile#samsung-section">
-                        <div class="product-image">
-                            <img src="static/s25r1.png" alt="Samsung Galaxy S25">
-                        </div>
-                        <div class="product-info">
-                            <h4>Samsung Galaxy S25</h4>
-                            
-                        </div>
+                            <div class="product-image">
+                                <img src="static/s25r1.png" alt="Samsung Galaxy S25">
+                            </div>
+                            <div class="product-info">
+                                <h4>Samsung Galaxy S25</h4>
+                            </div>
                         </a>
                     </div>
 
                     <!-- Product Card 3 -->
                     <div class="product-card">
                         <a href="/Mobile#oneplus-section">
-                        <div class="product-image">
-                            <img src="static/onep13.png" alt="OnePlus 15">
-                        </div>
-                        <div class="product-info">
-                            <h4>OnePlus 15</h4>
-                            
-                        </div>
+                            <div class="product-image">
+                                <img src="static/onep13.png" alt="OnePlus 15">
+                            </div>
+                            <div class="product-info">
+                                <h4>OnePlus 15</h4>
+                            </div>
                         </a>
                     </div>
-
-                   
                 </div>
             </div>
         </section>
-         <section class="galaxy-banner">
-            
+
+        <section class="galaxy-banner">
             <div class="container">
                 <div class="banner-text">
-                    <!-- <h2>You speak<br>We understand</h2> -->
-                    <!-- <h3>Galaxy AI ✨</h3> -->
-                    <!-- <div class="banner-links">
-                        <a href="#">Learn more</a>
-                        <a href="#" class="buy-button">Buy</a>
-                    </div> -->
+                    <!-- Content removed to preserve layout -->
                 </div>
                 <div class="banner-image">
-                    <img src = "{{ url_for('static', filename='2.png') }}" alt="Galaxy AI Products">
+                    <img src="{{ url_for('static', filename='2.png') }}" alt="Galaxy AI Products">
                 </div>
             </div>
         </section>
+
         <section class="products">
             <div class="container">
-                
-
-
                 <div class="product-grid">
                     <!-- Product Card 1 -->
-                     <a href="/TV#sony-section">
-                    <div class="product-card">
-                        <div class="product-image">
-                            <img src="static/sonyr1.png" alt="Iphone 17">
+                    <a href="/TV#sony-section">
+                        <div class="product-card">
+                            <div class="product-image">
+                                <img src="static/sonyr1.png" alt="Sony Bravia 8">
+                            </div>
+                            <div class="product-info">
+                                <h4>Sony Bravia 8</h4>
+                            </div>
                         </div>
-                        <div class="product-info">
-                            <h4>Sony Bravia 8</h4>
-                            
-                        </div>
-                    </div>
                     </a>
 
                     <!-- Product Card 2 -->
-                     <a href="/TV#samsung-section">
-                    <div class="product-card">
-                        <div class="product-image">
-                            <img src="static/tvr2.png" alt="Samsung Galaxy S25">
+                    <a href="/TV#samsung-section">
+                        <div class="product-card">
+                            <div class="product-image">
+                                <img src="static/tvr2.png" alt="Samsung Crystal UHD">
+                            </div>
+                            <div class="product-info">
+                                <h4>Samsung Crystal UHD</h4>
+                            </div>
                         </div>
-                        <div class="product-info">
-                            <h4>Samsung Crystal UHD</h4>
-                            
-                        </div>
-                    </div>
                     </a>
 
                     <!-- Product Card 3 -->
-                     <a href="/TV#lg-section">
-                    <div class="product-card">
-                        <div class="product-image">
-                            <img src="static/lgr1.png" alt="OnePlus 15">
+                    <a href="/TV#lg-section">
+                        <div class="product-card">
+                            <div class="product-image">
+                                <img src="static/lgr1.png" alt="LG QNED 4K">
+                            </div>
+                            <div class="product-info">
+                                <h4>LG QNED 4K</h4>
+                            </div>
                         </div>
-                        <div class="product-info">
-                            <h4>LG QNED 4K</h4>
-                            
-                        </div>
-                    </div>
                     </a>
-
-                   
                 </div>
             </div>
+        </section>
+
         <section class="custom-image-section">
-                <section class="galaxy-banner">
-            
-            <div class="container">
-                <div class="banner-text">
-                    <!-- <h2>You speak<br>We understand</h2> -->
-                    <!-- <h3>Galaxy AI ✨</h3> -->
-                    <!-- <div class="banner-links">
-                        <a href="#">Learn more</a>
-                        <a href="#" class="buy-button">Buy</a>
-                    </div> -->
-                </div>
-                <div class="banner-image">
-                    <img src = "{{ url_for('static', filename='lapban.png') }}" alt="Galaxy AI Products">
-                </div>
-            </div>
-        </section>
-        <section class="products">
-            <div class="container">
-                
-
-
-                <div class="product-grid">
-                    <!-- Product Card 1 -->
-                     <a href="/Laptop#lenovo-section">
-                    <div class="product-card">
-                        <div class="product-image">
-                            <img src="static/lap1.png" alt="Iphone 17">
-                        </div>
-                        <div class="product-info">
-                            <h4>Lenovo LOQ</h4>
-                            
-                        </div>
+            <section class="galaxy-banner">
+                <div class="container">
+                    <div class="banner-text">
+                        <!-- Content removed to preserve layout -->
                     </div>
-                    </a>
+                    <div class="banner-image">
+                        <img src="{{ url_for('static', filename='lapban.png') }}" alt="Laptop Banner">
+                    </div>
+                </div>
+            </section>
 
-                    <!-- Product Card 2 -->
-                    <div class="product-card">
-                        <a href="/Laptop#hp-section">
-                        <div class="product-image">
-                            <img src="static/lap2.png" alt="Samsung Galaxy S25">
-                        </div>
-                        <div class="product-info">
-                            <h4>HP 7000 series</h4>
-                            
-                        </div>
+            <section class="products">
+                <div class="container">
+                    <div class="product-grid">
+                        <!-- Product Card 1 -->
+                        <a href="/Laptop#lenovo-section">
+                            <div class="product-card">
+                                <div class="product-image">
+                                    <img src="static/lap1.png" alt="Lenovo LOQ">
+                                </div>
+                                <div class="product-info">
+                                    <h4>Lenovo LOQ</h4>
+                                </div>
+                            </div>
                         </a>
-                    </div>
 
-                    <!-- Product Card 3 -->
-                    <div class="product-card">
-                        <a href="/Laptop#dell-section">
-                        <div class="product-image">
-                            <img src="static/g152r1.png" alt="OnePlus 15">
+                        <!-- Product Card 2 -->
+                        <div class="product-card">
+                            <a href="/Laptop#hp-section">
+                                <div class="product-image">
+                                    <img src="static/lap2.png" alt="HP 7000 series">
+                                </div>
+                                <div class="product-info">
+                                    <h4>HP 7000 series</h4>
+                                </div>
+                            </a>
                         </div>
-                        <div class="product-info">
-                            <h4>Dell G15</h4>
-                            
-                        </div>
-                        </a>
-                    </div>
 
-                   
+                        <!-- Product Card 3 -->
+                        <div class="product-card">
+                            <a href="/Laptop#dell-section">
+                                <div class="product-image">
+                                    <img src="static/g152r1.png" alt="Dell G15">
+                                </div>
+                                <div class="product-info">
+                                    <h4>Dell G15</h4>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
                 </div>
-            </div>
+            </section>
         </section>
-</section>
     </main>
 
     <!-- --- Footer --- -->
@@ -836,8 +716,6 @@
                     <p>Stay Connected</p>
                     <form action="#" method="post" aria-label="Newsletter signup">
                         <input type="email" name="email" placeholder="Enter Your Email" aria-label="Enter Your Email">
-                        <!-- The design doesn't show a button, but it's good for accessibility.
-                             You could add one or submit with 'Enter' key. -->
                     </form>
                 </div>
 
@@ -886,6 +764,75 @@
         </div>
     </footer>
 
-</body>
+    <script>
+    // Add to Cart functionality
+    function addToCart(productName, productPrice, productImage) {
+        const productData = {
+            name: productName,
+            price: productPrice,
+            img: productImage
+        };
 
+        fetch('/add_to_cart', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(productData)
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                alert(data.message || 'Product added to cart!');
+                updateCartCount();
+            } else {
+                alert('Error: ' + (data.error || 'Failed to add product to cart'));
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('Error adding product to cart');
+        });
+    }
+
+    // Update cart count
+    function updateCartCount() {
+        fetch('/get_cart_count')
+            .then(response => response.json())
+            .then(data => {
+                const cartCount = document.getElementById('cart-count');
+                if (data.count > 0) {
+                    cartCount.textContent = data.count;
+                    cartCount.style.display = 'flex';
+                } else {
+                    cartCount.style.display = 'none';
+                }
+            })
+            .catch(error => {
+                console.error('Error fetching cart count:', error);
+            });
+    }
+
+    // Initialize Add to Cart buttons and cart count
+    document.addEventListener('DOMContentLoaded', function() {
+        updateCartCount();
+        
+        // Add click event to all Add to Cart buttons
+        const addToCartButtons = document.querySelectorAll('.add-to-cart-btn');
+        addToCartButtons.forEach(button => {
+            button.onclick = function(e) {
+                e.preventDefault();
+                const productCard = this.closest('.product-card');
+                const productName = productCard.querySelector('h4').textContent;
+                const productPriceText = productCard.querySelector('.product-price').textContent;
+                const productPrice = parseInt(productPriceText.replace('₹ ', '').replace(',', ''));
+                const productImage = productCard.querySelector('img').src;
+                
+                addToCart(productName, productPrice, productImage);
+            };
+        });
+    });
+</script>
+
+</body>
 </html>
