@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Payment Details</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+  <style>
+    * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  background: #e5e5e5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.payment-container {
+  width: 750px;
+  background: #f1f1f1;
+  border-radius: 6px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  overflow: hidden;
+}
+
+/* Header */
+.payment-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #bdbdbd;
+  padding: 15px 20px;
+}
+
+.payment-header h2 {
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.back-btn {
+  background: #007bff;
+  color: white;
+  font-size: 13px;
+  padding: 6px 12px;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.back-btn:hover {
+  background: #005ecb;
+}
+
+/* Amount section */
+.amount-section {
+  background: #e8e8e8;
+  padding: 20px 25px;
+}
+
+.amount-section p {
+  margin: 8px 0;
+  font-weight: 600;
+}
+
+/* Payment method section */
+.payment-method {
+  background: #fff;
+  padding: 25px;
+}
+
+.payment-method h3 {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 15px;
+}
+
+.option {
+  display: flex;
+  align-items: center;
+  margin-top: 12px;
+  font-weight: 500;
+}
+
+.option input[type="radio"] {
+  margin-right: 10px;
+  transform: scale(1.1);
+}
+
+/* Card Details */
+.card-details, .upi-details {
+  margin-left: 25px;
+  margin-top: 10px;
+}
+
+.card-details input,
+.upi-details input {
+  width: 100%;
+  padding: 8px 10px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  margin-bottom: 10px;
+}
+
+.card-row {
+  display: flex;
+  gap: 10px;
+}
+
+/* Pay button */
+.pay-btn {
+  background: #42b883;
+  color: white;
+  border: none;
+  padding: 10px 30px;
+  border-radius: 4px;
+  font-size: 15px;
+  margin-top: 20px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.pay-btn:hover {
+  background: #36a573;
+}
+
+/* Note text */
+.note {
+  margin-top: 6px;
+  font-size: 12px;
+  color: #666;
+}
+
+  /* Confirmation modal */
+  .confirmation-modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.45);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2000;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease;
+  }
+
+  .confirmation-modal.show {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .confirmation-content {
+    background: #fff;
+    padding: 24px;
+    border-radius: 8px;
+    max-width: 520px;
+    width: 100%;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+    text-align: center;
+  }
+
+  .confirmation-icon {
+    font-size: 56px;
+    color: #2ecc71;
+    margin-bottom: 12px;
+  }
+
+  .confirmation-title {
+    font-size: 20px;
+    margin-bottom: 8px;
+  }
+
+  .confirmation-details {
+    margin: 12px 0 18px 0;
+    color: #444;
+  }
+
+  .confirmation-button {
+    background: #2d8cff;
+    color: white;
+    border: none;
+    padding: 10px 22px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+  }
+
+  </style>
+</head>
+<body>
+  <div class="payment-container">
+    
+    <!-- Header -->
+    <div class="payment-header">
+      <h2>PAYMENT DETAILS :</h2>
+      <button class="back-btn" onclick="window.location.href='/cart'">Back to Cart</button>
+    </div>
+
+    <!-- Amount Section -->
+    <div class="amount-section">
+      <div class="amount-row"><div>Subtotal:</div><div>₹<span id="subtotal">0</span></div></div>
+      <div class="amount-row"><div>Discount:</div><div>₹<span id="discount">0</span></div></div>
+      <div class="amount-row"><div>Delivery:</div><div>₹<span id="delivery">0</span></div></div>
+      <div class="amount-row"><div>Coins used:</div><div><span id="coins-used">0</span></div></div>
+      <div class="amount-row" style="font-weight:700; margin-top:8px;"><div>Total Amount:</div><div>₹<span id="total-amount">0</span></div></div>
+    </div>
+
+    <!-- Payment Options -->
+    <div class="payment-method">
+      <h3>Choose Payment Method</h3>
+
+      <!-- Credit/Debit Card -->
+      <label class="option">
+        <input type="radio" name="payment" id="payment-card" value="card">
+        Credit / Debit Card
+      </label>
+      <div class="card-details" id="card-details-section" style="display:none;">
+        <input type="text" id="card-number" placeholder="Card Number">
+        <div class="card-row">
+          <input type="text" id="expiry-date" placeholder="Expiry Date (MM/YY)">
+          <input type="text" id="cvv" placeholder="CVV">
+        </div>
+      </div>
+
+      <!-- UPI -->
+      <label class="option">
+        <input type="radio" name="payment" id="payment-upi" value="upi">
+        UPI / Google Pay / PhonePe
+      </label>
+      <div class="upi-details" id="upi-details-section" style="display:none;">
+        <input type="text" id="upi-id" placeholder="Enter UPI ID">
+      </div>
+
+      <!-- COD -->
+      <label class="option">
+        <input type="radio" name="payment" id="payment-cod" value="cod" checked>
+        Cash on Delivery
+      </label>
+
+      <!-- Pay Now -->
+      <form action="/complete_payment" method="POST">
+  <button type="submit" class="pay-btn">Pay Now</button>
+</form>
+
+      <p class="note">You’ll receive an order confirmation once payment is complete.</p>
+    </div>
+  </div>
+
+  <script src="{{ url_for('static', filename='main.js') }}"></script>
+  <script>
+    let checkoutDataGlobal = null;
+
+    function loadCheckoutData() {
+      try {
+        const raw = sessionStorage.getItem('checkoutData');
+        if (!raw) {
+          showToast('No checkout data found', 'error');
+          setTimeout(() => window.location.href = '/cart', 1500);
+          return null;
+        }
+        const data = JSON.parse(raw);
+        checkoutDataGlobal = data;
+
+        document.getElementById('subtotal').textContent = (data.subtotal || 0).toLocaleString();
+        document.getElementById('discount').textContent = (data.discount || 0).toLocaleString();
+        document.getElementById('delivery').textContent = (data.delivery || 0).toLocaleString();
+        document.getElementById('coins-used').textContent = data.appliedCoins || 0;
+        const coinDiscount = (data.appliedCoins || 0) / 100;
+        const total = data.totalAmount || 0;
+        document.getElementById('total-amount').textContent = Number(total).toLocaleString();
+
+        return data;
+      } catch (err) {
+        console.error('loadCheckoutData error:', err);
+        showToast('Error loading checkout data', 'error');
+        setTimeout(() => window.location.href = '/cart', 1200);
+        return null;
+      }
+    }
+
+    function initializePaymentMethods() {
+      const card = document.getElementById('payment-card');
+      const upi = document.getElementById('payment-upi');
+      const cod = document.getElementById('payment-cod');
+      const cardSection = document.getElementById('card-details-section');
+      const upiSection = document.getElementById('upi-details-section');
+
+      const switchView = () => {
+        if (card.checked) {
+          cardSection.style.display = 'block';
+          upiSection.style.display = 'none';
+        } else if (upi.checked) {
+          cardSection.style.display = 'none';
+          upiSection.style.display = 'block';
+        } else {
+          cardSection.style.display = 'none';
+          upiSection.style.display = 'none';
+        }
+      };
+
+      [card, upi, cod].forEach(el => el.addEventListener('change', switchView));
+      switchView();
+    }
+
+    function validatePaymentMethod() {
+      const card = document.getElementById('payment-card');
+      const upi = document.getElementById('payment-upi');
+
+      if (card.checked) {
+        const number = document.getElementById('card-number').value.replace(/\s+/g, '');
+        const expiry = document.getElementById('expiry-date').value.trim();
+        const cvv = document.getElementById('cvv').value.trim();
+        if (!/^[0-9]{13,19}$/.test(number)) { showToast('Enter a valid card number', 'error'); return false; }
+        if (!/^(0[1-9]|1[0-2])\/(\d{2})$/.test(expiry)) { showToast('Enter expiry in MM/YY', 'error'); return false; }
+        if (!/^[0-9]{3,4}$/.test(cvv)) { showToast('Enter valid CVV', 'error'); return false; }
+        return true;
+      }
+
+      if (upi.checked) {
+        const upiId = document.getElementById('upi-id').value.trim();
+        if (!/^[a-zA-Z0-9.\-_]{2,}@[a-zA-Z]{2,}$/.test(upiId)) { showToast('Enter a valid UPI ID', 'error'); return false; }
+        return true;
+      }
+
+      // COD
+      return true;
+    }
+
+    async function processPayment() {
+      const btn = document.getElementById('pay-now-btn');
+      btn.disabled = true;
+      const orig = btn.innerHTML;
+      btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
+
+      try {
+        // validate
+        if (!validatePaymentMethod()) {
+          btn.disabled = false;
+          btn.innerHTML = orig;
+          return;
+        }
+
+        const paymentMethod = document.querySelector('input[name="payment"]:checked').value;
+        const dataToSend = {
+          coins_used: checkoutDataGlobal?.appliedCoins || 0,
+          payment_method: paymentMethod,
+          address_id: checkoutDataGlobal?.selectedAddressId
+        };
+
+        const res = await fetch('/checkout', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(dataToSend)
+        });
+
+        const data = await res.json();
+        if (res.ok && data.success) {
+          // clear session data
+          sessionStorage.removeItem('checkoutData');
+          showOrderConfirmation(data.order || {});
+          setTimeout(() => { window.location.href = '/account#orders'; }, 3000);
+        } else {
+          showToast(data.error || 'Payment failed', 'error');
+          btn.disabled = false;
+          btn.innerHTML = orig;
+        }
+      } catch (err) {
+        console.error('processPayment error:', err);
+        showToast('Payment failed. Try again.', 'error');
+        btn.disabled = false;
+        btn.innerHTML = orig;
+      }
+    }
+
+    function showOrderConfirmation(order) {
+      const modal = document.createElement('div');
+      modal.className = 'confirmation-modal show';
+      modal.innerHTML = `
+        <div class="confirmation-content">
+          <div class="confirmation-icon"><i class="fas fa-check-circle"></i></div>
+          <div class="confirmation-title">Order Confirmed!</div>
+          <div class="confirmation-details">Order ID: <strong>${order.order_id || order.id || ''}</strong><br>Total: ₹${(order.total_amount || 0).toLocaleString()}</div>
+          <button class="confirmation-button" onclick="window.location.href='/account#orders'">View Orders</button>
+        </div>
+      `;
+      document.body.appendChild(modal);
+      setTimeout(() => { modal.classList.remove('show'); modal.remove(); }, 5000);
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+      const d = loadCheckoutData();
+      if (d) initializePaymentMethods();
+    });
+  </script>
+</body>
+</html>
