@@ -85,7 +85,8 @@
             cursor: pointer;
         }
 
-        .nav-item:hover, .logout:hover {
+        .nav-item:hover,
+        .logout:hover {
             background-color: #4a4a4a;
         }
 
@@ -137,6 +138,7 @@
             justify-content: center;
             align-items: flex-start;
             padding: 40px;
+
         }
 
         /* Profile Section Styles */
@@ -145,7 +147,6 @@
             padding: 40px;
             border-radius: 15px;
             width: 100%;
-            max-width: 1000px;
         }
 
         .profile-avatar {
@@ -195,86 +196,129 @@
         }
 
         /* Current Address Section Styles */
+        /* Current Address Section Styles (New Design) */
         .address-section {
             background-color: #d0d0d0;
             padding: 40px;
             border-radius: 15px;
             width: 100%;
-            max-width: 1000px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            /* 3 columns */
+            gap: 40px;
+            /* Smaller gap for 3 columns */
         }
 
-        .address-header {
-            font-size: 35px;
-            font-weight: bold;
-            margin-bottom: 30px;
-            color: #1a1a1a;
-            text-align: center;
-        }
-
-        .address-card {
-            background-color: #eeeeee;
-            border-radius: 10px;
+        .address-card-new {
+            background-color: #f5f5f5;
+            /* Lighter card color from design */
+            border-radius: 15px;
             padding: 25px;
-            margin-bottom: 20px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+            position: relative;
+            /* Needed to position the delete button */
+            min-height: 220px;
+            /* Gives all cards a consistent height */
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            /* Space between text lines */
         }
 
-        .address-title {
-            font-size: 24px;
+        .address-card-text {
+            font-size: 16px;
+            color: #333;
+            margin: 0;
+            line-height: 1.4;
+        }
+
+        .address-card-text.address-line {
+    flex-grow: 1;
+}
+
+        .address-card-text strong {
             font-weight: bold;
-            margin-bottom: 15px;
+            color: #1a1a1a;
+            display: inline-block;
+            width: 130px;
+            /* Aligns the text values */
+        }
+
+        /* "DEFAULT SHIPPING" tag */
+        .default-shipping-tag {
+            background-color: #ffffff;
+            border: 1px solid #1a1a1a;
+            border-radius: 20px;
+            padding: 4px 10px;
+            font-size: 12px;
+            font-weight: bold;
+            align-self: flex-start;
+            /* Aligns tag to the left */
+            
+        }
+
+        .no-tag-card {
+    padding-top: 62px;
+}
+
+        .default-shipping-tag::before {
+            content: '●';
+            color: #1a1a1a;
+            margin-right: 5px;
+            font-size: 10px;
+            vertical-align: middle;
+        }
+
+        /* New Delete Button */
+        .address-delete-btn {
+            position: absolute;
+            bottom: 25px;
+            right: 25px;
+            font-size: 14px;
+            color: #333;
+            text-decoration: none;
+            cursor: pointer;
+            font-weight: 500;
+        }
+
+        .address-delete-btn::before {
+            content: '☐';
+            /* Unicode box */
+            margin-right: 5px;
+            font-size: 18px;
+            vertical-align: middle;
+            font-weight: bold;
+        }
+
+        .address-delete-btn:hover {
+            color: #d9534f;
+            /* Red on hover */
+        }
+
+        /* New "Add Address" Card */
+        .add-address-card-new {
+            background-color: #f5f5f5;
+            border-radius: 15px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+            min-height: 220px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            border: 2px dashed #c0c0c0;
             color: #1a1a1a;
         }
 
-        .address-details {
-            font-size: 18px;
-            line-height: 1.6;
-            color: #333;
-            margin-bottom: 20px;
+        .add-address-card-new:hover {
+            background-color: #e9e9e9;
+            border-color: #a0a0a0;
         }
 
-        .address-actions {
-            display: flex;
-            gap: 15px;
-        }
-
-        .btn {
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            font-size: 16px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-
-        .btn-edit {
-            background-color: #4a4a4a;
-            color: white;
-        }
-
-        .btn-delete {
-            background-color: #d9534f;
-            color: white;
-        }
-
-        .btn:hover {
-            opacity: 0.9;
-        }
-
-        .add-address-btn {
-            background-color: #3a3a3a;
-            color: white;
-            padding: 15px 25px;
-            border: none;
-            border-radius: 8px;
-            font-size: 18px;
-            cursor: pointer;
-            margin-top: 20px;
-            display: block;
-            width: 100%;
-            max-width: 300px;
-            margin-left: auto;
-            margin-right: auto;
+        .add-address-icon {
+            font-size: 80px;
+            font-weight: 200;
+            /* Makes the '+' sign look lighter */
         }
 
         /* Coupons Section Styles */
@@ -283,7 +327,6 @@
             padding: 40px;
             border-radius: 15px;
             width: 100%;
-            max-width: 1000px;
         }
 
         .coins-balance {
@@ -291,7 +334,8 @@
             border-radius: 10px;
             padding: 30px;
             margin-bottom: 30px;
-            text-align: center;
+            text-align: left;
+            height: 400px;
         }
 
         .coins-balance h3 {
@@ -299,6 +343,7 @@
             font-weight: bold;
             margin-bottom: 20px;
             color: #1a1a1a;
+            padding-top: 120px;
         }
 
         .balance-amount {
@@ -384,7 +429,7 @@
             padding: 40px;
             border-radius: 15px;
             width: 100%;
-            max-width: 1000px;
+
         }
 
         .faq-item {
@@ -392,7 +437,7 @@
             border-radius: 10px;
             padding: 25px;
             margin-bottom: 20px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
         }
 
         .faq-question {
@@ -414,7 +459,7 @@
             padding: 40px;
             border-radius: 15px;
             width: 100%;
-            max-width: 1000px;
+
         }
 
         .terms-item {
@@ -422,7 +467,7 @@
             border-radius: 10px;
             padding: 25px;
             margin-bottom: 20px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
         }
 
         .terms-title {
@@ -439,85 +484,154 @@
         }
 
         /* My Orders Section Styles */
+        /* My Orders Section Styles (New Design) */
         .orders-section {
-            background-color: #d0d0d0;
-            padding: 40px;
-            border-radius: 15px;
             width: 100%;
-            max-width: 1000px;
-        }
-
-        .order-card {
-            background-color: #eeeeee;
-            border-radius: 10px;
-            padding: 25px;
-            margin-bottom: 20px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-
-        .order-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 15px;
-        }
-
-        .order-id {
-            font-size: 20px;
-            font-weight: bold;
-            color: #1a1a1a;
-        }
-
-        .order-details {
+            /* We use grid to make the 2-column layout */
             display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
-            gap: 15px;
-            margin-bottom: 20px;
+            grid-template-columns: repeat(2, 1fr);
+            /* 2 equal-width columns */
+            gap: 100px;
+            /* Space between the cards */
+
+            /* You can change this background color to white if you prefer */
+            background-color: #d0d0d0;
+            padding: 100px;
+            padding-top: 80px;
+            padding-bottom: 80px;
+            border-radius: 15px;
         }
 
-        .detail-item {
+        .order-card-new {
+            border: 1px solid #e0e0e0;
+            border-radius: 10px;
+            /* overflow:hidden ensures the inner elements respect the border radius */
+            overflow: hidden;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
             display: flex;
             flex-direction: column;
         }
 
-        .detail-label {
-            font-size: 14px;
-            color: #666;
-            margin-bottom: 5px;
+        .order-card-top {
+            background-color: #eeeeee;
+            padding: 15px 20px;
+            border-bottom: 1px solid #dcdcdc;
         }
 
-        .detail-value {
-            font-size: 16px;
+        .order-id-new {
+            font-size: 18px;
             font-weight: bold;
             color: #1a1a1a;
         }
 
-        .order-actions {
+        .order-card-image-placeholder {
+            /* This is the white box for the image */
+            background-color: #ffffff;
+            width: 100%;
+            height: 250px;
+            /* You can adjust this height */
             display: flex;
-            gap: 15px;
+            align-items: center;
+            justify-content: center;
+            color: #aaa;
+            font-size: 16px;
+            /* In the future, you can put an <img/> tag in here */
         }
 
-        .btn-view {
-            background-color: #2c5aa0;
-            color: white;
+        .order-card-bottom {
+            background-color: #eeeeee;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            /* Space between text lines */
         }
 
-        .btn-track {
-            background-color: #4a4a4a;
-            color: white;
+        .order-detail-text {
+            font-size: 16px;
+            color: #333;
+            margin: 0;
         }
 
-        .track-order-hidden {
-            display: none;
+        .order-detail-text .detail-value {
+            font-weight: bold;
+            color: #1a1a1a;
         }
 
+        /* Status Colors */
+        .status-shipped {
+            color: #2c5aa0;
+        }
+
+        .status-processing {
+            color: #d9534f;
+        }
+
+        .status-delivered {
+            color: #5cb85c;
+        }
+
+        .status-outfordelivery {
+            color: #f0ad4e;
+        }
+
+
+        .order-actions-new {
+            display: flex;
+            gap: 270px;
+            margin-top: 15px;
+        }
+
+        /* Base styles for new buttons */
+        .btn-new {
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+            text-align: center;
+            border: 1px solid #1a1a1a;
+            transition: all 0.2s;
+        }
+
+        .btn-view-new {
+            background-color: #ffffff;
+            color: #1a1a1a;
+        }
+
+        .btn-view-new:hover {
+            background-color: #f0f0f0;
+        }
+
+        .btn-track-new {
+            background-color: #1a1a1a;
+            color: #ffffff;
+        }
+
+        .btn-track-new:hover {
+            background-color: #333;
+        }
+
+        /* Hide sections by default */
         /* Hide sections by default */
         .section {
             display: none;
         }
 
-        .active {
+        /* Show active section */
+        /* Most sections are 'block' */
+        .profile-section.active,
+        
+        .coupons-section.active,
+        .help-section.active,
+        .terms-section.active,
+        .Headings.active {
             display: block;
+        }
+
+        /* The orders section is 'grid' */
+        .orders-section.active, .address-section.active {
+            display: grid;
         }
     </style>
 </head>
@@ -558,34 +672,46 @@
         <div class="content-wrapper">
             <!-- My Account Section -->
             <section class="Headings section active" id="account-heading">
-                <h5>MY ACCOUNT<br><br><p>Manage your personal information</p></h5>
+                <h5>MY ACCOUNT<br><br>
+                    <p>Manage your personal information</p>
+                </h5>
             </section>
 
             <!-- Current Address Section Heading -->
             <section class="Headings section" id="address-heading">
-                <h5>CURRENT ADDRESS<br><br><p>Manage your saved addresses</p></h5>
+                <h5>CURRENT ADDRESS<br><br>
+                    <p>Manage your saved addresses</p>
+                </h5>
             </section>
 
             <!-- Coupons Section Heading -->
             <section class="Headings section" id="coupons-heading">
-                <h5>MY COINS<br><br><p>Manage your coins and rewards</p></h5>
+                <h5>MY COINS<br><br>
+                    <p>Manage your coins and rewards</p>
+                </h5>
             </section>
 
             <!-- Help Section Heading -->
             <section class="Headings section" id="help-heading">
-                <h5>HELP<br><br><p>Frequently asked questions</p></h5>
+                <h5>HELP<br><br>
+                    <p>Frequently asked questions</p>
+                </h5>
             </section>
 
             <!-- Terms & Conditions Section Heading -->
             <section class="Headings section" id="terms-heading">
-                <h5>TERMS & CONDITIONS<br><br><p>Please read our terms carefully</p></h5>
+                <h5>TERMS & CONDITIONS<br><br>
+                    <p>Please read our terms carefully</p>
+                </h5>
             </section>
 
             <!-- My Orders Section Heading -->
             <section class="Headings section" id="orders-heading">
-                <h5>MY ORDERS<br><br><p>Track and manage your orders</p></h5>
+                <h5>MY ORDERS<br><br>
+                    <p>Track and manage your orders</p>
+                </h5>
             </section>
-    
+
             <main class="main-content">
                 <!-- Profile Section -->
                 <div class="profile-section section active" id="account-section">
@@ -619,39 +745,26 @@
 
                 <!-- Current Address Section -->
                 <div class="address-section section" id="address-section">
-                    <div class="address-card">
-                        <div class="address-title">Home Address</div>
-                        <div class="address-details">
-                            John Doe<br>
-                            123 Main Street<br>
-                            Apartment 4B<br>
-                            New York, NY 10001<br>
-                            United States<br>
-                            Phone: +1 (555) 123-4567
-                        </div>
-                        <div class="address-actions">
-                            <button class="btn btn-edit">Edit</button>
-                            <button class="btn btn-delete">Delete</button>
-                        </div>
+
+                    <div class="address-card-new">
+                        <span class="default-shipping-tag">DEFAULT SHIPPING</span>
+                        <p class="address-card-text"><strong>Name:</strong> John Doe</p>
+<p class="address-card-text address-line"><strong>Address :</strong> 123 Main Street, Apt 4B, New York, NY 10001</p>
+                        <p class="address-card-text"><strong>Contact Number:</strong> +1 (555) 123-4567</p>
+                        <a href="#" class="address-delete-btn">Delete</a>
                     </div>
 
-                    <div class="address-card">
-                        <div class="address-title">Work Address</div>
-                        <div class="address-details">
-                            John Doe<br>
-                            456 Business Avenue<br>
-                            Floor 10, Suite 1002<br>
-                            New York, NY 10002<br>
-                            United States<br>
-                            Phone: +1 (555) 987-6543
-                        </div>
-                        <div class="address-actions">
-                            <button class="btn btn-edit">Edit</button>
-                            <button class="btn btn-delete">Delete</button>
-                        </div>
+                    <div class="address-card-new no-tag-card">
+                        <p class="address-card-text"><strong>Name:</strong> John Doe</p>
+                        <p class="address-card-text address-line"><strong>Address :</strong> 456 Business Avenue, Suite 1002, New York, NY 10002</p>
+                        <p class="address-card-text"><strong>Contact Number:</strong> +1 (555) 987-6543</p>
+                        <a href="#" class="address-delete-btn">Delete</a>
                     </div>
 
-                    <button class="add-address-btn">+ Add New Address</button>
+                    <button class="add-address-card-new">
+                        <span class="add-address-icon">+</span>
+                    </button>
+
                 </div>
 
                 <!-- Coupons Section -->
@@ -689,17 +802,20 @@
                 <div class="help-section section" id="help-section">
                     <div class="faq-item">
                         <div class="faq-question">Q-1: How can I place an order?</div>
-                        <div class="faq-answer">A: Add items to cart, go to checkout, fill details, and confirm your order.</div>
+                        <div class="faq-answer">A: Add items to cart, go to checkout, fill details, and confirm your
+                            order.</div>
                     </div>
 
                     <div class="faq-item">
                         <div class="faq-question">Q-2: Can I cancel my order after placing it?</div>
-                        <div class="faq-answer">A: Yes, before shipping. Once shipped, cancellation isn't possible.</div>
+                        <div class="faq-answer">A: Yes, before shipping. Once shipped, cancellation isn't possible.
+                        </div>
                     </div>
 
                     <div class="faq-item">
                         <div class="faq-question">Q-3: How will I know if my order is confirmed?</div>
-                        <div class="faq-answer">A: You'll receive a confirmation message or email after placing your order.</div>
+                        <div class="faq-answer">A: You'll receive a confirmation message or email after placing your
+                            order.</div>
                     </div>
 
                     <div class="faq-item">
@@ -714,7 +830,8 @@
 
                     <div class="faq-item">
                         <div class="faq-question">Q-6: How will I get my refund?</div>
-                        <div class="faq-answer">A: Refunds are made to your original payment method within 5–7 days.</div>
+                        <div class="faq-answer">A: Refunds are made to your original payment method within 5–7 days.
+                        </div>
                     </div>
 
                     <div class="faq-item">
@@ -727,169 +844,156 @@
                 <div class="terms-section section" id="terms-section">
                     <div class="terms-item">
                         <div class="terms-title">1. Products & Pricing:</div>
-                        <div class="terms-description">All product details and prices are accurate to our best knowledge, but they may change without notice.</div>
+                        <div class="terms-description">All product details and prices are accurate to our best
+                            knowledge, but they may change without notice.</div>
                     </div>
 
                     <div class="terms-item">
                         <div class="terms-title">2. Orders & Payments:</div>
-                        <div class="terms-description">Orders are confirmed only after successful payment. We reserve the right to cancel any incorrect or fraudulent orders.</div>
+                        <div class="terms-description">Orders are confirmed only after successful payment. We reserve
+                            the right to cancel any incorrect or fraudulent orders.</div>
                     </div>
 
                     <div class="terms-item">
                         <div class="terms-title">3. Shipping & Delivery:</div>
-                        <div class="terms-description">Delivery times may vary by location. We are not responsible for courier delays.</div>
+                        <div class="terms-description">Delivery times may vary by location. We are not responsible for
+                            courier delays.</div>
                     </div>
 
                     <div class="terms-item">
                         <div class="terms-title">4. Returns & Refunds:</div>
-                        <div class="terms-description">Returns are accepted only under our return policy. Refunds will be processed after product verification.</div>
+                        <div class="terms-description">Returns are accepted only under our return policy. Refunds will
+                            be processed after product verification.</div>
                     </div>
 
                     <div class="terms-item">
                         <div class="terms-title">5. Privacy & Security:</div>
-                        <div class="terms-description">Your personal information is kept safe and not shared without your consent.</div>
+                        <div class="terms-description">Your personal information is kept safe and not shared without
+                            your consent.</div>
                     </div>
 
                     <div class="terms-item">
                         <div class="terms-title">6. User Responsibilities:</div>
-                        <div class="terms-description">You must not misuse the website, upload fake information, or try to hack or damage the site.</div>
+                        <div class="terms-description">You must not misuse the website, upload fake information, or try
+                            to hack or damage the site.</div>
                     </div>
 
                     <div class="terms-item">
                         <div class="terms-title">7. Product Warranty:</div>
-                        <div class="terms-description">Some products may include a manufacturer warranty — details will be mentioned with the product.</div>
+                        <div class="terms-description">Some products may include a manufacturer warranty — details will
+                            be mentioned with the product.</div>
                     </div>
 
                     <div class="terms-item">
                         <div class="terms-title">8. Limitation of Liability:</div>
-                        <div class="terms-description">We are not responsible for any indirect losses or damages caused by use of our website or products.</div>
+                        <div class="terms-description">We are not responsible for any indirect losses or damages caused
+                            by use of our website or products.</div>
                     </div>
 
                     <div class="terms-item">
                         <div class="terms-title">9. Changes to Terms:</div>
-                        <div class="terms-description">We may update or change these Terms anytime. New terms will be posted on this page.</div>
+                        <div class="terms-description">We may update or change these Terms anytime. New terms will be
+                            posted on this page.</div>
                     </div>
 
                     <div class="terms-item">
                         <div class="terms-title">10. Contact Information:</div>
-                        <div class="terms-description">For any issues or questions, contact us at <a href="mailto:clasherscode@gmail.com" style="color: #2c5aa0;">clasherscode@gmail.com</a>.</div>
+                        <div class="terms-description">For any issues or questions, contact us at <a
+                                href="mailto:clasherscode@gmail.com" style="color: #2c5aa0;">clasherscode@gmail.com</a>.
+                        </div>
                     </div>
                 </div>
 
                 <!-- My Orders Section -->
                 <div class="orders-section section" id="orders-section">
-                    <div class="order-card">
-                        <div class="order-header">
-                            <div class="order-id">Order ID: #ORD-001</div>
+
+                    <div class="order-card-new">
+                        <div class="order-card-top">
+                            <span class="order-id-new">Order ID : #ORD-001</span>
                         </div>
-                        <div class="order-details">
-                            <div class="detail-item">
-                                <span class="detail-label">Order Date:</span>
-                                <span class="detail-value">Nov 15, 2024</span>
-                            </div>
-                            <div class="detail-item">
-                                <span class="detail-label">Total:</span>
-                                <span class="detail-value">¥1,250.00</span>
-                            </div>
-                            <div class="detail-item">
-                                <span class="detail-label">Status:</span>
-                                <span class="detail-value" style="color: #2c5aa0;">Shipped</span>
-                            </div>
+                        <div class="order-card-image-placeholder">
                         </div>
-                        <div class="order-actions">
-                            <button class="btn btn-view">View Details</button>
-                            <!-- Track Order button hidden for shipped orders -->
+                        <div class="order-card-bottom">
+                            <p class="order-detail-text">Order Date : <span class="detail-value">Nov 15, 2024</span></p>
+                            <p class="order-detail-text">Total : <span class="detail-value">¥1,250.00</span></p>
+                            <p class="order-detail-text">Status : <span
+                                    class="detail-value status-shipped">Shipped</span></p>
+                            <div class="order-actions-new">
+                                <button class="btn-new btn-view-new">View Details</button>
+                            </div>
                         </div>
                     </div>
 
-                    <div class="order-card">
-                        <div class="order-header">
-                            <div class="order-id">Order ID: #ORD-002</div>
+                    <div class="order-card-new">
+                        <div class="order-card-top">
+                            <span class="order-id-new">Order ID : #ORD-002</span>
                         </div>
-                        <div class="order-details">
-                            <div class="detail-item">
-                                <span class="detail-label">Order Date:</span>
-                                <span class="detail-value">Nov 10, 2024</span>
-                            </div>
-                            <div class="detail-item">
-                                <span class="detail-label">Total:</span>
-                                <span class="detail-value">¥890.00</span>
-                            </div>
-                            <div class="detail-item">
-                                <span class="detail-label">Status:</span>
-                                <span class="detail-value" style="color: #d9534f;">Processing</span>
-                            </div>
+                        <div class="order-card-image-placeholder">
                         </div>
-                        <div class="order-actions">
-                            <button class="btn btn-view">View Details</button>
-                            <button class="btn btn-track">Track Order</button>
+                        <div class="order-card-bottom">
+                            <p class="order-detail-text">Order Date : <span class="detail-value">Nov 10, 2024</span></p>
+                            <p class="order-detail-text">Total : <span class="detail-value">¥890.00</span></p>
+                            <p class="order-detail-text">Status : <span
+                                    class="detail-value status-processing">Processing</span></p>
+                            <div class="order-actions-new">
+                                <button class="btn-new btn-view-new">View Details</button>
+                                <button class="btn-new btn-track-new">Track Order</button>
+                            </div>
                         </div>
                     </div>
 
-                    <div class="order-card">
-                        <div class="order-header">
-                            <div class="order-id">Order ID: #ORD-003</div>
+                    <div class="order-card-new">
+                        <div class="order-card-top">
+                            <span class="order-id-new">Order ID : #ORD-003</span>
                         </div>
-                        <div class="order-details">
-                            <div class="detail-item">
-                                <span class="detail-label">Order Date:</span>
-                                <span class="detail-value">Nov 5, 2024</span>
-                            </div>
-                            <div class="detail-item">
-                                <span class="detail-label">Total:</span>
-                                <span class="detail-value">¥2,150.00</span>
-                            </div>
-                            <div class="detail-item">
-                                <span class="detail-label">Status:</span>
-                                <span class="detail-value" style="color: #5cb85c;">Delivered</span>
-                            </div>
+                        <div class="order-card-image-placeholder">
                         </div>
-                        <div class="order-actions">
-                            <button class="btn btn-view">View Details</button>
-                            <!-- Track Order button hidden for delivered orders -->
+                        <div class="order-card-bottom">
+                            <p class="order-detail-text">Order Date : <span class="detail-value">Nov 5, 2024</span></p>
+                            <p class="order-detail-text">Total : <span class="detail-value">¥2,150.00</span></p>
+                            <p class="order-detail-text">Status : <span
+                                    class="detail-value status-delivered">Delivered</span></p>
+                            <div class="order-actions-new">
+                                <button class="btn-new btn-view-new">View Details</button>
+                            </div>
                         </div>
                     </div>
 
-                    <div class="order-card">
-                        <div class="order-header">
-                            <div class="order-id">Order ID: #ORD-004</div>
+                    <div class="order-card-new">
+                        <div class="order-card-top">
+                            <span class="order-id-new">Order ID : #ORD-004</span>
                         </div>
-                        <div class="order-details">
-                            <div class="detail-item">
-                                <span class="detail-label">Order Date:</span>
-                                <span class="detail-value">Nov 20, 2024</span>
-                            </div>
-                            <div class="detail-item">
-                                <span class="detail-label">Total:</span>
-                                <span class="detail-value">¥1,750.00</span>
-                            </div>
-                            <div class="detail-item">
-                                <span class="detail-label">Status:</span>
-                                <span class="detail-value" style="color: #f0ad4e;">Out for Delivery</span>
-                            </div>
+                        <div class="order-card-image-placeholder">
                         </div>
-                        <div class="order-actions">
-                            <button class="btn btn-view">View Details</button>
-                            <button class="btn btn-track">Track Order</button>
+                        <div class="order-card-bottom">
+                            <p class="order-detail-text">Order Date : <span class="detail-value">Nov 20, 2024</span></p>
+                            <p class="order-detail-text">Total : <span class="detail-value">¥1,750.00</span></p>
+                            <p class="order-detail-text">Status : <span class="detail-value status-outfordelivery">Out
+                                    for Delivery</span></p>
+                            <div class="order-actions-new">
+                                <button class="btn-new btn-view-new">View Details</button>
+                                <button class="btn-new btn-track-new">Track Order</button>
+                            </div>
                         </div>
                     </div>
+
                 </div>
             </main>
         </div>
     </div>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             // Get all navigation items
             const navItems = document.querySelectorAll('.nav-item');
-            
+
             // Function to switch between sections
             function switchSection(sectionId) {
                 // Hide all sections
                 document.querySelectorAll('.section').forEach(section => {
                     section.classList.remove('active');
                 });
-                
+
                 // Show the selected section
                 if (sectionId === 'account') {
                     document.getElementById('account-heading').classList.add('active');
@@ -911,10 +1015,10 @@
                     document.getElementById('orders-section').classList.add('active');
                 }
             }
-            
+
             // Add click event listeners to navigation items
             navItems.forEach(item => {
-                item.addEventListener('click', function(e) {
+                item.addEventListener('click', function (e) {
                     e.preventDefault();
                     const section = this.getAttribute('data-section');
                     switchSection(section);
@@ -924,14 +1028,14 @@
             // Function to handle track order button visibility based on status
             function handleTrackOrderButtons() {
                 const orderCards = document.querySelectorAll('.order-card');
-                
+
                 orderCards.forEach(card => {
                     const statusElement = card.querySelector('.detail-value');
                     const trackButton = card.querySelector('.btn-track');
-                    
+
                     if (statusElement && trackButton) {
                         const status = statusElement.textContent.trim().toLowerCase();
-                        
+
                         // Hide track order button for shipped and delivered orders
                         if (status === 'shipped' || status === 'delivered') {
                             trackButton.style.display = 'none';
