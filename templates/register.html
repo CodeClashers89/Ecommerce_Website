@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Register - Hustle Cart</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    body {
+      background: #e5e5e5;
+      font-family: 'Inter', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    .register-container {
+      width: 100%;
+      max-width: 500px;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+    }
+
+    .register-header {
+      background: #2c5aa0;
+      color: white;
+      padding: 25px;
+      text-align: center;
+    }
+
+    .register-header h1 {
+      margin-bottom: 5px;
+    }
+
+    .register-form {
+      padding: 30px;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 600;
+      color: #333;
+    }
+
+    .form-group input {
+      width: 100%;
+      padding: 12px 15px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      font-size: 16px;
+    }
+
+    .form-group input:focus {
+      border-color: #2c5aa0;
+      outline: none;
+    }
+
+    .submit-btn {
+      width: 100%;
+      background: #2c5aa0;
+      color: white;
+      border: none;
+      padding: 14px;
+      border-radius: 5px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .submit-btn:hover {
+      background: #1e3d6f;
+    }
+
+    .login-link {
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    .login-link a {
+      color: #2c5aa0;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .toast {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      padding: 15px 20px;
+      border-radius: 5px;
+      color: white;
+      font-weight: 500;
+      z-index: 1000;
+      animation: slideIn 0.3s ease-out;
+    }
+
+    .toast.success { background: #4CAF50; }
+    .toast.error { background: #f44336; }
+
+    @keyframes slideIn {
+      from { transform: translateX(100%); opacity: 0; }
+      to { transform: translateX(0); opacity: 1; }
+    }
+
+    @keyframes slideOut {
+      from { transform: translateX(0); opacity: 1; }
+      to { transform: translateX(100%); opacity: 0; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="register-container">
+    <div class="register-header">
+      <h1>Create Account</h1>
+      <p>Join Hustle Cart today!</p>
+    </div>
+
+    <form class="register-form" id="register-form">
+      <div class="form-group"><label>Email</label><input type="email" id="email" required></div>
+      <div class="form-group"><label>Password</label><input type="password" id="password" required></div>
+      <div class="form-group"><label>Full Name</label><input type="text" id="username" required></div>
+      <button type="submit" class="submit-btn">Register</button>
+      <div class="login-link">Already have an account? <a href="/login">Login</a></div>
+    </form>
+  </div>
+
+  <script>
+    function showToast(msg, type = 'success') {
+      const t = document.createElement('div');
+      t.className = `toast ${type}`;
+      t.textContent = msg;
+      document.body.appendChild(t);
+      setTimeout(() => {
+        t.style.animation = 'slideOut 0.3s ease-in';
+        setTimeout(() => t.remove(), 300);
+      }, 2500);
+    }
+
+    document.getElementById('register-form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const data = {
+        email: email.value.trim(),
+        password: password.value.trim(),
+        username: username.value.trim()
+      };
+
+      const res = await fetch('/handle_register', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      });
+
+      const result = await res.json();
+      if (result.success) {
+        showToast('Registered successfully!');
+        setTimeout(() => window.location.href = result.redirect, 1000);
+      } else {
+        showToast(result.error || 'Error registering', 'error');
+      }
+    });
+  </script>
+</body>
+</html>

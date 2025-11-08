@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hustle Cart</title>
+    <title>Hustle Cart - TVs</title>
 
     <!-- Google Font: Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -39,7 +39,7 @@
         .container-fluid {
             width: 100%;
             margin: 0 auto;
-            padding: 0 30px; /* Adds padding on the sides */
+            padding: 0 30px;
         }
 
         a {
@@ -116,14 +116,31 @@
             gap: 20px;
             font-size: 20px;
             color: #444;
+            position: relative;
         }
 
         .nav-icons a {
             transition: color 0.3s ease;
+            position: relative;
         }
 
         .nav-icons a:hover {
             color: #007bff;
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: #ff4444;
+            color: white;
+            border-radius: 50%;
+            width: 18px;
+            height: 18px;
+            font-size: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .mobile-nav-toggle {
@@ -135,8 +152,8 @@
         /* --- Hero Section --- */
         .hero {
             background-color: rgb(229, 229, 229);
-            padding: 100px 0;
-            text-align: left;
+            padding: 80px 0;
+            text-align: center;
         }
 
         .hero-content h2 {
@@ -144,15 +161,13 @@
             font-weight: 700;
             margin-bottom: 15px;
             color: #222;
-            text-align: center;
         }
 
         .highlight {
             color: #007bff;
-            /* Accent color from design */
         }
-        
-        /* --- Brand Links Section (NEW) --- */
+
+        /* --- Brand Links Section --- */
         .brand-links {
             padding: 40px 0;
             background-color: #fff;
@@ -167,73 +182,52 @@
         }
 
         .brand-item {
-    text-align: center;
-    color: #333;
-    text-decoration: none;
-    transition: transform 0.3s ease;
-
-    /* --- NEW --- */
-    /* Give each of the 3 items a fixed width.
-      This forces them to be the same size and helps them 
-      form a clean row.
-    */
-    width: 200px; 
-}
+            text-align: center;
+            color: #333;
+            text-decoration: none;
+            transition: transform 0.3s ease;
+            width: 200px;
+        }
 
         .brand-item:hover {
             transform: translateY(-5px);
         }
 
         .brand-image-placeholder {
-    width: 100%; /* This is fine (100% of the 200px above) */
+            width: 100%;
+            height: 120px;
+            background-color: #ffffff;
+            border-radius: 12px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px;
+        }
 
-    /* --- NEW --- */
-    /* Give the card a fixed height to make all 3 identical */
-    height: 120px; 
-
-    background-color: #ffffff;
-    border-radius: 12px;
-    margin-bottom: 15px;
-    border: 1px solid #ddd;
-
-    /* --- NEW --- */
-    /* This clips any part of the image that tries to overflow */
-    overflow: hidden; 
-
-    /* --- NEW (Recommended) --- */
-    /* These properties center the logo perfectly inside the box */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 10px; /* Adds a nice internal space */
-}
-
-       .brand-image-placeholder img {
-    width: 100%;
-    height: 100%;
-
-    /* This is the key property.
-      It scales the image down (preserving aspect ratio) 
-      to fit completely INSIDE the box without being cut off.
-    */
-    object-fit: contain; 
-}
+        .brand-image-placeholder img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
 
         .brand-item h4 {
             font-size: 18px;
             font-weight: 600;
         }
 
-        /* --- New Section Heading Style (NEW) --- */
+        /* --- Section Heading Style --- */
         .section-heading {
             font-size: 32px;
             font-weight: 700;
             margin-bottom: 40px;
-            padding-left: 140px;
+            text-align: center;
         }
 
         /* --- Products Section --- */
-        .products {
+         .products {
             padding: 80px 0;
             background-color: #fff;
         }
@@ -243,7 +237,6 @@
             display: grid;
             grid-template-columns: repeat(auto-fit, 425px);
             background-color: rgb(218, 218, 218);
-            /* Creates a responsive 3-column grid */
             gap: 70px;
             border-radius: 70px;
             padding: 75px 0;
@@ -261,7 +254,7 @@
         }
 
         .product-image {
-            background-color: transparent;
+            background-color: #f8f9fa;
             height: 400px;
         }
 
@@ -294,94 +287,34 @@
 
         .add-to-cart-btn {
             background-color: #007bff;
-            color: #fff !important; /* !important to override .a color */
-            padding: 8px 20px;
+            color: #fff;
+            padding: 10px 20px;
             border-radius: 20px;
             font-size: 14px;
             font-weight: 600;
             display: inline-block;
             transition: background-color 0.3s ease;
+            border: none;
+            cursor: pointer;
         }
 
         .add-to-cart-btn:hover {
             background-color: #0056b3;
         }
-        
-        /* --- Apple Section Styling (NEW) --- */
+
+        /* --- Brand-specific Styling --- */
         #sony-section {
-            background: #fff; /* Dark grey background */
+            background: #f8f9fa;
         }
 
-        #sony-section .section-heading {
-            color: #333; /* White text */
-        }
-
-        #sony-section .product-card {
-            background-color: #f9f9f9;
-            border: 1px solid #eee;
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
-        }
-
-        #sony-section .product-info {
-            background-color: rgba(230, 230, 230, 0.9); /* Darker transparent */
-        }
-
-        #sony-section .product-info h4,
-        #sony-section .product-price {
-            color: #333; /* White text */
-        }
-
-        /* --- Samsung Section Styling (NEW) --- */
         #samsung-section {
             background-color: #fff;
-            /* White background */
-        }
-
-        #samsung-section .section-heading {
-            color: #333;
-            /* Black text */
-        }
-
-        #samsung-section .product-card {
-            background-color: #f9f9f9;
-            border: 1px solid #eee;
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
-        }
-
-        #samsung-section .product-info {
-            background-color: rgba(230, 230, 230, 0.9);
-            /* Lighter transparent */
-        }
-
-        #samsung-section .product-info h4,
-        #samsung-section .product-price {
-            color: #333;
-            /* Black text */
         }
 
         #lg-section {
-            background: #fff; /* Dark grey background */
+            background-color: #f8f9fa;
         }
 
-        #lg-section .section-heading {
-            color: #333; /* White text */
-        }
-
-        #lg-section .product-card {
-            background-color: #f9f9f9;
-            border: 1px solid #eee;
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
-        }
-
-        #lg-section .product-info {
-            background-color: rgba(230, 230, 230, 0.9); /* Darker transparent */
-        }
-
-        #lg-section .product-info h4,
-        #lg-section .product-price {
-            color: #333; /* White text */
-        }
-        
         /* --- Footer --- */
         footer {
             background-color: #2b2b2b;
@@ -521,24 +454,23 @@
         @media (max-width: 768px) {
             .hero {
                 padding: 60px 0;
-                text-align: center;
             }
 
             .hero-content h2 {
                 font-size: 36px;
             }
 
-            .hero-content p {
-                font-size: 18px;
-            }
-            
             .brand-image-placeholder {
                 width: 120px;
                 height: 80px;
             }
-            
+
             .brand-item h4 {
                 font-size: 16px;
+            }
+
+            .section-heading {
+                font-size: 28px;
             }
 
             .footer-bottom {
@@ -577,45 +509,20 @@
                 gap: 20px;
             }
 
-            /* --- Make fluid container padding smaller on mobile --- */
             .container-fluid {
                 padding: 0 15px;
             }
+
+            .product-grid {
+                grid-template-columns: 1fr;
+            }
         }
-        .nav-icons {
-    display: flex;
-    gap: 20px;
-    font-size: 20px;
-    color: #444;
-    position: relative;
-}
-
-.nav-icons a {
-    transition: color 0.3s ease;
-    position: relative;
-}
-
-.cart-count {
-    position: absolute;
-    top: -8px;
-    right: -8px;
-    background: #ff4444;
-    color: white;
-    border-radius: 50%;
-    width: 18px;
-    height: 18px;
-    font-size: 12px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
     </style>
 </head>
 
 <body>
 
     <!-- --- Header --- -->
-        <!-- --- Header --- -->
     <header>
         <div class="container">
             <div class="logo">
@@ -641,7 +548,7 @@
                 <div class="nav-icons">
                     <a href="{{ url_for('cart') }}" aria-label="Shopping Cart">
                         <i class="fas fa-shopping-cart"></i>
-                        <span class="cart-count" id="cart-count">0</span>
+                        <span class="cart-count" id="cart-count" style="display: none;">0</span>
                     </a>
                     <a href="{{ url_for('account') }}" aria-label="User Account"><i class="fas fa-user-circle"></i></a>
                 </div>
@@ -657,285 +564,278 @@
         <section class="hero">
             <div class="container">
                 <div class="hero-content">
-                    <h2>Explore <span class="highlight">Hustle Cart</span></h2>
+                    <h2>Premium <span class="highlight">Televisions</span></h2>
+                    <p>Experience stunning visuals with our curated collection of TVs</p>
                 </div>
             </div>
         </section>
 
-        <!-- --- Brand Links Section (NEW) --- -->
+        <!-- --- Brand Links Section --- -->
         <section class="brand-links">
             <div class="container">
                 <a href="#sony-section" class="brand-item">
                     <div class="brand-image-placeholder">
-                        <img src="static/sonyrr1.png" alt="">
+                        <img src="{{ url_for('static', filename='sony_logo.png') }}" alt="Sony">
                     </div>
-                    <h4>Apple</h4>
+                    <h4>Sony</h4>
                 </a>
                 <a href="#samsung-section" class="brand-item">
                     <div class="brand-image-placeholder">
-                        <img src="static/samr1.png" alt="">
+                        <img src="{{ url_for('static', filename='samsung_logo.png') }}" alt="Samsung">
                     </div>
                     <h4>Samsung</h4>
                 </a>
                 <a href="#lg-section" class="brand-item">
-                    <!-- You can add a link for Oneplus later -->
                     <div class="brand-image-placeholder">
-                        <img src="static/lgrr1.png" alt="">
+                        <img src="{{ url_for('static', filename='lg_logo.png') }}" alt="LG">
                     </div>
-                    <h4>Oneplus</h4>
+                    <h4>LG</h4>
                 </a>
             </div>
         </section>
 
-        <!-- --- Sony Products Section (MODIFIED) --- -->
+        <!-- --- Sony Products Section --- -->
         <section class="products" id="sony-section">
-            <div class="container-fluid"> <!-- CHANGED -->
-                <!-- New Section Title -->
-                <h2 class="section-heading">Sony <span class="highlight">TV</span></h2>
+            <div class="container-fluid">
+                <h2 class="section-heading">Sony <span class="highlight">TVs</span></h2>
 
                 <div class="product-grid">
                     <!-- Product Card 1 -->
                     <div class="product-card">
                         <div class="product-image">
-                            <!-- Corrected image path -->
-                            <img src="{{ url_for('static', filename='iphoner1.png') }}" alt="Iphone 15 Pro Max">
+                            <img src="{{ url_for('static', filename='sony_tv_1.png') }}" alt="Sony Bravia XR A95L">
                         </div>
                         <div class="product-info">
-                            <h4>iPhone 15 Pro Max</h4>
-                            <p class="product-price">₹ 1,59,000</p>
-                            <a href="#" class="add-to-cart-btn">Add To Cart</a>
+                            <h4>Sony Bravia XR A95L</h4>
+                            <p class="product-price">₹ 3,49,999</p>
+                            <button class="add-to-cart-btn" onclick="addToCart(this,'Sony Bravia XR A95L', 349999, '{{ url_for('static', filename='sony_tv_1.png') }}')">Add To Cart</button>
                         </div>
                     </div>
 
                     <!-- Product Card 2 -->
                     <div class="product-card">
                         <div class="product-image">
-                            <img src="{{ url_for('static', filename='iphoner1.png') }}" alt="Iphone 15 Pro">
+                            <img src="{{ url_for('static', filename='sony_tv_2.png') }}" alt="Sony Bravia X90L">
                         </div>
                         <div class="product-info">
-                            <h4>iPhone 15 Pro</h4>
-                            <p class="product-price">₹ 1,34,900</p>
-                            <a href="#" class="add-to-cart-btn">Add To Cart</a>
+                            <h4>Sony Bravia X90L</h4>
+                            <p class="product-price">₹ 1,89,999</p>
+                            <button class="add-to-cart-btn" onclick="addToCart(this,'Sony Bravia X90L', 189999, '{{ url_for('static', filename='sony_tv_2.png') }}')">Add To Cart</button>
                         </div>
                     </div>
 
                     <!-- Product Card 3 -->
                     <div class="product-card">
                         <div class="product-image">
-                            <img src="{{ url_for('static', filename='iphoner1.png') }}" alt="Iphone 15">
+                            <img src="{{ url_for('static', filename='sony_tv_3.png') }}" alt="Sony Bravia X80L">
                         </div>
                         <div class="product-info">
-                            <h4>iPhone 15</h4>
-                            <p class="product-price">₹ 79,900</p>
-                            <a href="#" class="add-to-cart-btn">Add To Cart</a>
+                            <h4>Sony Bravia X80L</h4>
+                            <p class="product-price">₹ 1,29,999</p>
+                            <button class="add-to-cart-btn" onclick="addToCart(this,'Sony Bravia X80L', 129999, '{{ url_for('static', filename='sony_tv_3.png') }}')">Add To Cart</button>
                         </div>
                     </div>
 
                     <!-- Product Card 4 -->
                     <div class="product-card">
                         <div class="product-image">
-                            <img src="{{ url_for('static', filename='iphoner1.png') }}" alt="Iphone 14">
+                            <img src="{{ url_for('static', filename='sony_tv_4.png') }}" alt="Sony Bravia A80L">
                         </div>
                         <div class="product-info">
-                            <h4>iPhone 14</h4>
-                            <p class="product-price">₹ 64,090</p>
-                            <a href="#" class="add-to-cart-btn">Add To Cart</a>
+                            <h4>Sony Bravia A80L</h4>
+                            <p class="product-price">₹ 2,49,999</p>
+                            <button class="add-to-cart-btn" onclick="addToCart(this,'Sony Bravia A80L', 249999, '{{ url_for('static', filename='sony_tv_4.png') }}')">Add To Cart</button>
                         </div>
                     </div>
 
                     <!-- Product Card 5 -->
                     <div class="product-card">
                         <div class="product-image">
-                            <img src="{{ url_for('static', filename='iphoner1.png') }}" alt="Iphone 14 (128GB)">
+                            <img src="{{ url_for('static', filename='sony_tv_5.png') }}" alt="Sony Bravia X85L">
                         </div>
                         <div class="product-info">
-                            <h4>iPhone 14 (128GB)</h4>
-                            <p class="product-price">₹ 54,090</p>
-                            <a href="#" class="add-to-cart-btn">Add To Cart</a>
+                            <h4>Sony Bravia X85L</h4>
+                            <p class="product-price">₹ 1,59,999</p>
+                            <button class="add-to-cart-btn" onclick="addToCart(this,'Sony Bravia X85L', 159999, '{{ url_for('static', filename='sony_tv_5.png') }}')">Add To Cart</button>
                         </div>
                     </div>
 
                     <!-- Product Card 6 -->
                     <div class="product-card">
                         <div class="product-image">
-                            <img src="{{ url_for('static', filename='iphoner1.png') }}" alt="Iphone SE">
+                            <img src="{{ url_for('static', filename='sony_tv_6.png') }}" alt="Sony Bravia W950L">
                         </div>
                         <div class="product-info">
-                            <h4>iPhone SE</h4>
-                            <p class="product-price">₹ 49,990</p>
-                            <a href="#" class="add-to-cart-btn">Add To Cart</a>
+                            <h4>Sony Bravia W950L</h4>
+                            <p class="product-price">₹ 99,999</p>
+                            <button class="add-to-cart-btn" onclick="addToCart(this,'Sony Bravia W950L', 99999, '{{ url_for('static', filename='sony_tv_6.png') }}')">Add To Cart</button>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- --- Samsung Products Section (MODIFIED) --- -->
+        <!-- --- Samsung Products Section --- -->
         <section class="products" id="samsung-section">
-            <div class="container-fluid"> <!-- CHANGED -->
-                <!-- New Section Title -->
-                <h2 class="section-heading">Samsung <span class="highlight">TV</span></h2>
+            <div class="container-fluid">
+                <h2 class="section-heading">Samsung <span class="highlight">TVs</span></h2>
 
                 <div class="product-grid">
                     <!-- Product Card 1 -->
                     <div class="product-card">
                         <div class="product-image">
-                            <img src="{{ url_for('static', filename='s25r1.png') }}" alt="Samsung Galaxy S24 Ultra">
+                            <img src="{{ url_for('static', filename='samsung_tv_1.png') }}" alt="Samsung QLED 8K QN900C">
                         </div>
                         <div class="product-info">
-                            <h4>Galaxy S24 Ultra</h4>
-                            <p class="product-price">₹ 1,29,999</p>
-                            <a href="#" class="add-to-cart-btn">Add To Cart</a>
+                            <h4>Samsung QLED 8K QN900C</h4>
+                            <p class="product-price">₹ 4,99,999</p>
+                            <button class="add-to-cart-btn" onclick="addToCart(this,'Samsung QLED 8K QN900C', 499999, '{{ url_for('static', filename='samsung_tv_1.png') }}')">Add To Cart</button>
                         </div>
                     </div>
 
                     <!-- Product Card 2 -->
                     <div class="product-card">
                         <div class="product-image">
-                            <img src="{{ url_for('static', filename='s25r1.png') }}" alt="Samsung Galaxy S24">
+                            <img src="{{ url_for('static', filename='samsung_tv_2.png') }}" alt="Samsung The Frame QLED">
                         </div>
                         <div class="product-info">
-                            <h4>Galaxy S24</h4>
-                            <p class="product-price">₹ 79,999</p>
-                            <a href="#" class="add-to-cart-btn">Add To Cart</a>
+                            <h4>Samsung The Frame QLED</h4>
+                            <p class="product-price">₹ 1,79,999</p>
+                            <button class="add-to-cart-btn" onclick="addToCart(this,'Samsung The Frame QLED', 179999, '{{ url_for('static', filename='samsung_tv_2.png') }}')">Add To Cart</button>
                         </div>
                     </div>
 
                     <!-- Product Card 3 -->
                     <div class="product-card">
                         <div class="product-image">
-                            <img src="{{ url_for('static', filename='s25r1.png') }}" alt="Samsung Galaxy S23 FE">
+                            <img src="{{ url_for('static', filename='samsung_tv_3.png') }}" alt="Samsung Crystal 4K UHD">
                         </div>
                         <div class="product-info">
-                            <h4>Galaxy S23 FE</h4>
-                            <p class="product-price">₹ 54,999</p>
-                            <a href="#" class="add-to-cart-btn">Add To Cart</a>
+                            <h4>Samsung Crystal 4K UHD</h4>
+                            <p class="product-price">₹ 64,999</p>
+                            <button class="add-to-cart-btn" onclick="addToCart(this,'Samsung Crystal 4K UHD', 64999, '{{ url_for('static', filename='samsung_tv_3.png') }}')">Add To Cart</button>
                         </div>
                     </div>
-                    
+
                     <!-- Product Card 4 -->
                     <div class="product-card">
                         <div class="product-image">
-                            <img src="{{ url_for('static', filename='s25r1.png') }}" alt="Samsung Galaxy A55">
+                            <img src="{{ url_for('static', filename='samsung_tv_4.png') }}" alt="Samsung QLED 4K Q80C">
                         </div>
                         <div class="product-info">
-                            <h4>Galaxy A55 5G</h4>
-                            <p class="product-price">₹ 39,999</p>
-                            <a href="#" class="add-to-cart-btn">Add To Cart</a>
+                            <h4>Samsung QLED 4K Q80C</h4>
+                            <p class="product-price">₹ 1,29,999</p>
+                            <button class="add-to-cart-btn" onclick="addToCart(this,'Samsung QLED 4K Q80C', 129999, '{{ url_for('static', filename='samsung_tv_4.png') }}')">Add To Cart</button>
                         </div>
                     </div>
 
                     <!-- Product Card 5 -->
                     <div class="product-card">
                         <div class="product-image">
-                            <img src="{{ url_for('static', filename='s25r1.png') }}" alt="Samsung Galaxy M34">
+                            <img src="{{ url_for('static', filename='samsung_tv_5.png') }}" alt="Samsung OLED S95C">
                         </div>
                         <div class="product-info">
-                            <h4>Galaxy M34 5G</h4>
-                            <p class="product-price">₹ 15,999</p>
-                            <a href="#" class="add-to-cart-btn">Add To Cart</a>
+                            <h4>Samsung OLED S95C</h4>
+                            <p class="product-price">₹ 2,49,999</p>
+                            <button class="add-to-cart-btn" onclick="addToCart(this,'Samsung OLED S95C', 249999, '{{ url_for('static', filename='samsung_tv_5.png') }}')">Add To Cart</button>
                         </div>
                     </div>
 
                     <!-- Product Card 6 -->
                     <div class="product-card">
                         <div class="product-image">
-                            <img src="{{ url_for('static', filename='s25r1.png') }}" alt="Samsung Galaxy F15">
+                            <img src="{{ url_for('static', filename='samsung_tv_6.png') }}" alt="Samsung AU8000 Crystal UHD">
                         </div>
                         <div class="product-info">
-                            <h4>Galaxy F15 5G</h4>
-                            <p class="product-price">₹ 12,999</p>
-                            <a href="#" class="add-to-cart-btn">Add To Cart</a>
+                            <h4>Samsung AU8000 Crystal UHD</h4>
+                            <p class="product-price">₹ 54,999</p>
+                            <button class="add-to-cart-btn" onclick="addToCart(this,'Samsung AU8000 Crystal UHD', 54999, '{{ url_for('static', filename='samsung_tv_6.png') }}')">Add To Cart</button>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-
-
-                <section class="products" id="lg-section">
-            <div class="container-fluid"> <!-- CHANGED -->
-                <!-- New Section Title -->
-                <h2 class="section-heading">LG <span class="highlight">TV</span></h2>
+        <!-- --- LG Products Section --- -->
+        <section class="products" id="lg-section">
+            <div class="container-fluid">
+                <h2 class="section-heading">LG <span class="highlight">TVs</span></h2>
 
                 <div class="product-grid">
                     <!-- Product Card 1 -->
                     <div class="product-card">
                         <div class="product-image">
-                            <img src="{{ url_for('static', filename='onep13.png') }}" alt="Samsung Galaxy S24 Ultra">
+                            <img src="{{ url_for('static', filename='lg_tv_1.png') }}" alt="LG OLED evo G3">
                         </div>
                         <div class="product-info">
-                            <h4>OnePlus13</h4>
-                            <p class="product-price">₹ 1,29,999</p>
-                            <a href="#" class="add-to-cart-btn">Add To Cart</a>
+                            <h4>LG OLED evo G3</h4>
+                            <p class="product-price">₹ 3,29,999</p>
+                            <button class="add-to-cart-btn" onclick="addToCart(this,'LG OLED evo G3', 329999, '{{ url_for('static', filename='lg_tv_1.png') }}')">Add To Cart</button>
                         </div>
                     </div>
 
                     <!-- Product Card 2 -->
                     <div class="product-card">
                         <div class="product-image">
-                            <img src="{{ url_for('static', filename='onep13.png') }}" alt="Samsung Galaxy S24">
+                            <img src="{{ url_for('static', filename='lg_tv_2.png') }}" alt="LG QNED 8K 99 Series">
                         </div>
                         <div class="product-info">
-                            <h4>OnePlus12</h4>
-                            <p class="product-price">₹ 79,999</p>
-                            <a href="#" class="add-to-cart-btn">Add To Cart</a>
+                            <h4>LG QNED 8K 99 Series</h4>
+                            <p class="product-price">₹ 4,29,999</p>
+                            <button class="add-to-cart-btn" onclick="addToCart(this,'LG QNED 8K 99 Series', 429999, '{{ url_for('static', filename='lg_tv_2.png') }}')">Add To Cart</button>
                         </div>
                     </div>
 
                     <!-- Product Card 3 -->
                     <div class="product-card">
                         <div class="product-image">
-                            <img src="{{ url_for('static', filename='onep13.png') }}" alt="Samsung Galaxy S23 FE">
+                            <img src="{{ url_for('static', filename='lg_tv_3.png') }}" alt="LG OLED C3 Series">
                         </div>
                         <div class="product-info">
-                            <h4>OnePlus13s</h4>
-                            <p class="product-price">₹ 54,999</p>
-                            <a href="#" class="add-to-cart-btn">Add To Cart</a>
+                            <h4>LG OLED C3 Series</h4>
+                            <p class="product-price">₹ 1,89,999</p>
+                            <button class="add-to-cart-btn" onclick="addToCart(this,'LG OLED C3 Series', 189999, '{{ url_for('static', filename='lg_tv_3.png') }}')">Add To Cart</button>
                         </div>
                     </div>
-                    
+
                     <!-- Product Card 4 -->
                     <div class="product-card">
                         <div class="product-image">
-                            <img src="{{ url_for('static', filename='onep13.png') }}" alt="Samsung Galaxy A55">
+                            <img src="{{ url_for('static', filename='lg_tv_4.png') }}" alt="LG NanoCell 75 Series">
                         </div>
                         <div class="product-info">
-                            <h4>OnePlus11</h4>
-                            <p class="product-price">₹ 39,999</p>
-                            <a href="#" class="add-to-cart-btn">Add To Cart</a>
+                            <h4>LG NanoCell 75 Series</h4>
+                            <p class="product-price">₹ 94,999</p>
+                            <button class="add-to-cart-btn" onclick="addToCart(this,'LG NanoCell 75 Series', 94999, '{{ url_for('static', filename='lg_tv_4.png') }}')">Add To Cart</button>
                         </div>
                     </div>
 
                     <!-- Product Card 5 -->
                     <div class="product-card">
                         <div class="product-image">
-                            <img src="{{ url_for('static', filename='onep13.png') }}" alt="Samsung Galaxy M34">
+                            <img src="{{ url_for('static', filename='lg_tv_5.png') }}" alt="LG UHD 4K UM7600">
                         </div>
                         <div class="product-info">
-                            <h4>OnePlus12R</h4>
-                            <p class="product-price">₹ 15,999</p>
-                            <a href="#" class="add-to-cart-btn">Add To Cart</a>
+                            <h4>LG UHD 4K UM7600</h4>
+                            <p class="product-price">₹ 59,999</p>
+                            <button class="add-to-cart-btn" onclick="addToCart(this,'LG UHD 4K UM7600', 59999, '{{ url_for('static', filename='lg_tv_5.png') }}')">Add To Cart</button>
                         </div>
                     </div>
 
                     <!-- Product Card 6 -->
                     <div class="product-card">
                         <div class="product-image">
-                            <img src="{{ url_for('static', filename='onep13.png') }}" alt="Samsung Galaxy F15">
+                            <img src="{{ url_for('static', filename='lg_tv_6.png') }}" alt="LG QNED 80 Series">
                         </div>
                         <div class="product-info">
-                            <h4>OnePlus Open</h4>
-                            <p class="product-price">₹ 12,999</p>
-                            <a href="#" class="add-to-cart-btn">Add To Cart</a>
+                            <h4>LG QNED 80 Series</h4>
+                            <p class="product-price">₹ 1,19,999</p>
+                            <button class="add-to-cart-btn" onclick="addToCart(this,'LG QNED 80 Series', 119999, '{{ url_for('static', filename='lg_tv_6.png') }}')">Add To Cart</button>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
-        
-        <!-- The third product section for laptops has been removed -->
 
     </main>
 
@@ -948,7 +848,7 @@
                     <h4>Hustle Cart</h4>
                     <p>Stay Connected</p>
                     <form action="#" method="post" aria-label="Newsletter signup">
-                        <input type="email" name="email" placeholder="Enter Your Email" aria-label="Enter YourLabel">
+                        <input type="email" name="email" placeholder="Enter Your Email" aria-label="Enter Your Email">
                     </form>
                 </div>
 
@@ -997,75 +897,154 @@
         </div>
     </footer>
 
-</body>
-<script>
-    // Add to Cart functionality
-    function addToCart(productName, productPrice, productImage) {
-        const productData = {
-            name: productName,
-            price: productPrice,
-            img: productImage
-        };
+    <script>
+    // Load cart count when page loads
+    document.addEventListener('DOMContentLoaded', function() {
+        updateCartCount();
+    });
 
-        fetch('/add_to_cart', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(productData)
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                alert(data.message || 'Product added to cart!');
-                updateCartCount();
-            } else {
-                alert('Error: ' + (data.error || 'Failed to add product to cart'));
-            }
-        })
-        .catch(error => {
-            console.error('Error:', error);
-            alert('Error adding product to cart');
-        });
-    }
-
-    // Update cart count
+    // Function to update cart count display
     function updateCartCount() {
-        fetch('/get_cart_count')
+        fetch('/check_auth')
             .then(response => response.json())
-            .then(data => {
-                const cartCount = document.getElementById('cart-count');
-                if (data.count > 0) {
-                    cartCount.textContent = data.count;
-                    cartCount.style.display = 'flex';
+            .then(authData => {
+                if (authData.authenticated) {
+                    fetch('/get_cart_count')
+                        .then(response => response.json())
+                        .then(data => {
+                            const cartCountElement = document.getElementById('cart-count');
+                            if (data.count > 0) {
+                                cartCountElement.textContent = data.count;
+                                cartCountElement.style.display = 'flex';
+                            } else {
+                                cartCountElement.style.display = 'none';
+                            }
+                        })
+                        .catch(error => {
+                            console.error('Error fetching cart count:', error);
+                        });
                 } else {
-                    cartCount.style.display = 'none';
+                    // User not logged in, hide cart count
+                    const cartCountElement = document.getElementById('cart-count');
+                    cartCountElement.style.display = 'none';
                 }
             })
             .catch(error => {
-                console.error('Error fetching cart count:', error);
+                console.error('Error checking auth:', error);
             });
     }
 
-    // Initialize Add to Cart buttons and cart count
-    document.addEventListener('DOMContentLoaded', function() {
-        updateCartCount();
-        
-        // Add click event to all Add to Cart buttons
-        const addToCartButtons = document.querySelectorAll('.add-to-cart-btn');
-        addToCartButtons.forEach(button => {
-            button.onclick = function(e) {
-                e.preventDefault();
-                const productCard = this.closest('.product-card');
-                const productName = productCard.querySelector('h4').textContent;
-                const productPriceText = productCard.querySelector('.product-price').textContent;
-                const productPrice = parseInt(productPriceText.replace('₹ ', '').replace(',', ''));
-                const productImage = productCard.querySelector('img').src;
-                
-                addToCart(productName, productPrice, productImage);
-            };
-        });
-    });
-</script>
-</html>
+    // Function to add item to cart with login check
+    function addToCart(button, productName, productPrice, productImage) {
+        // First check if user is logged in
+        fetch('/check_auth')
+            .then(response => response.json())
+            .then(authData => {
+                if (!authData.authenticated) {
+                    // User not logged in, redirect to login
+                    if (confirm('You need to login first to add items to cart. Would you like to login now?')) {
+                        window.location.href = '/login?redirect=' + encodeURIComponent(window.location.pathname);
+                    }
+                    return;
+                }
 
+                // User is logged in, proceed to add to cart
+                fetch('/add_to_cart', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ name: productName, price: productPrice, img: productImage })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        showPopup('Product added to cart!');
+                        updateCartCount();
+
+                        // Only change the clicked button
+                        const originalText = button.textContent;
+                        button.textContent = 'Added!';
+                        button.style.backgroundColor = '#28a745';
+                        setTimeout(() => {
+                            button.textContent = originalText;
+                            button.style.backgroundColor = '#007bff';
+                        }, 1000);
+                    } else {
+                        if (data.error && data.error.includes('login')) {
+                            window.location.href = '/login';
+                        } else {
+                            showPopup('Error: ' + data.error);
+                        }
+                    }
+                })
+                .catch(error => {
+                    console.error('Error adding to cart:', error);
+                    showPopup('Error adding product to cart');
+                });
+            })
+            .catch(error => {
+                console.error('Error checking auth:', error);
+                showPopup('Error checking authentication');
+            });
+    }
+
+    // Popup message function
+    function showPopup(message) {
+        // Remove existing popup if any
+        const existingPopup = document.querySelector('.popup-message');
+        if (existingPopup) {
+            existingPopup.remove();
+        }
+
+        // Create popup element
+        const popup = document.createElement('div');
+        popup.className = 'popup-message';
+        popup.textContent = message;
+        
+        // Add popup styles
+        popup.style.cssText = `
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #4CAF50;
+            color: white;
+            padding: 15px 20px;
+            border-radius: 5px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            z-index: 10000;
+            font-weight: 500;
+            max-width: 300px;
+            animation: slideIn 0.3s ease-out;
+        `;
+
+        // Add CSS for animation
+        if (!document.querySelector('#popup-styles')) {
+            const style = document.createElement('style');
+            style.id = 'popup-styles';
+            style.textContent = `
+                @keyframes slideIn {
+                    from { transform: translateX(100%); opacity: 0; }
+                    to { transform: translateX(0); opacity: 1; }
+                }
+                @keyframes slideOut {
+                    from { transform: translateX(0); opacity: 1; }
+                    to { transform: translateX(100%); opacity: 0; }
+                }
+            `;
+            document.head.appendChild(style);
+        }
+
+        document.body.appendChild(popup);
+
+        // Auto remove after 3 seconds
+        setTimeout(() => {
+            popup.style.animation = 'slideOut 0.2s ease-in';
+            setTimeout(() => {
+                if (popup.parentNode) {
+                    popup.remove();
+                }
+            }, 200);
+        }, 3000);
+    }
+</script>
+</body>
+</html>

@@ -280,6 +280,12 @@
             margin-bottom: 5px;
             color: #222;
         }
+        
+        .product-price {
+            font-size: 16px;
+            font-weight: 500;
+            margin-bottom: 15px;
+        }
 
         .details-button {
             background-color: #007bff;
@@ -291,6 +297,8 @@
             display: inline-block;
             text-align: center;
             transition: background-color 0.3s ease;
+            cursor: pointer;
+            border: none;
         }
 
         .details-button:hover {
@@ -519,7 +527,7 @@
                 <div class="nav-icons">
                     <a href="{{ url_for('cart') }}" aria-label="Shopping Cart">
                         <i class="fas fa-shopping-cart"></i>
-                        <span class="cart-count" id="cart-count">0</span>
+                        <span class="cart-count" id="cart-count" style="display: none;">0</span>
                     </a>
                     <a href="{{ url_for('account') }}" aria-label="User Account"><i class="fas fa-user-circle"></i></a>
                 </div>
@@ -560,38 +568,38 @@
                 <div class="product-grid">
                     <!-- Product Card 1 -->
                     <div class="product-card">
-                        <a href="/Mobile#apple-section">
-                            <div class="product-image">
-                                <img src="static/iphoner1.png" alt="Iphone 17">
-                            </div>
-                            <div class="product-info">
-                                <h4>Iphone 17</h4>
-                            </div>
-                        </a>
+                        <div class="product-image">
+                            <img src="{{ url_for('static', filename='iphoner1.png') }}" alt="Iphone 17">
+                        </div>
+                        <div class="product-info">
+                            <h4>Iphone 17</h4>
+                            <p class="product-price">₹ 1,59,000</p>
+                            <button class="details-button" onclick="addToCart(this,'Iphone 17', 159000, '{{ url_for('static', filename='iphoner1.png') }}')">Add To Cart</button>
+                        </div>
                     </div>
 
                     <!-- Product Card 2 -->
                     <div class="product-card">
-                        <a href="/Mobile#samsung-section">
-                            <div class="product-image">
-                                <img src="static/s25r1.png" alt="Samsung Galaxy S25">
-                            </div>
-                            <div class="product-info">
-                                <h4>Samsung Galaxy S25</h4>
-                            </div>
-                        </a>
+                        <div class="product-image">
+                            <img src="{{ url_for('static', filename='s25r1.png') }}" alt="Samsung Galaxy S25">
+                        </div>
+                        <div class="product-info">
+                            <h4>Samsung Galaxy S25</h4>
+                            <p class="product-price">₹ 1,29,999</p>
+                            <button class="details-button" onclick="addToCart(this,'Samsung Galaxy S25', 129999, '{{ url_for('static', filename='s25r1.png') }}')">Add To Cart</button>
+                        </div>
                     </div>
 
                     <!-- Product Card 3 -->
                     <div class="product-card">
-                        <a href="/Mobile#oneplus-section">
-                            <div class="product-image">
-                                <img src="static/onep13.png" alt="OnePlus 15">
-                            </div>
-                            <div class="product-info">
-                                <h4>OnePlus 15</h4>
-                            </div>
-                        </a>
+                        <div class="product-image">
+                            <img src="{{ url_for('static', filename='onep13.png') }}" alt="OnePlus 15">
+                        </div>
+                        <div class="product-info">
+                            <h4>OnePlus 15</h4>
+                            <p class="product-price">₹ 79,999</p>
+                            <button class="details-button" onclick="addToCart(this,'OnePlus 15', 79999, '{{ url_for('static', filename='onep13.png') }}')">Add To Cart</button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -612,40 +620,40 @@
             <div class="container">
                 <div class="product-grid">
                     <!-- Product Card 1 -->
-                    <a href="/TV#sony-section">
-                        <div class="product-card">
-                            <div class="product-image">
-                                <img src="static/sonyr1.png" alt="Sony Bravia 8">
-                            </div>
-                            <div class="product-info">
-                                <h4>Sony Bravia 8</h4>
-                            </div>
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="{{ url_for('static', filename='sonyr1.png') }}" alt="Sony Bravia 8">
                         </div>
-                    </a>
+                        <div class="product-info">
+                            <h4>Sony Bravia 8</h4>
+                            <p class="product-price">₹ 89,999</p>
+                            <button class="details-button" onclick="addToCart(this,'Sony Bravia 8', 89999, '{{ url_for('static', filename='sonyr1.png') }}')">Add To Cart</button>
+                        </div>
+                    </div>
 
                     <!-- Product Card 2 -->
-                    <a href="/TV#samsung-section">
-                        <div class="product-card">
-                            <div class="product-image">
-                                <img src="static/tvr2.png" alt="Samsung Crystal UHD">
-                            </div>
-                            <div class="product-info">
-                                <h4>Samsung Crystal UHD</h4>
-                            </div>
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="{{ url_for('static', filename='tvr2.png') }}" alt="Samsung Crystal UHD">
                         </div>
-                    </a>
+                        <div class="product-info">
+                            <h4>Samsung Crystal UHD</h4>
+                            <p class="product-price">₹ 64,999</p>
+                            <button class="details-button" onclick="addToCart(this,'Samsung Crystal UHD', 64999, '{{ url_for('static', filename='tvr2.png') }}')">Add To Cart</button>
+                        </div>
+                    </div>
 
                     <!-- Product Card 3 -->
-                    <a href="/TV#lg-section">
-                        <div class="product-card">
-                            <div class="product-image">
-                                <img src="static/lgr1.png" alt="LG QNED 4K">
-                            </div>
-                            <div class="product-info">
-                                <h4>LG QNED 4K</h4>
-                            </div>
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="{{ url_for('static', filename='lgr1.png') }}" alt="LG QNED 4K">
                         </div>
-                    </a>
+                        <div class="product-info">
+                            <h4>LG QNED 4K</h4>
+                            <p class="product-price">₹ 74,999</p>
+                            <button class="details-button" onclick="addToCart(this,'LG QNED 4K', 74999, '{{ url_for('static', filename='lgr1.png') }}')">Add To Cart</button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -666,39 +674,39 @@
                 <div class="container">
                     <div class="product-grid">
                         <!-- Product Card 1 -->
-                        <a href="/Laptop#lenovo-section">
-                            <div class="product-card">
-                                <div class="product-image">
-                                    <img src="static/lap1.png" alt="Lenovo LOQ">
-                                </div>
-                                <div class="product-info">
-                                    <h4>Lenovo LOQ</h4>
-                                </div>
+                        <div class="product-card">
+                            <div class="product-image">
+                                <img src="{{ url_for('static', filename='lap1.png') }}" alt="Lenovo LOQ">
                             </div>
-                        </a>
+                            <div class="product-info">
+                                <h4>Lenovo LOQ</h4>
+                                <p class="product-price">₹ 69,999</p>
+                                <button class="details-button" onclick="addToCart(this,'Lenovo LOQ', 69999, '{{ url_for('static', filename='lap1.png') }}')">Add To Cart</button>
+                            </div>
+                        </div>
 
                         <!-- Product Card 2 -->
                         <div class="product-card">
-                            <a href="/Laptop#hp-section">
-                                <div class="product-image">
-                                    <img src="static/lap2.png" alt="HP 7000 series">
-                                </div>
-                                <div class="product-info">
-                                    <h4>HP 7000 series</h4>
-                                </div>
-                            </a>
+                            <div class="product-image">
+                                <img src="{{ url_for('static', filename='lap2.png') }}" alt="HP 7000 series">
+                            </div>
+                            <div class="product-info">
+                                <h4>HP 7000 series</h4>
+                                <p class="product-price">₹ 59,999</p>
+                                <button class="details-button" onclick="addToCart(this,'HP 7000 series', 59999, '{{ url_for('static', filename='lap2.png') }}')">Add To Cart</button>
+                            </div>
                         </div>
 
                         <!-- Product Card 3 -->
                         <div class="product-card">
-                            <a href="/Laptop#dell-section">
-                                <div class="product-image">
-                                    <img src="static/g152r1.png" alt="Dell G15">
-                                </div>
-                                <div class="product-info">
-                                    <h4>Dell G15</h4>
-                                </div>
-                            </a>
+                            <div class="product-image">
+                                <img src="{{ url_for('static', filename='g152r1.png') }}" alt="Dell G15">
+                            </div>
+                            <div class="product-info">
+                                <h4>Dell G15</h4>
+                                <p class="product-price">₹ 79,999</p>
+                                <button class="details-button" onclick="addToCart(this,'Dell G15', 79999, '{{ url_for('static', filename='g152r1.png') }}')">Add To Cart</button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -765,74 +773,153 @@
     </footer>
 
     <script>
-    // Add to Cart functionality
-    function addToCart(productName, productPrice, productImage) {
-        const productData = {
-            name: productName,
-            price: productPrice,
-            img: productImage
-        };
+    // Load cart count when page loads
+    document.addEventListener('DOMContentLoaded', function() {
+        updateCartCount();
+    });
 
-        fetch('/add_to_cart', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(productData)
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                alert(data.message || 'Product added to cart!');
-                updateCartCount();
-            } else {
-                alert('Error: ' + (data.error || 'Failed to add product to cart'));
-            }
-        })
-        .catch(error => {
-            console.error('Error:', error);
-            alert('Error adding product to cart');
-        });
-    }
-
-    // Update cart count
+    // Function to update cart count display
     function updateCartCount() {
-        fetch('/get_cart_count')
+        fetch('/check_auth')
             .then(response => response.json())
-            .then(data => {
-                const cartCount = document.getElementById('cart-count');
-                if (data.count > 0) {
-                    cartCount.textContent = data.count;
-                    cartCount.style.display = 'flex';
+            .then(authData => {
+                if (authData.authenticated) {
+                    fetch('/get_cart_count')
+                        .then(response => response.json())
+                        .then(data => {
+                            const cartCountElement = document.getElementById('cart-count');
+                            if (data.count > 0) {
+                                cartCountElement.textContent = data.count;
+                                cartCountElement.style.display = 'flex';
+                            } else {
+                                cartCountElement.style.display = 'none';
+                            }
+                        })
+                        .catch(error => {
+                            console.error('Error fetching cart count:', error);
+                        });
                 } else {
-                    cartCount.style.display = 'none';
+                    // User not logged in, hide cart count
+                    const cartCountElement = document.getElementById('cart-count');
+                    cartCountElement.style.display = 'none';
                 }
             })
             .catch(error => {
-                console.error('Error fetching cart count:', error);
+                console.error('Error checking auth:', error);
             });
     }
 
-    // Initialize Add to Cart buttons and cart count
-    document.addEventListener('DOMContentLoaded', function() {
-        updateCartCount();
-        
-        // Add click event to all Add to Cart buttons
-        const addToCartButtons = document.querySelectorAll('.add-to-cart-btn');
-        addToCartButtons.forEach(button => {
-            button.onclick = function(e) {
-                e.preventDefault();
-                const productCard = this.closest('.product-card');
-                const productName = productCard.querySelector('h4').textContent;
-                const productPriceText = productCard.querySelector('.product-price').textContent;
-                const productPrice = parseInt(productPriceText.replace('₹ ', '').replace(',', ''));
-                const productImage = productCard.querySelector('img').src;
-                
-                addToCart(productName, productPrice, productImage);
-            };
-        });
-    });
-</script>
+    // Function to add item to cart with login check
+    function addToCart(button, productName, productPrice, productImage) {
+        // First check if user is logged in
+        fetch('/check_auth')
+            .then(response => response.json())
+            .then(authData => {
+                if (!authData.authenticated) {
+                    // User not logged in, redirect to login
+                    if (confirm('You need to login first to add items to cart. Would you like to login now?')) {
+                        window.location.href = '/login?redirect=' + encodeURIComponent(window.location.pathname);
+                    }
+                    return;
+                }
 
+                // User is logged in, proceed to add to cart
+                fetch('/add_to_cart', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ name: productName, price: productPrice, img: productImage })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        showPopup('Product added to cart!');
+                        updateCartCount();
+
+                        // Only change the clicked button
+                        const originalText = button.textContent;
+                        button.textContent = 'Added!';
+                        button.style.backgroundColor = '#28a745';
+                        setTimeout(() => {
+                            button.textContent = originalText;
+                            button.style.backgroundColor = '#007bff';
+                        }, 1000);
+                    } else {
+                        if (data.error && data.error.includes('login')) {
+                            window.location.href = '/login';
+                        } else {
+                            showPopup('Error: ' + data.error);
+                        }
+                    }
+                })
+                .catch(error => {
+                    console.error('Error adding to cart:', error);
+                    showPopup('Error adding product to cart');
+                });
+            })
+            .catch(error => {
+                console.error('Error checking auth:', error);
+                showPopup('Error checking authentication');
+            });
+    }
+
+    // Popup message function
+    function showPopup(message) {
+        // Remove existing popup if any
+        const existingPopup = document.querySelector('.popup-message');
+        if (existingPopup) {
+            existingPopup.remove();
+        }
+
+        // Create popup element
+        const popup = document.createElement('div');
+        popup.className = 'popup-message';
+        popup.textContent = message;
+        
+        // Add popup styles
+        popup.style.cssText = `
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #4CAF50;
+            color: white;
+            padding: 15px 20px;
+            border-radius: 5px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            z-index: 10000;
+            font-weight: 500;
+            max-width: 300px;
+            animation: slideIn 0.3s ease-out;
+        `;
+
+        // Add CSS for animation
+        if (!document.querySelector('#popup-styles')) {
+            const style = document.createElement('style');
+            style.id = 'popup-styles';
+            style.textContent = `
+                @keyframes slideIn {
+                    from { transform: translateX(100%); opacity: 0; }
+                    to { transform: translateX(0); opacity: 1; }
+                }
+                @keyframes slideOut {
+                    from { transform: translateX(0); opacity: 1; }
+                    to { transform: translateX(100%); opacity: 0; }
+                }
+            `;
+            document.head.appendChild(style);
+        }
+
+        document.body.appendChild(popup);
+
+        // Auto remove after 3 seconds
+        setTimeout(() => {
+            popup.style.animation = 'slideOut 0.2s ease-in';
+            setTimeout(() => {
+                if (popup.parentNode) {
+                    popup.remove();
+                }
+            }, 200);
+        }, 3000);
+    }
+</script>
 </body>
 </html>

@@ -195,8 +195,26 @@
             outline: none;
         }
 
+        .save-btn {
+            background-color: #2c5aa0;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 15px;
+            transition: background-color 0.3s;
+            align-self: flex-end;
+            width: 200px;
+        }
+
+        .save-btn:hover {
+            background-color: #1e3d6f;
+        }
+
         /* Current Address Section Styles */
-        /* Current Address Section Styles (New Design) */
         .address-section {
             background-color: #d0d0d0;
             padding: 40px;
@@ -204,25 +222,19 @@
             width: 100%;
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            /* 3 columns */
             gap: 40px;
-            /* Smaller gap for 3 columns */
         }
 
         .address-card-new {
             background-color: #f5f5f5;
-            /* Lighter card color from design */
             border-radius: 15px;
             padding: 25px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
             position: relative;
-            /* Needed to position the delete button */
             min-height: 220px;
-            /* Gives all cards a consistent height */
             display: flex;
             flex-direction: column;
             gap: 15px;
-            /* Space between text lines */
         }
 
         .address-card-text {
@@ -233,15 +245,14 @@
         }
 
         .address-card-text.address-line {
-    flex-grow: 1;
-}
+            flex-grow: 1;
+        }
 
         .address-card-text strong {
             font-weight: bold;
             color: #1a1a1a;
             display: inline-block;
             width: 130px;
-            /* Aligns the text values */
         }
 
         /* "DEFAULT SHIPPING" tag */
@@ -253,13 +264,11 @@
             font-size: 12px;
             font-weight: bold;
             align-self: flex-start;
-            /* Aligns tag to the left */
-            
         }
 
         .no-tag-card {
-    padding-top: 62px;
-}
+            padding-top: 62px;
+        }
 
         .default-shipping-tag::before {
             content: '●';
@@ -283,7 +292,6 @@
 
         .address-delete-btn::before {
             content: '☐';
-            /* Unicode box */
             margin-right: 5px;
             font-size: 18px;
             vertical-align: middle;
@@ -292,7 +300,6 @@
 
         .address-delete-btn:hover {
             color: #d9534f;
-            /* Red on hover */
         }
 
         /* New "Add Address" Card */
@@ -318,7 +325,6 @@
         .add-address-icon {
             font-size: 80px;
             font-weight: 200;
-            /* Makes the '+' sign look lighter */
         }
 
         /* Coupons Section Styles */
@@ -484,17 +490,11 @@
         }
 
         /* My Orders Section Styles */
-        /* My Orders Section Styles (New Design) */
         .orders-section {
             width: 100%;
-            /* We use grid to make the 2-column layout */
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            /* 2 equal-width columns */
             gap: 100px;
-            /* Space between the cards */
-
-            /* You can change this background color to white if you prefer */
             background-color: #d0d0d0;
             padding: 100px;
             padding-top: 80px;
@@ -505,7 +505,6 @@
         .order-card-new {
             border: 1px solid #e0e0e0;
             border-radius: 10px;
-            /* overflow:hidden ensures the inner elements respect the border radius */
             overflow: hidden;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
             display: flex;
@@ -525,17 +524,14 @@
         }
 
         .order-card-image-placeholder {
-            /* This is the white box for the image */
             background-color: #ffffff;
             width: 100%;
             height: 250px;
-            /* You can adjust this height */
             display: flex;
             align-items: center;
             justify-content: center;
             color: #aaa;
             font-size: 16px;
-            /* In the future, you can put an <img/> tag in here */
         }
 
         .order-card-bottom {
@@ -544,7 +540,6 @@
             display: flex;
             flex-direction: column;
             gap: 12px;
-            /* Space between text lines */
         }
 
         .order-detail-text {
@@ -574,7 +569,6 @@
         .status-outfordelivery {
             color: #f0ad4e;
         }
-
 
         .order-actions-new {
             display: flex;
@@ -613,15 +607,12 @@
         }
 
         /* Hide sections by default */
-        /* Hide sections by default */
         .section {
             display: none;
         }
 
         /* Show active section */
-        /* Most sections are 'block' */
         .profile-section.active,
-        
         .coupons-section.active,
         .help-section.active,
         .terms-section.active,
@@ -633,6 +624,170 @@
         .orders-section.active, .address-section.active {
             display: grid;
         }
+
+        /* Popup styles */
+        .popup-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .popup-content {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            max-width: 500px;
+            width: 90%;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .popup-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .popup-title {
+            font-size: 24px;
+            font-weight: bold;
+            color: #1a1a1a;
+        }
+
+        .close-popup {
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: #666;
+        }
+
+        .close-popup:hover {
+            color: #1a1a1a;
+        }
+
+        .tracking-status {
+            margin-bottom: 20px;
+        }
+
+        .status-step {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .status-indicator {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            margin-right: 15px;
+            background-color: #ddd;
+        }
+
+        .status-indicator.active {
+            background-color: #2c5aa0;
+        }
+
+        .status-indicator.completed {
+            background-color: #5cb85c;
+        }
+
+        .status-text {
+            font-size: 16px;
+        }
+
+        .status-text.active {
+            font-weight: bold;
+            color: #2c5aa0;
+        }
+
+        .status-text.completed {
+            color: #5cb85c;
+        }
+
+        .status-line {
+            height: 40px;
+            width: 2px;
+            background-color: #ddd;
+            margin-left: 9px;
+            margin-bottom: 5px;
+        }
+
+        .status-line.completed {
+            background-color: #5cb85c;
+        }
+
+        .add-address-form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .form-input {
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .form-buttons {
+            display: flex;
+            gap: 10px;
+            justify-content: flex-end;
+            margin-top: 20px;
+        }
+
+        .cancel-btn {
+            background-color: #f0f0f0;
+            color: #333;
+            border: 1px solid #ddd;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .save-address-btn {
+            background-color: #2c5aa0;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 40px;
+            color: #666;
+        }
+
+        .no-data {
+            text-align: center;
+            padding: 40px;
+            color: #666;
+            grid-column: 1 / -1;
+        }
+
+        .btn-primary {
+            background-color: #2c5aa0;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 15px;
+        }
+
+        .btn-primary:hover {
+            background-color: #1e3d6f;
+        }
     </style>
 </head>
 
@@ -641,6 +796,10 @@
         <aside class="sidebar">
             <h1 class="logo">Hustlecart</h1>
             <nav class="nav-menu">
+                <a href="#" class="nav-item" data-section="account">
+                    <span class="icon">👤</span>
+                    <span>My Account</span>
+                </a>
                 <a href="#" class="nav-item" data-section="orders">
                     <span class="icon">📦</span>
                     <span>My Order</span>
@@ -663,7 +822,8 @@
                 </a>
             </nav>
             <hr>
-            <a href="#" class="logout">
+            <a href="/" class="logout">back to home</a>
+            <a href="#" class="logout" id="logout-btn">
                 <span class="icon">↪️</span>
                 <span>Log Out</span>
             </a>
@@ -674,6 +834,13 @@
             <section class="Headings section active" id="account-heading">
                 <h5>MY ACCOUNT<br><br>
                     <p>Manage your personal information</p>
+                </h5>
+            </section>
+
+            <!-- My Orders Section Heading -->
+            <section class="Headings section" id="orders-heading">
+                <h5>MY ORDERS<br><br>
+                    <p>Track and manage your orders</p>
                 </h5>
             </section>
 
@@ -705,13 +872,6 @@
                 </h5>
             </section>
 
-            <!-- My Orders Section Heading -->
-            <section class="Headings section" id="orders-heading">
-                <h5>MY ORDERS<br><br>
-                    <p>Track and manage your orders</p>
-                </h5>
-            </section>
-
             <main class="main-content">
                 <!-- Profile Section -->
                 <div class="profile-section section active" id="account-section">
@@ -723,56 +883,56 @@
                         </svg>
                     </div>
 
-                    <form class="profile-form">
+                    <form class="profile-form" id="profile-form">
                         <div class="form-group">
                             <label for="username">Full Name :</label>
-                            <input type="text" id="username" name="username">
+                            <input type="text" id="username" name="username" placeholder="Loading...">
                         </div>
                         <div class="form-group">
                             <label for="address">Current Address :</label>
-                            <input type="text" id="address" name="address">
+                            <input type="text" id="address" name="address" placeholder="Loading..." readonly>
                         </div>
                         <div class="form-group">
                             <label for="email">Email ID :</label>
-                            <input type="text" id="email" name="email">
+                            <input type="text" id="email" name="email" placeholder="Loading..." readonly>
                         </div>
                         <div class="form-group">
                             <label for="mobile">Mobile Number :</label>
-                            <input type="text" id="mobile" name="mobile">
+                            <input type="text" id="mobile" name="mobile" placeholder="Loading...">
                         </div>
+                        <button type="button" class="save-btn" id="save-profile">Save Changes</button>
                     </form>
+                </div>
+
+                <!-- My Orders Section -->
+                <div class="orders-section section" id="orders-section">
+                    <div class="loading" id="orders-loading">
+                        <p>Loading your orders...</p>
+                    </div>
+                    <div class="orders-container" id="orders-container">
+                        <!-- Orders will be dynamically loaded here -->
+                    </div>
                 </div>
 
                 <!-- Current Address Section -->
                 <div class="address-section section" id="address-section">
-
-                    <div class="address-card-new">
-                        <span class="default-shipping-tag">DEFAULT SHIPPING</span>
-                        <p class="address-card-text"><strong>Name:</strong> John Doe</p>
-<p class="address-card-text address-line"><strong>Address :</strong> 123 Main Street, Apt 4B, New York, NY 10001</p>
-                        <p class="address-card-text"><strong>Contact Number:</strong> +1 (555) 123-4567</p>
-                        <a href="#" class="address-delete-btn">Delete</a>
+                    <div class="loading" id="addresses-loading">
+                        <p>Loading your addresses...</p>
                     </div>
-
-                    <div class="address-card-new no-tag-card">
-                        <p class="address-card-text"><strong>Name:</strong> John Doe</p>
-                        <p class="address-card-text address-line"><strong>Address :</strong> 456 Business Avenue, Suite 1002, New York, NY 10002</p>
-                        <p class="address-card-text"><strong>Contact Number:</strong> +1 (555) 987-6543</p>
-                        <a href="#" class="address-delete-btn">Delete</a>
+                    <div class="addresses-container" id="addresses-container">
+                        <!-- Addresses will be dynamically loaded here -->
                     </div>
-
-                    <button class="add-address-card-new">
+                    <button class="add-address-card-new" id="add-address-btn">
                         <span class="add-address-icon">+</span>
                     </button>
-
                 </div>
 
                 <!-- Coupons Section -->
                 <div class="coupons-section section" id="coupons-section">
                     <div class="coins-balance">
                         <h3>Total coins balance</h3>
-                        <div class="balance-amount">1,000 coins</div>
-                        <div class="equivalent-value">Equivalent Value: ¥1.00</div>
+                        <div class="balance-amount" id="coins-balance">1,000 coins</div>
+                        <div class="equivalent-value">Equivalent Value: ₹1.00</div>
                     </div>
 
                     <div class="coins-info">
@@ -800,22 +960,20 @@
 
                 <!-- Help Section -->
                 <div class="help-section section" id="help-section">
+                    <!-- Help content remains the same -->
                     <div class="faq-item">
                         <div class="faq-question">Q-1: How can I place an order?</div>
-                        <div class="faq-answer">A: Add items to cart, go to checkout, fill details, and confirm your
-                            order.</div>
+                        <div class="faq-answer">A: Add items to cart, go to checkout, fill details, and confirm your order.</div>
                     </div>
 
                     <div class="faq-item">
                         <div class="faq-question">Q-2: Can I cancel my order after placing it?</div>
-                        <div class="faq-answer">A: Yes, before shipping. Once shipped, cancellation isn't possible.
-                        </div>
+                        <div class="faq-answer">A: Yes, before shipping. Once shipped, cancellation isn't possible.</div>
                     </div>
 
                     <div class="faq-item">
                         <div class="faq-question">Q-3: How will I know if my order is confirmed?</div>
-                        <div class="faq-answer">A: You'll receive a confirmation message or email after placing your
-                            order.</div>
+                        <div class="faq-answer">A: You'll receive a confirmation message or email after placing your order.</div>
                     </div>
 
                     <div class="faq-item">
@@ -830,8 +988,7 @@
 
                     <div class="faq-item">
                         <div class="faq-question">Q-6: How will I get my refund?</div>
-                        <div class="faq-answer">A: Refunds are made to your original payment method within 5–7 days.
-                        </div>
+                        <div class="faq-answer">A: Refunds are made to your original payment method within 5–7 days.</div>
                     </div>
 
                     <div class="faq-item">
@@ -842,150 +999,113 @@
 
                 <!-- Terms & Conditions Section -->
                 <div class="terms-section section" id="terms-section">
+                    <!-- Terms content remains the same -->
                     <div class="terms-item">
                         <div class="terms-title">1. Products & Pricing:</div>
-                        <div class="terms-description">All product details and prices are accurate to our best
-                            knowledge, but they may change without notice.</div>
+                        <div class="terms-description">All product details and prices are accurate to our best knowledge, but they may change without notice.</div>
                     </div>
 
                     <div class="terms-item">
                         <div class="terms-title">2. Orders & Payments:</div>
-                        <div class="terms-description">Orders are confirmed only after successful payment. We reserve
-                            the right to cancel any incorrect or fraudulent orders.</div>
+                        <div class="terms-description">Orders are confirmed only after successful payment. We reserve the right to cancel any incorrect or fraudulent orders.</div>
                     </div>
 
                     <div class="terms-item">
                         <div class="terms-title">3. Shipping & Delivery:</div>
-                        <div class="terms-description">Delivery times may vary by location. We are not responsible for
-                            courier delays.</div>
+                        <div class="terms-description">Delivery times may vary by location. We are not responsible for courier delays.</div>
                     </div>
 
                     <div class="terms-item">
                         <div class="terms-title">4. Returns & Refunds:</div>
-                        <div class="terms-description">Returns are accepted only under our return policy. Refunds will
-                            be processed after product verification.</div>
+                        <div class="terms-description">Returns are accepted only under our return policy. Refunds will be processed after product verification.</div>
                     </div>
 
                     <div class="terms-item">
                         <div class="terms-title">5. Privacy & Security:</div>
-                        <div class="terms-description">Your personal information is kept safe and not shared without
-                            your consent.</div>
+                        <div class="terms-description">Your personal information is kept safe and not shared without your consent.</div>
                     </div>
 
                     <div class="terms-item">
                         <div class="terms-title">6. User Responsibilities:</div>
-                        <div class="terms-description">You must not misuse the website, upload fake information, or try
-                            to hack or damage the site.</div>
+                        <div class="terms-description">You must not misuse the website, upload fake information, or try to hack or damage the site.</div>
                     </div>
 
                     <div class="terms-item">
                         <div class="terms-title">7. Product Warranty:</div>
-                        <div class="terms-description">Some products may include a manufacturer warranty — details will
-                            be mentioned with the product.</div>
+                        <div class="terms-description">Some products may include a manufacturer warranty — details will be mentioned with the product.</div>
                     </div>
 
                     <div class="terms-item">
                         <div class="terms-title">8. Limitation of Liability:</div>
-                        <div class="terms-description">We are not responsible for any indirect losses or damages caused
-                            by use of our website or products.</div>
+                        <div class="terms-description">We are not responsible for any indirect losses or damages caused by use of our website or products.</div>
                     </div>
 
                     <div class="terms-item">
                         <div class="terms-title">9. Changes to Terms:</div>
-                        <div class="terms-description">We may update or change these Terms anytime. New terms will be
-                            posted on this page.</div>
+                        <div class="terms-description">We may update or change these Terms anytime. New terms will be posted on this page.</div>
                     </div>
 
                     <div class="terms-item">
                         <div class="terms-title">10. Contact Information:</div>
-                        <div class="terms-description">For any issues or questions, contact us at <a
-                                href="mailto:clasherscode@gmail.com" style="color: #2c5aa0;">clasherscode@gmail.com</a>.
-                        </div>
+                        <div class="terms-description">For any issues or questions, contact us at <a href="mailto:clasherscode@gmail.com" style="color: #2c5aa0;">clasherscode@gmail.com</a>.</div>
                     </div>
-                </div>
-
-                <!-- My Orders Section -->
-                <div class="orders-section section" id="orders-section">
-
-                    <div class="order-card-new">
-                        <div class="order-card-top">
-                            <span class="order-id-new">Order ID : #ORD-001</span>
-                        </div>
-                        <div class="order-card-image-placeholder">
-                        </div>
-                        <div class="order-card-bottom">
-                            <p class="order-detail-text">Order Date : <span class="detail-value">Nov 15, 2024</span></p>
-                            <p class="order-detail-text">Total : <span class="detail-value">¥1,250.00</span></p>
-                            <p class="order-detail-text">Status : <span
-                                    class="detail-value status-shipped">Shipped</span></p>
-                            <div class="order-actions-new">
-                                <button class="btn-new btn-view-new">View Details</button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="order-card-new">
-                        <div class="order-card-top">
-                            <span class="order-id-new">Order ID : #ORD-002</span>
-                        </div>
-                        <div class="order-card-image-placeholder">
-                        </div>
-                        <div class="order-card-bottom">
-                            <p class="order-detail-text">Order Date : <span class="detail-value">Nov 10, 2024</span></p>
-                            <p class="order-detail-text">Total : <span class="detail-value">¥890.00</span></p>
-                            <p class="order-detail-text">Status : <span
-                                    class="detail-value status-processing">Processing</span></p>
-                            <div class="order-actions-new">
-                                <button class="btn-new btn-view-new">View Details</button>
-                                <button class="btn-new btn-track-new">Track Order</button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="order-card-new">
-                        <div class="order-card-top">
-                            <span class="order-id-new">Order ID : #ORD-003</span>
-                        </div>
-                        <div class="order-card-image-placeholder">
-                        </div>
-                        <div class="order-card-bottom">
-                            <p class="order-detail-text">Order Date : <span class="detail-value">Nov 5, 2024</span></p>
-                            <p class="order-detail-text">Total : <span class="detail-value">¥2,150.00</span></p>
-                            <p class="order-detail-text">Status : <span
-                                    class="detail-value status-delivered">Delivered</span></p>
-                            <div class="order-actions-new">
-                                <button class="btn-new btn-view-new">View Details</button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="order-card-new">
-                        <div class="order-card-top">
-                            <span class="order-id-new">Order ID : #ORD-004</span>
-                        </div>
-                        <div class="order-card-image-placeholder">
-                        </div>
-                        <div class="order-card-bottom">
-                            <p class="order-detail-text">Order Date : <span class="detail-value">Nov 20, 2024</span></p>
-                            <p class="order-detail-text">Total : <span class="detail-value">¥1,750.00</span></p>
-                            <p class="order-detail-text">Status : <span class="detail-value status-outfordelivery">Out
-                                    for Delivery</span></p>
-                            <div class="order-actions-new">
-                                <button class="btn-new btn-view-new">View Details</button>
-                                <button class="btn-new btn-track-new">Track Order</button>
-                            </div>
-                        </div>
-                    </div>
-
                 </div>
             </main>
         </div>
     </div>
 
+    <!-- Order Tracking Popup -->
+    <div class="popup-overlay" id="tracking-popup" style="display: none;">
+        <div class="popup-content">
+            <div class="popup-header">
+                <h2 class="popup-title">Order Tracking</h2>
+                <button class="close-popup" onclick="closePopup('tracking-popup')">&times;</button>
+            </div>
+            <div class="tracking-status" id="tracking-status">
+                <!-- Tracking steps will be dynamically inserted here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Address Popup -->
+    <div class="popup-overlay" id="address-popup" style="display: none;">
+        <div class="popup-content">
+            <div class="popup-header">
+                <h2 class="popup-title">Add New Address</h2>
+                <button class="close-popup" onclick="closePopup('address-popup')">&times;</button>
+            </div>
+            <form class="add-address-form" id="add-address-form">
+                <input type="text" class="form-input" id="address-name" placeholder="Full Name" required>
+                <input type="text" class="form-input" id="address-line1" placeholder="Address Line 1" required>
+                <input type="text" class="form-input" id="address-line2" placeholder="Address Line 2">
+                <input type="text" class="form-input" id="address-city" placeholder="City" required>
+                <input type="text" class="form-input" id="address-state" placeholder="State" required>
+                <input type="text" class="form-input" id="address-zip" placeholder="ZIP Code" required>
+                <input type="text" class="form-input" id="address-country" placeholder="Country" value="India" readonly>
+                <input type="tel" class="form-input" id="address-phone" placeholder="Phone Number" required>
+                <div class="form-checkbox" style="display: flex; align-items: center; gap: 10px; margin: 10px 0;">
+                    <input type="checkbox" id="address-default">
+                    <label for="address-default" style="font-size: 14px;">Set as default address</label>
+                </div>
+                <div class="form-buttons">
+                    <button type="button" class="cancel-btn" onclick="closePopup('address-popup')">Cancel</button>
+                    <button type="submit" class="save-address-btn">Save Address</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
     <script>
         document.addEventListener('DOMContentLoaded', function () {
+            // Load user data when page loads
+            loadUserData();
+            
             // Get all navigation items
             const navItems = document.querySelectorAll('.nav-item');
+            const logoutBtn = document.getElementById('logout-btn');
+            const saveProfileBtn = document.getElementById('save-profile');
+            const addAddressBtn = document.getElementById('add-address-btn');
+            const addAddressForm = document.getElementById('add-address-form');
 
             // Function to switch between sections
             function switchSection(sectionId) {
@@ -1001,6 +1121,7 @@
                 } else if (sectionId === 'address') {
                     document.getElementById('address-heading').classList.add('active');
                     document.getElementById('address-section').classList.add('active');
+                    loadUserAddresses();
                 } else if (sectionId === 'coupons') {
                     document.getElementById('coupons-heading').classList.add('active');
                     document.getElementById('coupons-section').classList.add('active');
@@ -1013,6 +1134,8 @@
                 } else if (sectionId === 'orders') {
                     document.getElementById('orders-heading').classList.add('active');
                     document.getElementById('orders-section').classList.add('active');
+                    // Load orders when orders section is activated
+                    loadUserOrders();
                 }
             }
 
@@ -1025,30 +1148,433 @@
                 });
             });
 
-            // Function to handle track order button visibility based on status
-            function handleTrackOrderButtons() {
-                const orderCards = document.querySelectorAll('.order-card');
+            // Logout functionality
+            logoutBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                if (confirm('Are you sure you want to log out?')) {
+                    window.location.href = '/logout';
+                }
+            });
 
-                orderCards.forEach(card => {
-                    const statusElement = card.querySelector('.detail-value');
-                    const trackButton = card.querySelector('.btn-track');
+            // Save profile functionality
+            saveProfileBtn.addEventListener('click', function() {
+                const username = document.getElementById('username').value;
+                const mobile = document.getElementById('mobile').value;
+                
+                if (!username.trim()) {
+                    showPopup('Please enter your full name');
+                    return;
+                }
 
-                    if (statusElement && trackButton) {
-                        const status = statusElement.textContent.trim().toLowerCase();
+                if (!mobile.trim() || mobile.length < 10) {
+                    showPopup('Please enter a valid mobile number');
+                    return;
+                }
 
-                        // Hide track order button for shipped and delivered orders
-                        if (status === 'shipped' || status === 'delivered') {
-                            trackButton.style.display = 'none';
-                        } else {
-                            trackButton.style.display = 'block';
-                        }
+                fetch('/update_profile', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        username: username,
+                        mobile: mobile
+                    })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        showPopup('Profile updated successfully!');
+                    } else {
+                        showPopup('Error: ' + data.error);
                     }
+                })
+                .catch(error => {
+                    console.error('Error updating profile:', error);
+                    showPopup('Error updating profile');
                 });
+            });
+
+            // Add address functionality
+            addAddressBtn.addEventListener('click', function() {
+                document.getElementById('address-popup').style.display = 'flex';
+            });
+
+            // Handle add address form submission
+            addAddressForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const addressData = {
+                    name: document.getElementById('address-name').value,
+                    address_line1: document.getElementById('address-line1').value,
+                    address_line2: document.getElementById('address-line2').value,
+                    city: document.getElementById('address-city').value,
+                    state: document.getElementById('address-state').value,
+                    zip_code: document.getElementById('address-zip').value,
+                    phone: document.getElementById('address-phone').value,
+                    is_default: document.getElementById('address-default').checked
+                };
+
+                // Validation
+                if (!addressData.name.trim() || !addressData.address_line1.trim() || 
+                    !addressData.city.trim() || !addressData.state.trim() || 
+                    !addressData.zip_code.trim() || !addressData.phone.trim()) {
+                    showPopup('Please fill all required fields');
+                    return;
+                }
+
+                fetch('/add_address', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(addressData)
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        showPopup('Address added successfully!');
+                        closePopup('address-popup');
+                        loadUserAddresses();
+                        // Reset form
+                        addAddressForm.reset();
+                    } else {
+                        showPopup('Error: ' + data.error);
+                    }
+                })
+                .catch(error => {
+                    console.error('Error adding address:', error);
+                    showPopup('Error adding address');
+                });
+            });
+
+            // Handle redeem coins button
+            document.querySelector('.redeem-now').addEventListener('click', function() {
+                showPopup('Coins redeemed successfully!');
+            });
+        });
+
+        // Load user data from server
+        function loadUserData() {
+            fetch('/get_user_data')
+                .then(response => response.json())
+                .then(data => {
+                    if (data.error) {
+                        console.error('Error loading user data:', data.error);
+                        return;
+                    }
+
+                    // Update profile form with user data
+                    document.getElementById('username').value = data.username || '';
+                    document.getElementById('email').value = data.email || '';
+                    document.getElementById('mobile').value = data.mobile || '';
+                    document.getElementById('address').value = data.address || 'No address set';
+                    
+                    // Update coins balance
+                    if (data.coins) {
+                        document.getElementById('coins-balance').textContent = data.coins.toLocaleString() + ' coins';
+                        document.querySelector('.equivalent-value').textContent = 
+                            'Equivalent Value: ₹' + (data.coins / 100).toFixed(2);
+                    }
+                })
+                .catch(error => {
+                    console.error('Error fetching user data:', error);
+                });
+        }
+
+        // Load user addresses
+        function loadUserAddresses() {
+            const addressesContainer = document.getElementById('addresses-container');
+            const addressesLoading = document.getElementById('addresses-loading');
+            
+            addressesLoading.style.display = 'block';
+            addressesContainer.innerHTML = '';
+
+            fetch('/get_user_addresses')
+                .then(response => response.json())
+                .then(data => {
+                    addressesLoading.style.display = 'none';
+                    
+                    if (data.success && data.addresses.length > 0) {
+                        data.addresses.forEach(address => {
+                            const addressCard = createAddressCard(address);
+                            addressesContainer.appendChild(addressCard);
+                        });
+                    } else {
+                        addressesContainer.innerHTML = `
+                            <div class="no-data" style="grid-column: 1 / -1;">
+                                <p>No addresses found. Add your first address!</p>
+                            </div>
+                        `;
+                    }
+                })
+                .catch(error => {
+                    console.error('Error loading addresses:', error);
+                    addressesLoading.style.display = 'none';
+                    addressesContainer.innerHTML = `
+                        <div class="no-data" style="grid-column: 1 / -1;">
+                            <p>Error loading addresses. Please try again.</p>
+                        </div>
+                    `;
+                });
+        }
+
+        function createAddressCard(address) {
+            const addressCard = document.createElement('div');
+            addressCard.className = `address-card-new ${address.is_default ? '' : 'no-tag-card'}`;
+            
+            addressCard.innerHTML = `
+                ${address.is_default ? '<span class="default-shipping-tag">DEFAULT SHIPPING</span>' : ''}
+                <p class="address-card-text"><strong>Name:</strong> ${address.name}</p>
+                <p class="address-card-text address-line"><strong>Address :</strong> ${address.full_address}</p>
+                <p class="address-card-text"><strong>Contact Number:</strong> ${address.phone}</p>
+                <a href="#" class="address-delete-btn" data-address-id="${address.id}">Delete</a>
+            `;
+            
+            // Add delete event listener
+            const deleteBtn = addressCard.querySelector('.address-delete-btn');
+            deleteBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                const addressId = this.getAttribute('data-address-id');
+                deleteAddress(addressId);
+            });
+            
+            return addressCard;
+        }
+
+        function deleteAddress(addressId) {
+            if (!confirm('Are you sure you want to delete this address?')) {
+                return;
             }
 
-            // Initialize track order button visibility
-            handleTrackOrderButtons();
-        });
+            fetch(`/delete_address/${addressId}`, {
+                method: 'DELETE'
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    showPopup('Address deleted successfully!');
+                    loadUserAddresses();
+                } else {
+                    showPopup('Error: ' + data.error);
+                }
+            })
+            .catch(error => {
+                console.error('Error deleting address:', error);
+                showPopup('Error deleting address');
+            });
+        }
+
+        // Load user orders
+        function loadUserOrders() {
+            const ordersContainer = document.getElementById('orders-container');
+            const ordersLoading = document.getElementById('orders-loading');
+            
+            ordersLoading.style.display = 'block';
+            ordersContainer.innerHTML = '';
+
+            fetch('/get_user_orders')
+                .then(response => response.json())
+                .then(data => {
+                    ordersLoading.style.display = 'none';
+                    
+                    if (data.success && data.orders.length > 0) {
+                        data.orders.forEach(order => {
+                            const orderCard = createOrderCard(order);
+                            ordersContainer.appendChild(orderCard);
+                        });
+                    } else {
+                        ordersContainer.innerHTML = `
+                            <div class="no-data" style="grid-column: 1 / -1;">
+                                <p>No orders found. Start shopping to see your orders here!</p>
+                                <button class="btn-primary" onclick="window.location.href='/'">Start Shopping</button>
+                            </div>
+                        `;
+                    }
+                })
+                .catch(error => {
+                    console.error('Error loading orders:', error);
+                    ordersLoading.style.display = 'none';
+                    ordersContainer.innerHTML = `
+                        <div class="no-data" style="grid-column: 1 / -1;">
+                            <p>Error loading orders. Please try again.</p>
+                        </div>
+                    `;
+                });
+        }
+
+        function createOrderCard(order) {
+            const orderCard = document.createElement('div');
+            orderCard.className = 'order-card-new';
+            
+            // Determine status class and track button visibility
+            let statusClass = '';
+            let showTrackButton = false;
+            
+            switch(order.status.toLowerCase()) {
+                case 'processing':
+                    statusClass = 'status-processing';
+                    showTrackButton = true;
+                    break;
+                case 'shipped':
+                    statusClass = 'status-shipped';
+                    showTrackButton = true;
+                    break;
+                case 'out for delivery':
+                    statusClass = 'status-outfordelivery';
+                    showTrackButton = true;
+                    break;
+                case 'delivered':
+                    statusClass = 'status-delivered';
+                    showTrackButton = false;
+                    break;
+                default:
+                    statusClass = 'status-processing';
+                    showTrackButton = true;
+            }
+            
+            orderCard.innerHTML = `
+                <div class="order-card-top">
+                    <span class="order-id-new">Order ID : ${order.order_id}</span>
+                </div>
+                <div class="order-card-image-placeholder">
+                    <div style="color: #666; font-size: 14px;">Order Details</div>
+                </div>
+                <div class="order-card-bottom">
+                    <p class="order-detail-text">Order Date : <span class="detail-value">${order.order_date}</span></p>
+                    <p class="order-detail-text">Total : <span class="detail-value">₹${order.total_amount.toLocaleString()}</span></p>
+                    <p class="order-detail-text">Payment : <span class="detail-value">${order.payment_method}</span></p>
+                    <p class="order-detail-text">Status : <span class="detail-value ${statusClass}">${order.status}</span></p>
+                    <div class="order-actions-new">
+                        <button class="btn-new btn-view-new">View Details</button>
+                        ${showTrackButton ? `<button class="btn-new btn-track-new" onclick="trackOrder('${order.order_id}', '${order.status}')">Track Order</button>` : ''}
+                    </div>
+                </div>
+            `;
+            
+            return orderCard;
+        }
+
+        // Function to show order tracking popup
+        function trackOrder(orderId, status) {
+            const popup = document.getElementById('tracking-popup');
+            const trackingStatus = document.getElementById('tracking-status');
+            
+            // Clear previous content
+            trackingStatus.innerHTML = '';
+            
+            // Create tracking steps based on order status
+            const steps = [
+                { id: 'ordered', text: 'Order Placed', completed: true },
+                { id: 'confirmed', text: 'Order Confirmed', completed: status !== 'Processing' },
+                { id: 'shipped', text: 'Shipped', completed: status === 'Shipped' || status === 'Out for Delivery' || status === 'Delivered' },
+                { id: 'outfordelivery', text: 'Out for Delivery', completed: status === 'Out for Delivery' || status === 'Delivered' },
+                { id: 'delivered', text: 'Delivered', completed: status === 'Delivered' }
+            ];
+            
+            // Find current active step
+            let activeStep = '';
+            if (status === 'Processing') activeStep = 'confirmed';
+            else if (status === 'Shipped') activeStep = 'shipped';
+            else if (status === 'Out for Delivery') activeStep = 'outfordelivery';
+            else if (status === 'Delivered') activeStep = 'delivered';
+            
+            // Build tracking UI
+            steps.forEach((step, index) => {
+                const stepDiv = document.createElement('div');
+                stepDiv.className = 'status-step';
+                
+                const indicator = document.createElement('div');
+                indicator.className = 'status-indicator';
+                if (step.completed) indicator.classList.add('completed');
+                if (step.id === activeStep) indicator.classList.add('active');
+                
+                const text = document.createElement('div');
+                text.className = 'status-text';
+                text.textContent = step.text;
+                if (step.completed) text.classList.add('completed');
+                if (step.id === activeStep) text.classList.add('active');
+                
+                stepDiv.appendChild(indicator);
+                stepDiv.appendChild(text);
+                trackingStatus.appendChild(stepDiv);
+                
+                // Add connecting line between steps (except for the last one)
+                if (index < steps.length - 1) {
+                    const line = document.createElement('div');
+                    line.className = 'status-line';
+                    if (step.completed) line.classList.add('completed');
+                    trackingStatus.appendChild(line);
+                }
+            });
+            
+            // Show popup
+            popup.style.display = 'flex';
+        }
+
+        // Function to close popup
+        function closePopup(popupId) {
+            document.getElementById(popupId).style.display = 'none';
+        }
+
+        // Popup message function
+        function showPopup(message) {
+            // Remove existing popup if any
+            const existingPopup = document.querySelector('.popup-message');
+            if (existingPopup) {
+                existingPopup.remove();
+            }
+
+            // Create popup element
+            const popup = document.createElement('div');
+            popup.className = 'popup-message';
+            popup.textContent = message;
+            
+            // Add popup styles
+            popup.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background: #4CAF50;
+                color: white;
+                padding: 15px 20px;
+                border-radius: 5px;
+                box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+                z-index: 10000;
+                font-weight: 500;
+                max-width: 300px;
+                animation: slideIn 0.3s ease-out;
+            `;
+
+            // Add CSS for animation
+            if (!document.querySelector('#popup-styles')) {
+                const style = document.createElement('style');
+                style.id = 'popup-styles';
+                style.textContent = `
+                    @keyframes slideIn {
+                        from { transform: translateX(100%); opacity: 0; }
+                        to { transform: translateX(0); opacity: 1; }
+                    }
+                    @keyframes slideOut {
+                        from { transform: translateX(0); opacity: 1; }
+                        to { transform: translateX(100%); opacity: 0; }
+                    }
+                `;
+                document.head.appendChild(style);
+            }
+
+            document.body.appendChild(popup);
+
+            // Auto remove after 3 seconds
+            setTimeout(() => {
+                popup.style.animation = 'slideOut 0.2s ease-in';
+                setTimeout(() => {
+                    if (popup.parentNode) {
+                        popup.remove();
+                    }
+                }, 200);
+            }, 3000);
+        }
     </script>
 </body>
 

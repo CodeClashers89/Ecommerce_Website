@@ -116,14 +116,31 @@
             gap: 20px;
             font-size: 20px;
             color: #444;
+            position: relative;
         }
 
         .nav-icons a {
             transition: color 0.3s ease;
+            position: relative;
         }
 
         .nav-icons a:hover {
             color: #007bff;
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: #ff4444;
+            color: white;
+            border-radius: 50%;
+            width: 18px;
+            height: 18px;
+            font-size: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .mobile-nav-toggle {
@@ -167,57 +184,36 @@
         }
 
         .brand-item {
-    text-align: center;
-    color: #333;
-    text-decoration: none;
-    transition: transform 0.3s ease;
-
-    /* --- NEW --- */
-    /* Give each of the 3 items a fixed width.
-      This forces them to be the same size and helps them 
-      form a clean row.
-    */
-    width: 200px; 
-}
+            text-align: center;
+            color: #333;
+            text-decoration: none;
+            transition: transform 0.3s ease;
+            width: 200px; 
+        }
 
         .brand-item:hover {
             transform: translateY(-5px);
         }
 
         .brand-image-placeholder {
-    width: 100%; /* This is fine (100% of the 200px above) */
+            width: 100%;
+            height: 120px; 
+            background-color: #ffffff;
+            border-radius: 12px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px;
+        }
 
-    /* --- NEW --- */
-    /* Give the card a fixed height to make all 3 identical */
-    height: 120px; 
-
-    background-color: #ffffff;
-    border-radius: 12px;
-    margin-bottom: 15px;
-    border: 1px solid #ddd;
-
-    /* --- NEW --- */
-    /* This clips any part of the image that tries to overflow */
-    overflow: hidden; 
-
-    /* --- NEW (Recommended) --- */
-    /* These properties center the logo perfectly inside the box */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 10px; /* Adds a nice internal space */
-}
-
-       .brand-image-placeholder img {
-    width: 100%;
-    height: 100%;
-
-    /* This is the key property.
-      It scales the image down (preserving aspect ratio) 
-      to fit completely INSIDE the box without being cut off.
-    */
-    object-fit: contain; 
-}
+        .brand-image-placeholder img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
 
         .brand-item h4 {
             font-size: 18px;
@@ -229,7 +225,7 @@
             font-size: 32px;
             font-weight: 700;
             margin-bottom: 40px;
-            padding-left: 140px;
+            text-align: center;
         }
 
         /* --- Products Section --- */
@@ -243,7 +239,6 @@
             display: grid;
             grid-template-columns: repeat(auto-fit, 425px);
             background-color: rgb(218, 218, 218);
-            /* Creates a responsive 3-column grid */
             gap: 70px;
             border-radius: 70px;
             padding: 75px 0;
@@ -294,26 +289,28 @@
 
         .add-to-cart-btn {
             background-color: #007bff;
-            color: #fff !important; /* !important to override .a color */
+            color: #fff;
             padding: 8px 20px;
             border-radius: 20px;
             font-size: 14px;
             font-weight: 600;
             display: inline-block;
             transition: background-color 0.3s ease;
+            cursor: pointer;
+            border: none;
         }
 
         .add-to-cart-btn:hover {
             background-color: #0056b3;
         }
         
-        /* --- Apple Section Styling (NEW) --- */
+        /* --- Brand Section Styling --- */
         #hp-section {
-            background: #fff; /* Dark grey background */
+            background: #fff;
         }
 
         #hp-section .section-heading {
-            color: #333; /* White text */
+            color: #333;
         }
 
         #hp-section .product-card {
@@ -323,23 +320,21 @@
         }
 
         #hp-section .product-info {
-            background-color: rgba(230, 230, 230, 0.9); /* Darker transparent */
+            background-color: rgba(230, 230, 230, 0.9);
         }
 
         #hp-section .product-info h4,
         #hp-section .product-price {
-            color: #333; /* White text */
+            color: #333;
         }
 
-        /* --- Samsung Section Styling (NEW) --- */
+        /* --- Lenovo Section Styling --- */
         #lenovo-section {
             background-color: #fff;
-            /* White background */
         }
 
         #lenovo-section .section-heading {
             color: #333;
-            /* Black text */
         }
 
         #lenovo-section .product-card {
@@ -350,24 +345,20 @@
 
         #lenovo-section .product-info {
             background-color: rgba(230, 230, 230, 0.9);
-            /* Lighter transparent */
         }
 
         #lenovo-section .product-info h4,
         #lenovo-section .product-price {
             color: #333;
-            /* Black text */
         }
         
-        /* --- dell Section Styling (NEW) --- */
+        /* --- Dell Section Styling --- */
         #dell-section {
             background-color: #fff;
-            /* White background */
         }
 
         #dell-section .section-heading {
             color: #333;
-            /* Black text */
         }
 
         #dell-section .product-card {
@@ -378,13 +369,11 @@
 
         #dell-section .product-info {
             background-color: rgba(230, 230, 230, 0.9);
-            /* Lighter transparent */
         }
 
         #dell-section .product-info h4,
         #dell-section .product-price {
             color: #333;
-            /* Black text */
         }
 
         /* --- Footer --- */
@@ -587,40 +576,12 @@
                 padding: 0 15px;
             }
         }
-        .nav-icons {
-    display: flex;
-    gap: 20px;
-    font-size: 20px;
-    color: #444;
-    position: relative;
-}
-
-.nav-icons a {
-    transition: color 0.3s ease;
-    position: relative;
-}
-
-.cart-count {
-    position: absolute;
-    top: -8px;
-    right: -8px;
-    background: #ff4444;
-    color: white;
-    border-radius: 50%;
-    width: 18px;
-    height: 18px;
-    font-size: 12px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
     </style>
 </head>
 
 <body>
 
     <!-- --- Header --- -->
-        <!-- --- Header --- -->
     <header>
         <div class="container">
             <div class="logo">
@@ -646,7 +607,7 @@
                 <div class="nav-icons">
                     <a href="{{ url_for('cart') }}" aria-label="Shopping Cart">
                         <i class="fas fa-shopping-cart"></i>
-                        <span class="cart-count" id="cart-count">0</span>
+                        <span class="cart-count" id="cart-count" style="display: none;">0</span>
                     </a>
                     <a href="{{ url_for('account') }}" aria-label="User Account"><i class="fas fa-user-circle"></i></a>
                 </div>
@@ -672,405 +633,467 @@
             <div class="container">
                 <a href="#hp-section" class="brand-item">
                     <div class="brand-image-placeholder">
-                        <img src="static/hpr.png" alt="">
+                        <img src="static/hpr.png" alt="HP">
                     </div>
                     <h4>HP</h4>
                 </a>
                 <a href="#lenovo-section" class="brand-item">
                     <div class="brand-image-placeholder">
-                        <img src="static/lenr.png" alt="">
+                        <img src="static/lenr.png" alt="Lenovo">
                     </div>
                     <h4>Lenovo</h4>
                 </a>
                 <a href="#dell-section" class="brand-item">
-                    <!-- You can add a link for Oneplus later -->
                     <div class="brand-image-placeholder">
-                        <img src="static/delr.png" alt="">
+                        <img src="static/delr.png" alt="Dell">
                     </div>
                     <h4>Dell</h4>
                 </a>
             </div>
         </section>
 
-        <!-- --- Apple Products Section (MODIFIED) --- -->
+        <!-- --- HP Products Section --- -->
         <section class="products" id="hp-section">
-            <div class="container-fluid"> <!-- CHANGED -->
-                <!-- New Section Title -->
+            <div class="container-fluid">
                 <h2 class="section-heading">HP <span class="highlight">Laptop</span></h2>
 
                 <div class="product-grid">
                     <!-- Product Card 1 -->
                     <div class="product-card">
                         <div class="product-image">
-                            <!-- Corrected image path -->
-                            <img src="{{ url_for('static', filename='iphoner1.png') }}" alt="Iphone 15 Pro Max">
+                            <img src="{{ url_for('static', filename='lap1.png') }}" alt="HP Laptop 1">
                         </div>
                         <div class="product-info">
-                            <h4>iPhone 15 Pro Max</h4>
+                            <h4>HP Laptop 1</h4>
                             <p class="product-price">₹ 1,59,000</p>
-                            <a href="#" class="add-to-cart-btn">Add To Cart</a>
+                            <button class="add-to-cart-btn" onclick="addToCart(this,'HP Laptop 1', 159000, '{{ url_for('static', filename='lap1.png') }}')">Add To Cart</button>
                         </div>
                     </div>
 
                     <!-- Product Card 2 -->
                     <div class="product-card">
                         <div class="product-image">
-                            <img src="{{ url_for('static', filename='iphoner1.png') }}" alt="Iphone 15 Pro">
+                            <img src="{{ url_for('static', filename='lap1.png') }}" alt="HP Laptop 2">
                         </div>
                         <div class="product-info">
-                            <h4>iPhone 15 Pro</h4>
+                            <h4>HP Laptop 2</h4>
                             <p class="product-price">₹ 1,34,900</p>
-                            <a href="#" class="add-to-cart-btn">Add To Cart</a>
+                            <button class="add-to-cart-btn" onclick="addToCart(this,'HP Laptop 2', 134900, '{{ url_for('static', filename='lap1.png') }}')">Add To Cart</button>
                         </div>
                     </div>
 
                     <!-- Product Card 3 -->
                     <div class="product-card">
                         <div class="product-image">
-                            <img src="{{ url_for('static', filename='iphoner1.png') }}" alt="Iphone 15">
+                            <img src="{{ url_for('static', filename='lap1.png') }}" alt="HP Laptop 3">
                         </div>
                         <div class="product-info">
-                            <h4>iPhone 15</h4>
+                            <h4>HP Laptop 3</h4>
                             <p class="product-price">₹ 79,900</p>
-                            <a href="#" class="add-to-cart-btn">Add To Cart</a>
+                            <button class="add-to-cart-btn" onclick="addToCart(this,'HP Laptop 3', 79900, '{{ url_for('static', filename='lap1.png') }}')">Add To Cart</button>
                         </div>
                     </div>
 
                     <!-- Product Card 4 -->
                     <div class="product-card">
                         <div class="product-image">
-                            <img src="{{ url_for('static', filename='iphoner1.png') }}" alt="Iphone 14">
+                            <img src="{{ url_for('static', filename='lap1.png') }}" alt="HP Laptop 4">
                         </div>
                         <div class="product-info">
-                            <h4>iPhone 14</h4>
+                            <h4>HP Laptop 4</h4>
                             <p class="product-price">₹ 64,090</p>
-                            <a href="#" class="add-to-cart-btn">Add To Cart</a>
+                            <button class="add-to-cart-btn" onclick="addToCart(this,'HP Laptop 4', 64090, '{{ url_for('static', filename='lap1.png') }}')">Add To Cart</button>
                         </div>
                     </div>
 
                     <!-- Product Card 5 -->
                     <div class="product-card">
                         <div class="product-image">
-                            <img src="{{ url_for('static', filename='iphoner1.png') }}" alt="Iphone 14 (128GB)">
+                            <img src="{{ url_for('static', filename='lap1.png') }}" alt="HP Laptop 5">
                         </div>
                         <div class="product-info">
-                            <h4>iPhone 14 (128GB)</h4>
+                            <h4>HP Laptop 5</h4>
                             <p class="product-price">₹ 54,090</p>
-                            <a href="#" class="add-to-cart-btn">Add To Cart</a>
+                            <button class="add-to-cart-btn" onclick="addToCart(this,'HP Laptop 5', 54090, '{{ url_for('static', filename='lap1.png') }}')">Add To Cart</button>
                         </div>
                     </div>
 
                     <!-- Product Card 6 -->
                     <div class="product-card">
                         <div class="product-image">
-                            <img src="{{ url_for('static', filename='iphoner1.png') }}" alt="Iphone SE">
+                            <img src="{{ url_for('static', filename='lap1.png') }}" alt="HP Laptop 6">
                         </div>
                         <div class="product-info">
-                            <h4>iPhone SE</h4>
+                            <h4>HP Laptop 6</h4>
                             <p class="product-price">₹ 49,990</p>
-                            <a href="#" class="add-to-cart-btn">Add To Cart</a>
+                            <button class="add-to-cart-btn" onclick="addToCart(this,'HP Laptop 6', 49990, '{{ url_for('static', filename='lap1.png') }}')">Add To Cart</button>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- --- Samsung Products Section (MODIFIED) --- -->
+        <!-- --- Lenovo Products Section --- -->
         <section class="products" id="lenovo-section">
-            <div class="container-fluid"> <!-- CHANGED -->
-                <!-- New Section Title -->
+            <div class="container-fluid">
                 <h2 class="section-heading">Lenovo <span class="highlight">Laptop</span></h2>
 
                 <div class="product-grid">
                     <!-- Product Card 1 -->
                     <div class="product-card">
                         <div class="product-image">
-                            <img src="{{ url_for('static', filename='s25r1.png') }}" alt="Samsung Galaxy S24 Ultra">
+                            <img src="{{ url_for('static', filename='lap2.png') }}" alt="Lenovo Laptop 1">
                         </div>
                         <div class="product-info">
-                            <h4>Galaxy S24 Ultra</h4>
+                            <h4>Lenovo Laptop 1</h4>
                             <p class="product-price">₹ 1,29,999</p>
-                            <a href="#" class="add-to-cart-btn">Add To Cart</a>
+                            <button class="add-to-cart-btn" onclick="addToCart(this,'Lenovo Laptop 1', 129999, '{{ url_for('static', filename='lap2.png') }}')">Add To Cart</button>
                         </div>
                     </div>
 
                     <!-- Product Card 2 -->
                     <div class="product-card">
                         <div class="product-image">
-                            <img src="{{ url_for('static', filename='s25r1.png') }}" alt="Samsung Galaxy S24">
+                            <img src="{{ url_for('static', filename='lap2.png') }}" alt="Lenovo Laptop 2">
                         </div>
                         <div class="product-info">
-                            <h4>Galaxy S24</h4>
+                            <h4>Lenovo Laptop 2</h4>
                             <p class="product-price">₹ 79,999</p>
-                            <a href="#" class="add-to-cart-btn">Add To Cart</a>
+                            <button class="add-to-cart-btn" onclick="addToCart(this,'Lenovo Laptop 2', 79999, '{{ url_for('static', filename='lap2.png') }}')">Add To Cart</button>
                         </div>
                     </div>
 
                     <!-- Product Card 3 -->
                     <div class="product-card">
                         <div class="product-image">
-                            <img src="{{ url_for('static', filename='s25r1.png') }}" alt="Samsung Galaxy S23 FE">
+                            <img src="{{ url_for('static', filename='lap2.png') }}" alt="Lenovo Laptop 3">
                         </div>
                         <div class="product-info">
-                            <h4>Galaxy S23 FE</h4>
+                            <h4>Lenovo Laptop 3</h4>
                             <p class="product-price">₹ 54,999</p>
-                            <a href="#" class="add-to-cart-btn">Add To Cart</a>
+                            <button class="add-to-cart-btn" onclick="addToCart(this,'Lenovo Laptop 3', 54999, '{{ url_for('static', filename='lap2.png') }}')">Add To Cart</button>
                         </div>
                     </div>
                     
                     <!-- Product Card 4 -->
                     <div class="product-card">
                         <div class="product-image">
-                            <img src="{{ url_for('static', filename='s25r1.png') }}" alt="Samsung Galaxy A55">
+                            <img src="{{ url_for('static', filename='lap2.png') }}" alt="Lenovo Laptop 4">
                         </div>
                         <div class="product-info">
-                            <h4>Galaxy A55 5G</h4>
+                            <h4>Lenovo Laptop 4</h4>
                             <p class="product-price">₹ 39,999</p>
-                            <a href="#" class="add-to-cart-btn">Add To Cart</a>
+                            <button class="add-to-cart-btn" onclick="addToCart(this,'Lenovo Laptop 4', 39999, '{{ url_for('static', filename='lap2.png') }}')">Add To Cart</button>
                         </div>
                     </div>
 
                     <!-- Product Card 5 -->
                     <div class="product-card">
                         <div class="product-image">
-                            <img src="{{ url_for('static', filename='s25r1.png') }}" alt="Samsung Galaxy M34">
+                            <img src="{{ url_for('static', filename='lap2.png') }}" alt="Lenovo Laptop 5">
                         </div>
                         <div class="product-info">
-                            <h4>Galaxy M34 5G</h4>
+                            <h4>Lenovo Laptop 5</h4>
                             <p class="product-price">₹ 15,999</p>
-                            <a href="#" class="add-to-cart-btn">Add To Cart</a>
+                            <button class="add-to-cart-btn" onclick="addToCart(this,'Lenovo Laptop 5', 15999, '{{ url_for('static', filename='lap2.png') }}')">Add To Cart</button>
                         </div>
                     </div>
 
                     <!-- Product Card 6 -->
                     <div class="product-card">
                         <div class="product-image">
-                            <img src="{{ url_for('static', filename='s25r1.png') }}" alt="Samsung Galaxy F15">
+                            <img src="{{ url_for('static', filename='lap2.png') }}" alt="Lenovo Laptop 6">
                         </div>
                         <div class="product-info">
-                            <h4>Galaxy F15 5G</h4>
+                            <h4>Lenovo Laptop 6</h4>
                             <p class="product-price">₹ 12,999</p>
-                            <a href="#" class="add-to-cart-btn">Add To Cart</a>
+                            <button class="add-to-cart-btn" onclick="addToCart(this,'Lenovo Laptop 6', 12999, '{{ url_for('static', filename='lap2.png') }}')">Add To Cart</button>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-
-
-                <section class="products" id="dell-section">
-            <div class="container-fluid"> <!-- CHANGED -->
-                <!-- New Section Title -->
+        <!-- --- Dell Products Section --- -->
+        <section class="products" id="dell-section">
+            <div class="container-fluid">
                 <h2 class="section-heading">Dell <span class="highlight">Laptop</span></h2>
 
                 <div class="product-grid">
                     <!-- Product Card 1 -->
                     <div class="product-card">
                         <div class="product-image">
-                            <img src="{{ url_for('static', filename='onep13.png') }}" alt="Samsung Galaxy S24 Ultra">
+                            <img src="{{ url_for('static', filename='g152r1.png') }}" alt="Dell Laptop 1">
                         </div>
                         <div class="product-info">
-                            <h4>OnePlus13</h4>
+                            <h4>Dell Laptop 1</h4>
                             <p class="product-price">₹ 1,29,999</p>
-                            <a href="#" class="add-to-cart-btn">Add To Cart</a>
+                            <button class="add-to-cart-btn" onclick="addToCart(this,'Dell Laptop 1', 129999, '{{ url_for('static', filename='g152r1.png') }}')">Add To Cart</button>
                         </div>
                     </div>
 
                     <!-- Product Card 2 -->
                     <div class="product-card">
                         <div class="product-image">
-                            <img src="{{ url_for('static', filename='onep13.png') }}" alt="Samsung Galaxy S24">
+                            <img src="{{ url_for('static', filename='g152r1.png') }}" alt="Dell Laptop 2">
                         </div>
                         <div class="product-info">
-                            <h4>OnePlus12</h4>
+                            <h4>Dell Laptop 2</h4>
                             <p class="product-price">₹ 79,999</p>
-                            <a href="#" class="add-to-cart-btn">Add To Cart</a>
+                            <button class="add-to-cart-btn" onclick="addToCart(this,'Dell Laptop 2', 79999, '{{ url_for('static', filename='g152r1.png') }}')">Add To Cart</button>
                         </div>
                     </div>
 
                     <!-- Product Card 3 -->
                     <div class="product-card">
                         <div class="product-image">
-                            <img src="{{ url_for('static', filename='onep13.png') }}" alt="Samsung Galaxy S23 FE">
+                            <img src="{{ url_for('static', filename='g152r1.png') }}" alt="Dell Laptop 3">
                         </div>
                         <div class="product-info">
-                            <h4>OnePlus13s</h4>
+                            <h4>Dell Laptop 3</h4>
                             <p class="product-price">₹ 54,999</p>
-                            <a href="#" class="add-to-cart-btn">Add To Cart</a>
+                            <button class="add-to-cart-btn" onclick="addToCart(this,'Dell Laptop 3', 54999, '{{ url_for('static', filename='g152r1.png') }}')">Add To Cart</button>
                         </div>
                     </div>
                     
                     <!-- Product Card 4 -->
                     <div class="product-card">
                         <div class="product-image">
-                            <img src="{{ url_for('static', filename='onep13.png') }}" alt="Samsung Galaxy A55">
+                            <img src="{{ url_for('static', filename='g152r1.png') }}" alt="Dell Laptop 4">
                         </div>
                         <div class="product-info">
-                            <h4>OnePlus11</h4>
+                            <h4>Dell Laptop 4</h4>
                             <p class="product-price">₹ 39,999</p>
-                            <a href="#" class="add-to-cart-btn">Add To Cart</a>
+                            <button class="add-to-cart-btn" onclick="addToCart(this,'Dell Laptop 4', 39999, '{{ url_for('static', filename='g152r1.png') }}')">Add To Cart</button>
                         </div>
                     </div>
 
                     <!-- Product Card 5 -->
                     <div class="product-card">
                         <div class="product-image">
-                            <img src="{{ url_for('static', filename='onep13.png') }}" alt="Samsung Galaxy M34">
+                            <img src="{{ url_for('static', filename='g152r1.png') }}" alt="Dell Laptop 5">
                         </div>
                         <div class="product-info">
-                            <h4>OnePlus12R</h4>
+                            <h4>Dell Laptop 5</h4>
                             <p class="product-price">₹ 15,999</p>
-                            <a href="#" class="add-to-cart-btn">Add To Cart</a>
+                            <button class="add-to-cart-btn" onclick="addToCart(this,'Dell Laptop 5', 15999, '{{ url_for('static', filename='g152r1.png') }}')">Add To Cart</button>
                         </div>
                     </div>
 
                     <!-- Product Card 6 -->
                     <div class="product-card">
                         <div class="product-image">
-                            <img src="{{ url_for('static', filename='onep13.png') }}" alt="Samsung Galaxy F15">
+                            <img src="{{ url_for('static', filename='g152r1.png') }}" alt="Dell Laptop 6">
                         </div>
                         <div class="product-info">
-                            <h4>OnePlus Open</h4>
+                            <h4>Dell Laptop 6</h4>
                             <p class="product-price">₹ 12,999</p>
-                            <a href="#" class="add-to-cart-btn">Add To Cart</a>
+                            <button class="add-to-cart-btn" onclick="addToCart(this,'Dell Laptop 6', 12999, '{{ url_for('static', filename='g152r1.png') }}')">Add To Cart</button>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
-        
-        <!-- The third product section for laptops has been removed -->
-
     </main>
 
     <!-- --- Footer --- -->
     <footer>
         <div class="container">
             <div class="footer-content">
-                <!-- Footer Brand & Newsletter -->
                 <div class="footer-brand">
                     <h4>Hustle Cart</h4>
-                    <p>Stay Connected</p>
-                    <form action="#" method="post" aria-label="Newsletter signup">
-                        <input type="email" name="email" placeholder="Enter Your Email" aria-label="Enter YourLabel">
-                    </form>
+                    <p>Subscribe to our newsletter to receive updates and offers.</p>
+                    <input type="email" placeholder="Your email address">
                 </div>
-
-                <!-- Footer Links Columns -->
                 <div class="footer-links">
                     <div class="footer-column">
                         <h5>Shop</h5>
                         <ul>
-                            <li><a href="#">New arrivals</a></li>
-                            <li><a href="#">Sales</a></li>
-                            <li><a href="#">Collections</a></li>
-                            <li><a href="#">Gift Cards</a></li>
+                            <li><a href="#">Mobile</a></li>
+                            <li><a href="#">Laptop</a></li>
+                            <li><a href="#">TV</a></li>
+                            <li><a href="#">Sound System</a></li>
                         </ul>
                     </div>
-
                     <div class="footer-column">
-                        <h5>Accounts</h5>
+                        <h5>Help</h5>
                         <ul>
-                            <li><a href="#">My Accounts</a></li>
-                            <li><a href="#">Order History</a></li>
-                            <li><a href="#">Wishlist</a></li>
-                            <li><a href="#">Cart</a></li>
-                        </ul>
-                    </div>
-
-                    <div class="footer-column">
-                        <h5>Support</h5>
-                        <ul>
-                            <li><a href="#">Help Center</a></li>
-                            <li><a href="#">Shipping & Returns</a></li>
+                            <li><a href="#">Customer Service</a></li>
                             <li><a href="#">Contact Us</a></li>
-                            <li><a href="#">FAQs</a></li>
+                            <li><a href="#">Returns & Exchanges</a></li>
+                            <li><a href="#">Shipping Info</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h5>Account</h5>
+                        <ul>
+                            <li><a href="#">My Account</a></li>
+                            <li><a href="#">Order Status</a></li>
+                            <li><a href="#">Wishlist</a></li>
                         </ul>
                     </div>
                 </div>
             </div>
-
-            <!-- Footer Bottom Bar -->
             <div class="footer-bottom">
-                <p>&copy; 2025 Hustle Cart. All right reserved.</p>
+                <div class="footer-copyright">
+                    &copy; 2023 Hustle Cart. All rights reserved.
+                </div>
                 <div class="footer-bottom-links">
                     <a href="#">Privacy Policy</a>
-                    <a href="#">Terms Of Service</a>
+                    <a href="#">Terms of Service</a>
                 </div>
             </div>
         </div>
     </footer>
 
-</body>
-<script>
-    // Add to Cart functionality
-    function addToCart(productName, productPrice, productImage) {
-        const productData = {
-            name: productName,
-            price: productPrice,
-            img: productImage
-        };
+    <script>
+    // Load cart count when page loads
+    document.addEventListener('DOMContentLoaded', function() {
+        updateCartCount();
+    });
 
-        fetch('/add_to_cart', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(productData)
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                alert(data.message || 'Product added to cart!');
-                updateCartCount();
-            } else {
-                alert('Error: ' + (data.error || 'Failed to add product to cart'));
-            }
-        })
-        .catch(error => {
-            console.error('Error:', error);
-            alert('Error adding product to cart');
-        });
-    }
-
-    // Update cart count
+    // Function to update cart count display
     function updateCartCount() {
-        fetch('/get_cart_count')
+        fetch('/check_auth')
             .then(response => response.json())
-            .then(data => {
-                const cartCount = document.getElementById('cart-count');
-                if (data.count > 0) {
-                    cartCount.textContent = data.count;
-                    cartCount.style.display = 'flex';
+            .then(authData => {
+                if (authData.authenticated) {
+                    fetch('/get_cart_count')
+                        .then(response => response.json())
+                        .then(data => {
+                            const cartCountElement = document.getElementById('cart-count');
+                            if (data.count > 0) {
+                                cartCountElement.textContent = data.count;
+                                cartCountElement.style.display = 'flex';
+                            } else {
+                                cartCountElement.style.display = 'none';
+                            }
+                        })
+                        .catch(error => {
+                            console.error('Error fetching cart count:', error);
+                        });
                 } else {
-                    cartCount.style.display = 'none';
+                    // User not logged in, hide cart count
+                    const cartCountElement = document.getElementById('cart-count');
+                    cartCountElement.style.display = 'none';
                 }
             })
             .catch(error => {
-                console.error('Error fetching cart count:', error);
+                console.error('Error checking auth:', error);
             });
     }
 
-    // Initialize Add to Cart buttons and cart count
-    document.addEventListener('DOMContentLoaded', function() {
-        updateCartCount();
-        
-        // Add click event to all Add to Cart buttons
-        const addToCartButtons = document.querySelectorAll('.add-to-cart-btn');
-        addToCartButtons.forEach(button => {
-            button.onclick = function(e) {
-                e.preventDefault();
-                const productCard = this.closest('.product-card');
-                const productName = productCard.querySelector('h4').textContent;
-                const productPriceText = productCard.querySelector('.product-price').textContent;
-                const productPrice = parseInt(productPriceText.replace('₹ ', '').replace(',', ''));
-                const productImage = productCard.querySelector('img').src;
-                
-                addToCart(productName, productPrice, productImage);
-            };
-        });
-    });
-</script>
-</html>
+    // Function to add item to cart with login check
+    function addToCart(button, productName, productPrice, productImage) {
+        // First check if user is logged in
+        fetch('/check_auth')
+            .then(response => response.json())
+            .then(authData => {
+                if (!authData.authenticated) {
+                    // User not logged in, redirect to login
+                    if (confirm('You need to login first to add items to cart. Would you like to login now?')) {
+                        window.location.href = '/login?redirect=' + encodeURIComponent(window.location.pathname);
+                    }
+                    return;
+                }
 
+                // User is logged in, proceed to add to cart
+                fetch('/add_to_cart', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ name: productName, price: productPrice, img: productImage })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        showPopup('Product added to cart!');
+                        updateCartCount();
+
+                        // Only change the clicked button
+                        const originalText = button.textContent;
+                        button.textContent = 'Added!';
+                        button.style.backgroundColor = '#28a745';
+                        setTimeout(() => {
+                            button.textContent = originalText;
+                            button.style.backgroundColor = '#007bff';
+                        }, 1000);
+                    } else {
+                        if (data.error && data.error.includes('login')) {
+                            window.location.href = '/login';
+                        } else {
+                            showPopup('Error: ' + data.error);
+                        }
+                    }
+                })
+                .catch(error => {
+                    console.error('Error adding to cart:', error);
+                    showPopup('Error adding product to cart');
+                });
+            })
+            .catch(error => {
+                console.error('Error checking auth:', error);
+                showPopup('Error checking authentication');
+            });
+    }
+
+    // Popup message function
+    function showPopup(message) {
+        // Remove existing popup if any
+        const existingPopup = document.querySelector('.popup-message');
+        if (existingPopup) {
+            existingPopup.remove();
+        }
+
+        // Create popup element
+        const popup = document.createElement('div');
+        popup.className = 'popup-message';
+        popup.textContent = message;
+        
+        // Add popup styles
+        popup.style.cssText = `
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #4CAF50;
+            color: white;
+            padding: 15px 20px;
+            border-radius: 5px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            z-index: 10000;
+            font-weight: 500;
+            max-width: 300px;
+            animation: slideIn 0.3s ease-out;
+        `;
+
+        // Add CSS for animation
+        if (!document.querySelector('#popup-styles')) {
+            const style = document.createElement('style');
+            style.id = 'popup-styles';
+            style.textContent = `
+                @keyframes slideIn {
+                    from { transform: translateX(100%); opacity: 0; }
+                    to { transform: translateX(0); opacity: 1; }
+                }
+                @keyframes slideOut {
+                    from { transform: translateX(0); opacity: 1; }
+                    to { transform: translateX(100%); opacity: 0; }
+                }
+            `;
+            document.head.appendChild(style);
+        }
+
+        document.body.appendChild(popup);
+
+        // Auto remove after 3 seconds
+        setTimeout(() => {
+            popup.style.animation = 'slideOut 0.2s ease-in';
+            setTimeout(() => {
+                if (popup.parentNode) {
+                    popup.remove();
+                }
+            }, 200);
+        }, 3000);
+    }
+</script>
+</body>
+</html>

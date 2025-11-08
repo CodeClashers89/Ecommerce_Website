@@ -167,57 +167,36 @@
         }
 
         .brand-item {
-    text-align: center;
-    color: #333;
-    text-decoration: none;
-    transition: transform 0.3s ease;
-
-    /* --- NEW --- */
-    /* Give each of the 3 items a fixed width.
-      This forces them to be the same size and helps them 
-      form a clean row.
-    */
-    width: 200px; 
-}
+            text-align: center;
+            color: #333;
+            text-decoration: none;
+            transition: transform 0.3s ease;
+            width: 200px; 
+        }
 
         .brand-item:hover {
             transform: translateY(-5px);
         }
 
         .brand-image-placeholder {
-    width: 100%; /* This is fine (100% of the 200px above) */
-
-    /* --- NEW --- */
-    /* Give the card a fixed height to make all 3 identical */
-    height: 120px; 
-
-    background-color: #ffffff;
-    border-radius: 12px;
-    margin-bottom: 15px;
-    border: 1px solid #ddd;
-
-    /* --- NEW --- */
-    /* This clips any part of the image that tries to overflow */
-    overflow: hidden; 
-
-    /* --- NEW (Recommended) --- */
-    /* These properties center the logo perfectly inside the box */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 10px; /* Adds a nice internal space */
-}
+            width: 100%;
+            height: 120px; 
+            background-color: #ffffff;
+            border-radius: 12px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            overflow: hidden; 
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px;
+        }
 
        .brand-image-placeholder img {
-    width: 100%;
-    height: 100%;
-
-    /* This is the key property.
-      It scales the image down (preserving aspect ratio) 
-      to fit completely INSIDE the box without being cut off.
-    */
-    object-fit: contain; 
-}
+            width: 100%;
+            height: 100%;
+            object-fit: contain; 
+        }
 
         .brand-item h4 {
             font-size: 18px;
@@ -243,7 +222,6 @@
             display: grid;
             grid-template-columns: repeat(auto-fit, 425px);
             background-color: rgb(218, 218, 218);
-            /* Creates a responsive 3-column grid */
             gap: 70px;
             border-radius: 70px;
             padding: 75px 0;
@@ -294,13 +272,15 @@
 
         .add-to-cart-btn {
             background-color: #007bff;
-            color: #fff !important; /* !important to override .a color */
+            color: #fff !important;
             padding: 8px 20px;
             border-radius: 20px;
             font-size: 14px;
             font-weight: 600;
             display: inline-block;
             transition: background-color 0.3s ease;
+            cursor: pointer;
+            border: none;
         }
 
         .add-to-cart-btn:hover {
@@ -309,11 +289,11 @@
         
         /* --- Apple Section Styling (NEW) --- */
         #apple-section {
-            background: #fff; /* Dark grey background */
+            background: #fff;
         }
 
         #apple-section .section-heading {
-            color: #333; /* White text */
+            color: #333;
         }
 
         #apple-section .product-card {
@@ -323,23 +303,21 @@
         }
 
         #apple-section .product-info {
-            background-color: rgba(230, 230, 230, 0.9); /* Darker transparent */
+            background-color: rgba(230, 230, 230, 0.9);
         }
 
         #apple-section .product-info h4,
         #apple-section .product-price {
-            color: #333; /* White text */
+            color: #333;
         }
 
         /* --- Samsung Section Styling (NEW) --- */
         #samsung-section {
             background-color: #fff;
-            /* White background */
         }
 
         #samsung-section .section-heading {
             color: #333;
-            /* Black text */
         }
 
         #samsung-section .product-card {
@@ -350,22 +328,20 @@
 
         #samsung-section .product-info {
             background-color: rgba(230, 230, 230, 0.9);
-            /* Lighter transparent */
         }
 
         #samsung-section .product-info h4,
         #samsung-section .product-price {
             color: #333;
-            /* Black text */
         }
         
-         /* --- Apple Section Styling (NEW) --- */
+         /* --- OnePlus Section Styling (NEW) --- */
         #oneplus-section {
-            background: #fff; /* Dark grey background */
+            background: #fff;
         }
 
         #oneplus-section .section-heading {
-            color: #333; /* White text */
+            color: #333;
         }
 
         #oneplus-section .product-card {
@@ -375,12 +351,12 @@
         }
 
         #oneplus-section .product-info {
-            background-color: rgba(230, 230, 230, 0.9); /* Darker transparent */
+            background-color: rgba(230, 230, 230, 0.9);
         }
 
         #oneplus-section .product-info h4,
         #oneplus-section .product-price {
-            color: #333; /* White text */
+            color: #333;
         }
 
         /* --- Footer --- */
@@ -585,39 +561,38 @@
         }
         
         .nav-icons {
-    display: flex;
-    gap: 20px;
-    font-size: 20px;
-    color: #444;
-    position: relative;
-}
+            display: flex;
+            gap: 20px;
+            font-size: 20px;
+            color: #444;
+            position: relative;
+        }
 
-.nav-icons a {
-    transition: color 0.3s ease;
-    position: relative;
-}
+        .nav-icons a {
+            transition: color 0.3s ease;
+            position: relative;
+        }
 
-.cart-count {
-    position: absolute;
-    top: -8px;
-    right: -8px;
-    background: #ff4444;
-    color: white;
-    border-radius: 50%;
-    width: 18px;
-    height: 18px;
-    font-size: 12px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: #ff4444;
+            color: white;
+            border-radius: 50%;
+            width: 18px;
+            height: 18px;
+            font-size: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
     </style>
 </head>
 
 <body>
 
     <!-- --- Header --- -->
-        <!-- --- Header --- -->
     <header>
         <div class="container">
             <div class="logo">
@@ -643,7 +618,7 @@
                 <div class="nav-icons">
                     <a href="{{ url_for('cart') }}" aria-label="Shopping Cart">
                         <i class="fas fa-shopping-cart"></i>
-                        <span class="cart-count" id="cart-count">0</span>
+                        <span class="cart-count" id="cart-count" style="display: none;">0</span>
                     </a>
                     <a href="{{ url_for('account') }}" aria-label="User Account"><i class="fas fa-user-circle"></i></a>
                 </div>
@@ -669,113 +644,109 @@
             <div class="container">
                 <a href="#apple-section" class="brand-item">
                     <div class="brand-image-placeholder">
-                        <img src="static/appler1.png" alt="">
+                        <img src="{{ url_for('static', filename='appler1.png') }}" alt="Apple">
                     </div>
                     <h4>Apple</h4>
                 </a>
                 <a href="#samsung-section" class="brand-item">
                     <div class="brand-image-placeholder">
-                        <img src="static/samsr1.png" alt="">
+                        <img src="{{ url_for('static', filename='samsr1.png') }}" alt="Samsung">
                     </div>
                     <h4>Samsung</h4>
                 </a>
                 <a href="#oneplus-section" class="brand-item">
-                    <!-- You can add a link for Oneplus later -->
                     <div class="brand-image-placeholder">
-                        <img src="static/onepr1.png" alt="">
+                        <img src="{{ url_for('static', filename='onepr1.png') }}" alt="OnePlus">
                     </div>
-                    <h4>Oneplus</h4>
+                    <h4>OnePlus</h4>
                 </a>
             </div>
         </section>
 
-        <!-- --- Apple Products Section (MODIFIED) --- -->
+        <!-- --- Apple Products Section --- -->
         <section class="products" id="apple-section">
-            <div class="container-fluid"> <!-- CHANGED -->
-                <!-- New Section Title -->
+            <div class="container-fluid">
                 <h2 class="section-heading">Apple <span class="highlight">Mobile</span></h2>
 
                 <div class="product-grid">
                     <!-- Product Card 1 -->
                     <div class="product-card">
                         <div class="product-image">
-                            <!-- Corrected image path -->
-                            <img src="{{ url_for('static', filename='iphoner1.png') }}" alt="Iphone 15 Pro Max">
+                            <img src="{{ url_for('static', filename='iphoner1.png') }}" alt="iPhone 15 Pro Max">
                         </div>
                         <div class="product-info">
                             <h4>iPhone 15 Pro Max</h4>
                             <p class="product-price">₹ 1,59,000</p>
-                            <a href="#" class="add-to-cart-btn">Add To Cart</a>
+                            <button class="add-to-cart-btn" onclick="addToCart(this,'iPhone 15 Pro Max', 159000, '{{ url_for('static', filename='iphoner1.png') }}')">Add To Cart</button>
                         </div>
                     </div>
 
                     <!-- Product Card 2 -->
                     <div class="product-card">
                         <div class="product-image">
-                            <img src="{{ url_for('static', filename='iphoner1.png') }}" alt="Iphone 15 Pro">
+                            <img src="{{ url_for('static', filename='iphoner1.png') }}" alt="iPhone 15 Pro">
                         </div>
                         <div class="product-info">
                             <h4>iPhone 15 Pro</h4>
                             <p class="product-price">₹ 1,34,900</p>
-                            <a href="#" class="add-to-cart-btn">Add To Cart</a>
+                            <button class="add-to-cart-btn" onclick="addToCart(this,'iPhone 15 Pro', 134900, '{{ url_for('static', filename='iphoner1.png') }}')">Add To Cart</button>
                         </div>
                     </div>
 
                     <!-- Product Card 3 -->
                     <div class="product-card">
                         <div class="product-image">
-                            <img src="{{ url_for('static', filename='iphoner1.png') }}" alt="Iphone 15">
+                            <img src="{{ url_for('static', filename='iphoner1.png') }}" alt="iPhone 15">
                         </div>
                         <div class="product-info">
                             <h4>iPhone 15</h4>
                             <p class="product-price">₹ 79,900</p>
-                            <a href="#" class="add-to-cart-btn">Add To Cart</a>
+                            <button class="add-to-cart-btn" onclick="addToCart(this,'iPhone 15', 79900, '{{ url_for('static', filename='iphoner1.png') }}')">Add To Cart</button>
                         </div>
                     </div>
 
                     <!-- Product Card 4 -->
                     <div class="product-card">
                         <div class="product-image">
-                            <img src="{{ url_for('static', filename='iphoner1.png') }}" alt="Iphone 14">
+                            <img src="{{ url_for('static', filename='iphoner1.png') }}" alt="iPhone 14">
                         </div>
                         <div class="product-info">
                             <h4>iPhone 14</h4>
                             <p class="product-price">₹ 64,090</p>
-                            <a href="#" class="add-to-cart-btn">Add To Cart</a>
+                            <button class="add-to-cart-btn" onclick="addToCart(this,'iPhone 14', 64090, '{{ url_for('static', filename='iphoner1.png') }}')">Add To Cart</button>
                         </div>
                     </div>
 
                     <!-- Product Card 5 -->
                     <div class="product-card">
                         <div class="product-image">
-                            <img src="{{ url_for('static', filename='iphoner1.png') }}" alt="Iphone 14 (128GB)">
+                            <img src="{{ url_for('static', filename='iphoner1.png') }}" alt="iPhone 14 (128GB)">
                         </div>
                         <div class="product-info">
                             <h4>iPhone 14 (128GB)</h4>
                             <p class="product-price">₹ 54,090</p>
-                            <a href="#" class="add-to-cart-btn">Add To Cart</a>
+                            <button class="add-to-cart-btn" onclick="addToCart(this,'iPhone 14 (128GB)', 54090, '{{ url_for('static', filename='iphoner1.png') }}')">Add To Cart</button>
                         </div>
                     </div>
 
                     <!-- Product Card 6 -->
                     <div class="product-card">
                         <div class="product-image">
-                            <img src="{{ url_for('static', filename='iphoner1.png') }}" alt="Iphone SE">
+                            <img src="{{ url_for('static', filename='iphoner1.png') }}" alt="iPhone SE">
                         </div>
                         <div class="product-info">
                             <h4>iPhone SE</h4>
                             <p class="product-price">₹ 49,990</p>
-                            <a href="#" class="add-to-cart-btn">Add To Cart</a>
+                            <button class="add-to-cart-btn" onclick="addToCart(this,'iPhone SE', 49990, '{{ url_for('static', filename='iphoner1.png') }}')">Add To Cart</button>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- --- Samsung Products Section (MODIFIED) --- -->
+        <!-- --- Samsung Products Section --- -->
         <section class="products" id="samsung-section">
-            <div class="container-fluid"> <!-- CHANGED -->
-                <!-- New Section Title -->
+            <div class="container-fluid">
                 <h2 class="section-heading">Samsung <span class="highlight">Mobile</span></h2>
 
                 <div class="product-grid">
@@ -787,7 +758,7 @@
                         <div class="product-info">
                             <h4>Galaxy S24 Ultra</h4>
                             <p class="product-price">₹ 1,29,999</p>
-                            <a href="#" class="add-to-cart-btn">Add To Cart</a>
+                            <button class="add-to-cart-btn" onclick="addToCart(this,'Galaxy S24 Ultra', 129999, '{{ url_for('static', filename='s25r1.png') }}')">Add To Cart</button>
                         </div>
                     </div>
 
@@ -799,7 +770,7 @@
                         <div class="product-info">
                             <h4>Galaxy S24</h4>
                             <p class="product-price">₹ 79,999</p>
-                            <a href="#" class="add-to-cart-btn">Add To Cart</a>
+                            <button class="add-to-cart-btn" onclick="addToCart(this,'Galaxy S24', 79999, '{{ url_for('static', filename='s25r1.png') }}')">Add To Cart</button>
                         </div>
                     </div>
 
@@ -811,7 +782,7 @@
                         <div class="product-info">
                             <h4>Galaxy S23 FE</h4>
                             <p class="product-price">₹ 54,999</p>
-                            <a href="#" class="add-to-cart-btn">Add To Cart</a>
+                            <button class="add-to-cart-btn" onclick="addToCart(this,'Galaxy S23 FE', 54999, '{{ url_for('static', filename='s25r1.png') }}')">Add To Cart</button>
                         </div>
                     </div>
                     
@@ -823,7 +794,7 @@
                         <div class="product-info">
                             <h4>Galaxy A55 5G</h4>
                             <p class="product-price">₹ 39,999</p>
-                            <a href="#" class="add-to-cart-btn">Add To Cart</a>
+                            <button class="add-to-cart-btn" onclick="addToCart(this,'Galaxy A55 5G', 39999, '{{ url_for('static', filename='s25r1.png') }}')">Add To Cart</button>
                         </div>
                     </div>
 
@@ -835,7 +806,7 @@
                         <div class="product-info">
                             <h4>Galaxy M34 5G</h4>
                             <p class="product-price">₹ 15,999</p>
-                            <a href="#" class="add-to-cart-btn">Add To Cart</a>
+                            <button class="add-to-cart-btn" onclick="addToCart(this,'Galaxy M34 5G', 15999, '{{ url_for('static', filename='s25r1.png') }}')">Add To Cart</button>
                         </div>
                     </div>
 
@@ -847,98 +818,93 @@
                         <div class="product-info">
                             <h4>Galaxy F15 5G</h4>
                             <p class="product-price">₹ 12,999</p>
-                            <a href="#" class="add-to-cart-btn">Add To Cart</a>
+                            <button class="add-to-cart-btn" onclick="addToCart(this,'Galaxy F15 5G', 12999, '{{ url_for('static', filename='s25r1.png') }}')">Add To Cart</button>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-
-
-                <section class="products" id="oneplus-section">
-            <div class="container-fluid"> <!-- CHANGED -->
-                <!-- New Section Title -->
-                <h2 class="section-heading">Oneplus <span class="highlight">Mobile</span></h2>
+        <!-- --- OnePlus Products Section --- -->
+        <section class="products" id="oneplus-section">
+            <div class="container-fluid">
+                <h2 class="section-heading">OnePlus <span class="highlight">Mobile</span></h2>
 
                 <div class="product-grid">
                     <!-- Product Card 1 -->
                     <div class="product-card">
                         <div class="product-image">
-                            <img src="{{ url_for('static', filename='onep13.png') }}" alt="Samsung Galaxy S24 Ultra">
+                            <img src="{{ url_for('static', filename='onep13.png') }}" alt="OnePlus 13">
                         </div>
                         <div class="product-info">
-                            <h4>OnePlus13</h4>
+                            <h4>OnePlus 13</h4>
                             <p class="product-price">₹ 1,29,999</p>
-                            <a href="#" class="add-to-cart-btn">Add To Cart</a>
+                            <button class="add-to-cart-btn" onclick="addToCart(this,'OnePlus 13', 129999, '{{ url_for('static', filename='onep13.png') }}')">Add To Cart</button>
                         </div>
                     </div>
 
                     <!-- Product Card 2 -->
                     <div class="product-card">
                         <div class="product-image">
-                            <img src="{{ url_for('static', filename='onep13.png') }}" alt="Samsung Galaxy S24">
+                            <img src="{{ url_for('static', filename='onep13.png') }}" alt="OnePlus 12">
                         </div>
                         <div class="product-info">
-                            <h4>OnePlus12</h4>
+                            <h4>OnePlus 12</h4>
                             <p class="product-price">₹ 79,999</p>
-                            <a href="#" class="add-to-cart-btn">Add To Cart</a>
+                            <button class="add-to-cart-btn" onclick="addToCart(this,'OnePlus 12', 79999, '{{ url_for('static', filename='onep13.png') }}')">Add To Cart</button>
                         </div>
                     </div>
 
                     <!-- Product Card 3 -->
                     <div class="product-card">
                         <div class="product-image">
-                            <img src="{{ url_for('static', filename='onep13.png') }}" alt="Samsung Galaxy S23 FE">
+                            <img src="{{ url_for('static', filename='onep13.png') }}" alt="OnePlus 13s">
                         </div>
                         <div class="product-info">
-                            <h4>OnePlus13s</h4>
+                            <h4>OnePlus 13s</h4>
                             <p class="product-price">₹ 54,999</p>
-                            <a href="#" class="add-to-cart-btn">Add To Cart</a>
+                            <button class="add-to-cart-btn" onclick="addToCart(this,'OnePlus 13s', 54999, '{{ url_for('static', filename='onep13.png') }}')">Add To Cart</button>
                         </div>
                     </div>
                     
                     <!-- Product Card 4 -->
                     <div class="product-card">
                         <div class="product-image">
-                            <img src="{{ url_for('static', filename='onep13.png') }}" alt="Samsung Galaxy A55">
+                            <img src="{{ url_for('static', filename='onep13.png') }}" alt="OnePlus 11">
                         </div>
                         <div class="product-info">
-                            <h4>OnePlus11</h4>
+                            <h4>OnePlus 11</h4>
                             <p class="product-price">₹ 39,999</p>
-                            <a href="#" class="add-to-cart-btn">Add To Cart</a>
+                            <button class="add-to-cart-btn" onclick="addToCart(this,'OnePlus 11', 39999, '{{ url_for('static', filename='onep13.png') }}')">Add To Cart</button>
                         </div>
                     </div>
 
                     <!-- Product Card 5 -->
                     <div class="product-card">
                         <div class="product-image">
-                            <img src="{{ url_for('static', filename='onep13.png') }}" alt="Samsung Galaxy M34">
+                            <img src="{{ url_for('static', filename='onep13.png') }}" alt="OnePlus 12R">
                         </div>
                         <div class="product-info">
-                            <h4>OnePlus12R</h4>
+                            <h4>OnePlus 12R</h4>
                             <p class="product-price">₹ 15,999</p>
-                            <a href="#" class="add-to-cart-btn">Add To Cart</a>
+                            <button class="add-to-cart-btn" onclick="addToCart(this,'OnePlus 12R', 15999, '{{ url_for('static', filename='onep13.png') }}')">Add To Cart</button>
                         </div>
                     </div>
 
                     <!-- Product Card 6 -->
                     <div class="product-card">
                         <div class="product-image">
-                            <img src="{{ url_for('static', filename='onep13.png') }}" alt="Samsung Galaxy F15">
+                            <img src="{{ url_for('static', filename='onep13.png') }}" alt="OnePlus Open">
                         </div>
                         <div class="product-info">
                             <h4>OnePlus Open</h4>
                             <p class="product-price">₹ 12,999</p>
-                            <a href="#" class="add-to-cart-btn">Add To Cart</a>
+                            <button class="add-to-cart-btn" onclick="addToCart(this,'OnePlus Open', 12999, '{{ url_for('static', filename='onep13.png') }}')">Add To Cart</button>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
-        
-        <!-- The third product section for laptops has been removed -->
-
     </main>
 
     <!-- --- Footer --- -->
@@ -950,7 +916,7 @@
                     <h4>Hustle Cart</h4>
                     <p>Stay Connected</p>
                     <form action="#" method="post" aria-label="Newsletter signup">
-                        <input type="email" name="email" placeholder="Enter Your Email" aria-label="Enter YourLabel">
+                        <input type="email" name="email" placeholder="Enter Your Email" aria-label="Enter Your Email">
                     </form>
                 </div>
 
@@ -999,77 +965,154 @@
         </div>
     </footer>
 
-</body>
+   <script>
+    // Load cart count when page loads
+    document.addEventListener('DOMContentLoaded', function() {
+        updateCartCount();
+    });
 
-<script>
-    // Add to Cart functionality
-    function addToCart(productName, productPrice, productImage) {
-        const productData = {
-            name: productName,
-            price: productPrice,
-            img: productImage
-        };
-
-        fetch('/add_to_cart', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(productData)
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                alert(data.message || 'Product added to cart!');
-                updateCartCount();
-            } else {
-                alert('Error: ' + (data.error || 'Failed to add product to cart'));
-            }
-        })
-        .catch(error => {
-            console.error('Error:', error);
-            alert('Error adding product to cart');
-        });
-    }
-
-    // Update cart count
+    // Function to update cart count display
     function updateCartCount() {
-        fetch('/get_cart_count')
+        fetch('/check_auth')
             .then(response => response.json())
-            .then(data => {
-                const cartCount = document.getElementById('cart-count');
-                if (data.count > 0) {
-                    cartCount.textContent = data.count;
-                    cartCount.style.display = 'flex';
+            .then(authData => {
+                if (authData.authenticated) {
+                    fetch('/get_cart_count')
+                        .then(response => response.json())
+                        .then(data => {
+                            const cartCountElement = document.getElementById('cart-count');
+                            if (data.count > 0) {
+                                cartCountElement.textContent = data.count;
+                                cartCountElement.style.display = 'flex';
+                            } else {
+                                cartCountElement.style.display = 'none';
+                            }
+                        })
+                        .catch(error => {
+                            console.error('Error fetching cart count:', error);
+                        });
                 } else {
-                    cartCount.style.display = 'none';
+                    // User not logged in, hide cart count
+                    const cartCountElement = document.getElementById('cart-count');
+                    cartCountElement.style.display = 'none';
                 }
             })
             .catch(error => {
-                console.error('Error fetching cart count:', error);
+                console.error('Error checking auth:', error);
             });
     }
 
-    // Initialize Add to Cart buttons and cart count
-    document.addEventListener('DOMContentLoaded', function() {
-        updateCartCount();
+    // Function to add item to cart with login check
+    function addToCart(button, productName, productPrice, productImage) {
+        // First check if user is logged in
+        fetch('/check_auth')
+            .then(response => response.json())
+            .then(authData => {
+                if (!authData.authenticated) {
+                    // User not logged in, redirect to login
+                    if (confirm('You need to login first to add items to cart. Would you like to login now?')) {
+                        window.location.href = '/login?redirect=' + encodeURIComponent(window.location.pathname);
+                    }
+                    return;
+                }
+
+                // User is logged in, proceed to add to cart
+                fetch('/add_to_cart', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ name: productName, price: productPrice, img: productImage })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        showPopup('Product added to cart!');
+                        updateCartCount();
+
+                        // Only change the clicked button
+                        const originalText = button.textContent;
+                        button.textContent = 'Added!';
+                        button.style.backgroundColor = '#28a745';
+                        setTimeout(() => {
+                            button.textContent = originalText;
+                            button.style.backgroundColor = '#007bff';
+                        }, 1000);
+                    } else {
+                        if (data.error && data.error.includes('login')) {
+                            window.location.href = '/login';
+                        } else {
+                            showPopup('Error: ' + data.error);
+                        }
+                    }
+                })
+                .catch(error => {
+                    console.error('Error adding to cart:', error);
+                    showPopup('Error adding product to cart');
+                });
+            })
+            .catch(error => {
+                console.error('Error checking auth:', error);
+                showPopup('Error checking authentication');
+            });
+    }
+
+    // Popup message function
+    function showPopup(message) {
+        // Remove existing popup if any
+        const existingPopup = document.querySelector('.popup-message');
+        if (existingPopup) {
+            existingPopup.remove();
+        }
+
+        // Create popup element
+        const popup = document.createElement('div');
+        popup.className = 'popup-message';
+        popup.textContent = message;
         
-        // Add click event to all Add to Cart buttons
-        const addToCartButtons = document.querySelectorAll('.add-to-cart-btn');
-        addToCartButtons.forEach(button => {
-            button.onclick = function(e) {
-                e.preventDefault();
-                const productCard = this.closest('.product-card');
-                const productName = productCard.querySelector('h4').textContent;
-                const productPriceText = productCard.querySelector('.product-price').textContent;
-                const productPrice = parseInt(productPriceText.replace('₹ ', '').replace(',', ''));
-                const productImage = productCard.querySelector('img').src;
-                
-                addToCart(productName, productPrice, productImage);
-            };
-        });
-    });
+        // Add popup styles
+        popup.style.cssText = `
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #4CAF50;
+            color: white;
+            padding: 15px 20px;
+            border-radius: 5px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            z-index: 10000;
+            font-weight: 500;
+            max-width: 300px;
+            animation: slideIn 0.3s ease-out;
+        `;
+
+        // Add CSS for animation
+        if (!document.querySelector('#popup-styles')) {
+            const style = document.createElement('style');
+            style.id = 'popup-styles';
+            style.textContent = `
+                @keyframes slideIn {
+                    from { transform: translateX(100%); opacity: 0; }
+                    to { transform: translateX(0); opacity: 1; }
+                }
+                @keyframes slideOut {
+                    from { transform: translateX(0); opacity: 1; }
+                    to { transform: translateX(100%); opacity: 0; }
+                }
+            `;
+            document.head.appendChild(style);
+        }
+
+        document.body.appendChild(popup);
+
+        // Auto remove after 3 seconds
+        setTimeout(() => {
+            popup.style.animation = 'slideOut 0.2s ease-in';
+            setTimeout(() => {
+                if (popup.parentNode) {
+                    popup.remove();
+                }
+            }, 200);
+        }, 3000);
+    }
 </script>
-
+</body>
 </html>
-

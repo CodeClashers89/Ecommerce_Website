@@ -217,6 +217,40 @@
       background-color: #cccccc;
       cursor: not-allowed;
     }
+
+    .debug-info {
+      background-color: #f8f8f8;
+      padding: 15px;
+      margin: 10px 0;
+      border-radius: 8px;
+      font-family: monospace;
+      font-size: 12px;
+      display: none;
+    }
+
+    .popup-message {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: #4CAF50;
+      color: white;
+      padding: 15px 20px;
+      border-radius: 5px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+      z-index: 10000;
+      font-weight: 500;
+      max-width: 300px;
+      animation: slideIn 0.3s ease-out;
+    }
+
+    @keyframes slideIn {
+      from { transform: translateX(100%); opacity: 0; }
+      to { transform: translateX(0); opacity: 1; }
+    }
+    @keyframes slideOut {
+      from { transform: translateX(0); opacity: 1; }
+      to { transform: translateX(100%); opacity: 0; }
+    }
   </style>
 </head>
 <body>
@@ -265,271 +299,340 @@
     </div>
   </div>
 
-  <button class="checkout-btn" onclick="window.location.href='/checkout'">
-  Proceed to Checkout
-</button>
-
+  <button class="checkout-btn" id="checkout-btn" onclick="proceedToCheckout()" disabled>Proceed To Checkout</button>
 
   <script>
     let appliedCoins = 0;
 
+    // Debug function to show what's happening
+    function debugLog(message) {
+      console.log('Cart Debug:', message);
+      const debugDiv = document.getElementById('debug-info');
+      if (debugDiv) {
+        debugDiv.style.display = 'block';
+        debugDiv.innerHTML += `<div>${new Date().toLocaleTimeString()}: ${message}</div>`;
+      }
+    }
+
     // Load cart items when page loads
     document.addEventListener('DOMContentLoaded', function() {
-        loadCartItems();
+      debugLog('Page loaded, checking cart...');
+      loadCartItems();
     });
 
     function loadCartItems() {
-        fetch('/get_cart_count')
+        debugLog('Fetching cart count...');
+        
+        // First check if user is authenticated
+        fetch('/check_auth')
             .then(response => response.json())
-            .then(data => {
-                if (data.count === 0) {
-                    showEmptyCart();
-                } else {
-                    // Cart has items, display them
-                    updateCartDisplay();
+            .then(authData => {
+                if (!authData.authenticated) {
+                    debugLog('User not authenticated');
+                    showPopup('Please login to view your cart');
+                    setTimeout(() => {
+                        window.location.href = '/login?redirect=' + encodeURIComponent('/cart');
+                    }, 1500);
+                    return;
                 }
+
+                // User is authenticated, proceed to load cart
+                fetch('/get_cart_count')
+                    .then(response => {
+                        debugLog('Response status: ' + response.status);
+                        return response.json();
+                    })
+                    .then(data => {
+                        debugLog('Cart count data: ' + JSON.stringify(data));
+                        if (data.count === 0) {
+                            debugLog('Cart is empty');
+                            showEmptyCart();
+                        } else {
+                            debugLog('Cart has ' + data.count + ' items, loading details...');
+                            updateCartDisplay();
+                        }
+                    })
+                    .catch(error => {
+                        debugLog('Error loading cart count: ' + error);
+                        console.error('Error loading cart:', error);
+                        showEmptyCart();
+                    });
             })
             .catch(error => {
-                console.error('Error loading cart:', error);
-                showEmptyCart();
+                debugLog('Error checking auth: ' + error);
+                console.error('Error checking authentication:', error);
+                showPopup('Error checking authentication');
             });
     }
 
     function updateCartDisplay() {
-        fetch('/get_cart_data') // We'll need to create this endpoint
-            .then(response => response.json())
-            .then(cartItems => {
-                const cartContainer = document.getElementById('cart-items');
-                const billingSection = document.getElementById('billing-section');
-                const checkoutBtn = document.getElementById('checkout-btn');
-                const emptyCartMsg = document.getElementById('empty-cart-message');
+      debugLog('Fetching cart data...');
+      fetch('/get_cart_data')
+        .then(response => {
+          debugLog('Cart data response status: ' + response.status);
+          return response.json();
+        })
+        .then(cartItems => {
+          debugLog('Received cart items: ' + JSON.stringify(cartItems));
+          
+          const cartContainer = document.getElementById('cart-items');
+          const billingSection = document.getElementById('billing-section');
+          const checkoutBtn = document.getElementById('checkout-btn');
+          const emptyCartMsg = document.getElementById('empty-cart-message');
 
-                if (cartItems.length === 0) {
-                    showEmptyCart();
-                    return;
-                }
+          if (!cartItems || cartItems.length === 0) {
+            debugLog('No cart items found');
+            showEmptyCart();
+            return;
+          }
 
-                // Show billing section and enable checkout
-                billingSection.style.display = 'block';
-                checkoutBtn.disabled = false;
-                emptyCartMsg.style.display = 'none';
+          debugLog('Displaying ' + cartItems.length + ' cart items');
+          
+          // Show billing section and enable checkout
+          billingSection.style.display = 'block';
+          checkoutBtn.disabled = false;
+          emptyCartMsg.style.display = 'none';
 
-                // Render cart items
-                cartContainer.innerHTML = '';
-                cartItems.forEach((item) => {
-                    const itemElement = document.createElement('div');
-                    itemElement.className = 'cart-item';
-                    itemElement.innerHTML = `
-                        <img src="${item.img}" alt="${item.name}" onerror="this.src='https://via.placeholder.com/120?text=Product'">
-                        <div class="item-info">
-                            <strong>${item.name}</strong>
-                            <span>Price: ₹${item.price.toLocaleString()}</span>
-                            <div class="quantity-controls">
-                                <button class="quantity-btn" onclick="updateQuantity('${item.name}', -1)">-</button>
-                                <span class="quantity">${item.quantity}</span>
-                                <button class="quantity-btn" onclick="updateQuantity('${item.name}', 1)">+</button>
-                            </div>
-                        </div>
-                        <div class="item-total">₹${(item.price * item.quantity).toLocaleString()}</div>
-                        <button class="remove-btn" onclick="removeItem('${item.name}')">Remove</button>
-                    `;
-                    cartContainer.appendChild(itemElement);
-                });
+          // Render cart items
+          cartContainer.innerHTML = '';
+          cartItems.forEach((item) => {
+            const itemElement = document.createElement('div');
+            itemElement.className = 'cart-item';
+            itemElement.innerHTML = `
+              <img src="${item.img}" alt="${item.name}" onerror="this.src='https://via.placeholder.com/120?text=Product'">
+              <div class="item-info">
+                <strong>${item.name}</strong>
+                <span>Price: ₹${item.price.toLocaleString()}</span>
+                <div class="quantity-controls">
+                  <button class="quantity-btn" onclick="updateQuantity('${item.name}', -1)">-</button>
+                  <span class="quantity">${item.quantity}</span>
+                  <button class="quantity-btn" onclick="updateQuantity('${item.name}', 1)">+</button>
+                </div>
+              </div>
+              <div class="item-total">₹${(item.price * item.quantity).toLocaleString()}</div>
+              <button class="remove-btn" onclick="removeItem('${item.name}')">Remove</button>
+            `;
+            cartContainer.appendChild(itemElement);
+          });
 
-                calculateTotals(cartItems);
-            })
-            .catch(error => {
-                console.error('Error loading cart items:', error);
-                showEmptyCart();
-            });
+          calculateTotals(cartItems);
+          debugLog('Cart display updated successfully');
+        })
+        .catch(error => {
+          debugLog('Error loading cart items: ' + error);
+          console.error('Error loading cart items:', error);
+          showEmptyCart();
+        });
     }
 
     function updateQuantity(productName, change) {
-        fetch('/update_cart_quantity', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                name: productName,
-                change: change
-            })
+      debugLog('Updating quantity for: ' + productName + ', change: ' + change);
+      fetch('/update_cart_quantity', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: productName,
+          change: change
         })
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                showPopup('Quantity updated successfully!');
-                if (data.cart_count === 0) {
-                    showEmptyCart();
-                } else {
-                    updateCartDisplay();
-                }
-                updateGlobalCartCount(data.cart_count);
-            } else {
-                showPopup('Error updating quantity');
-            }
-        })
-        .catch(error => {
-            console.error('Error updating quantity:', error);
-            showPopup('Error updating quantity');
-        });
+      })
+      .then(response => response.json())
+      .then(data => {
+        debugLog('Update quantity response: ' + JSON.stringify(data));
+        if (data.success) {
+          showPopup('Quantity updated successfully!');
+          if (data.cart_count === 0) {
+            showEmptyCart();
+          } else {
+            updateCartDisplay();
+          }
+          updateGlobalCartCount(data.cart_count);
+        } else {
+          showPopup('Error updating quantity: ' + data.error);
+        }
+      })
+      .catch(error => {
+        debugLog('Error updating quantity: ' + error);
+        showPopup('Error updating quantity');
+      });
     }
 
     function removeItem(productName) {
-        if (!confirm('Are you sure you want to remove this item from your cart?')) {
-            return;
-        }
+      debugLog('Removing item: ' + productName);
+      if (!confirm('Are you sure you want to remove this item from your cart?')) {
+        return;
+      }
 
-        fetch('/remove_from_cart', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                name: productName
-            })
+      fetch('/remove_from_cart', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: productName
         })
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                showPopup('Item removed from cart!');
-                if (data.cart_count === 0) {
-                    showEmptyCart();
-                } else {
-                    updateCartDisplay();
-                }
-                updateGlobalCartCount(data.cart_count);
-            } else {
-                showPopup('Error removing item');
-            }
-        })
-        .catch(error => {
-            console.error('Error removing item:', error);
-            showPopup('Error removing item from cart');
-        });
+      })
+      .then(response => response.json())
+      .then(data => {
+        debugLog('Remove item response: ' + JSON.stringify(data));
+        if (data.success) {
+          showPopup('Item removed from cart!');
+          if (data.cart_count === 0) {
+            showEmptyCart();
+          } else {
+            updateCartDisplay();
+          }
+          updateGlobalCartCount(data.cart_count);
+        } else {
+          showPopup('Error removing item: ' + data.error);
+        }
+      })
+      .catch(error => {
+        debugLog('Error removing item: ' + error);
+        showPopup('Error removing item from cart');
+      });
     }
 
     function showEmptyCart() {
-        const cartContainer = document.getElementById('cart-items');
-        const billingSection = document.getElementById('billing-section');
-        const checkoutBtn = document.getElementById('checkout-btn');
-        const emptyCartMsg = document.getElementById('empty-cart-message');
+      debugLog('Showing empty cart message');
+      const cartContainer = document.getElementById('cart-items');
+      const billingSection = document.getElementById('billing-section');
+      const checkoutBtn = document.getElementById('checkout-btn');
+      const emptyCartMsg = document.getElementById('empty-cart-message');
 
-        cartContainer.innerHTML = '';
-        billingSection.style.display = 'none';
-        checkoutBtn.disabled = true;
-        emptyCartMsg.style.display = 'block';
-        
-        // Update global cart count to 0
-        updateGlobalCartCount(0);
+      cartContainer.innerHTML = '';
+      billingSection.style.display = 'none';
+      checkoutBtn.disabled = true;
+      emptyCartMsg.style.display = 'block';
+      
+      // Update global cart count to 0
+      updateGlobalCartCount(0);
     }
 
     function calculateTotals(items) {
-        const subtotal = items.reduce((total, item) => total + (item.price * item.quantity), 0);
-        const discount = subtotal > 50000 ? 2000 : subtotal > 20000 ? 1000 : 500;
-        const delivery = 50;
-        const total = Math.max(0, subtotal - discount + delivery - appliedCoins);
+      const subtotal = items.reduce((total, item) => total + (item.price * item.quantity), 0);
+      const discount = subtotal > 50000 ? 2000 : subtotal > 20000 ? 1000 : 500;
+      const delivery = 50;
+      const total = Math.max(0, subtotal - discount + delivery - appliedCoins);
 
-        document.getElementById('subtotal').textContent = subtotal.toLocaleString();
-        document.getElementById('discount').textContent = discount.toLocaleString();
-        document.getElementById('total').textContent = total.toLocaleString();
+      document.getElementById('subtotal').textContent = subtotal.toLocaleString();
+      document.getElementById('discount').textContent = discount.toLocaleString();
+      document.getElementById('total').textContent = total.toLocaleString();
+      
+      debugLog(`Calculated totals - Subtotal: ${subtotal}, Discount: ${discount}, Total: ${total}`);
     }
 
     function applyCoins() {
-        const coinsInput = document.getElementById('coins');
-        const coins = parseInt(coinsInput.value) || 0;
-        
-        if (coins > 0) {
-            appliedCoins = coins;
-            // Recalculate totals with the new coins
-            updateCartDisplay();
-            coinsInput.value = '';
-            showPopup(`Applied ${coins} coins to your order!`);
-        } else {
-            showPopup('Please enter a valid number of coins');
-        }
+      const coinsInput = document.getElementById('coins');
+      const coins = parseInt(coinsInput.value) || 0;
+      
+      if (coins > 0) {
+        appliedCoins = coins;
+        debugLog('Applied coins: ' + coins);
+        // Recalculate totals with the new coins
+        updateCartDisplay();
+        coinsInput.value = '';
+        showPopup(`Applied ${coins} coins to your order!`);
+      } else {
+        showPopup('Please enter a valid number of coins');
+      }
     }
 
     function updateGlobalCartCount(count) {
-        // This function would update the cart count across all pages
-        // For now, we'll just log it
-        console.log('Cart count updated to:', count);
-        
-        // If we're on a page with a cart count display, update it
-        const cartCountElement = document.getElementById('cart-count');
-        if (cartCountElement) {
-            if (count > 0) {
-                cartCountElement.textContent = count;
-                cartCountElement.style.display = 'flex';
-            } else {
-                cartCountElement.style.display = 'none';
-            }
+      debugLog('Updating global cart count to: ' + count);
+      const cartCountElement = document.getElementById('cart-count');
+      if (cartCountElement) {
+        if (count > 0) {
+          cartCountElement.textContent = count;
+          cartCountElement.style.display = 'flex';
+        } else {
+          cartCountElement.style.display = 'none';
         }
+      }
     }
 
     function proceedToCheckout() {
-        showPopup('Proceeding to checkout! In a real application, this would redirect to payment page.');
-        // Here you would typically redirect to a checkout page
-        // window.location.href = '/checkout';
+        debugLog('Proceeding to checkout...');
+        
+        // Check authentication first
+        fetch('/check_auth')
+            .then(response => response.json())
+            .then(authData => {
+                if (!authData.authenticated) {
+                    showPopup('Please login to proceed to checkout');
+                    setTimeout(() => {
+                        window.location.href = '/login?redirect=' + encodeURIComponent('/cart');
+                    }, 1500);
+                    return;
+                }
+
+                // User is authenticated, proceed with checkout
+                fetch('/get_cart_data')
+                    .then(response => response.json())
+                    .then(cartItems => {
+                        if (!cartItems || cartItems.length === 0) {
+                            showPopup('Your cart is empty!');
+                            return;
+                        }
+
+                        // Calculate totals
+                        const subtotal = cartItems.reduce((total, item) => total + (item.price * item.quantity), 0);
+                        const discount = subtotal > 50000 ? 2000 : subtotal > 20000 ? 1000 : 500;
+                        const delivery = 50;
+                        const total = Math.max(0, subtotal - discount + delivery - appliedCoins);
+
+                        // Prepare checkout data
+                        const checkoutData = {
+                            cartItems: cartItems,
+                            subtotal: subtotal,
+                            discount: discount,
+                            delivery: delivery,
+                            appliedCoins: appliedCoins,
+                            totalAmount: total
+                        };
+
+                        // Store in sessionStorage for payment page
+                        sessionStorage.setItem('checkoutData', JSON.stringify(checkoutData));
+                        
+                        // Redirect to payment page
+                        window.location.href = '/payment';
+                    })
+                    .catch(error => {
+                        console.error('Error preparing checkout:', error);
+                        showPopup('Error preparing checkout. Please try again.');
+                    });
+            })
+            .catch(error => {
+                console.error('Error checking auth:', error);
+                showPopup('Error checking authentication');
+            });
     }
 
     // Popup message function
     function showPopup(message) {
-        // Remove existing popup if any
-        const existingPopup = document.querySelector('.popup-message');
-        if (existingPopup) {
-            existingPopup.remove();
-        }
+      // Remove existing popup if any
+      const existingPopup = document.querySelector('.popup-message');
+      if (existingPopup) {
+        existingPopup.remove();
+      }
 
-        // Create popup element
-        const popup = document.createElement('div');
-        popup.className = 'popup-message';
-        popup.textContent = message;
-        
-        // Add popup styles
-        popup.style.cssText = `
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            background: #4CAF50;
-            color: white;
-            padding: 15px 20px;
-            border-radius: 5px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-            z-index: 10000;
-            font-weight: 500;
-            max-width: 300px;
-            animation: slideIn 0.3s ease-out;
-        `;
+      // Create popup element
+      const popup = document.createElement('div');
+      popup.className = 'popup-message';
+      popup.textContent = message;
+      
+      document.body.appendChild(popup);
 
-        // Add CSS for animation
-        if (!document.querySelector('#popup-styles')) {
-            const style = document.createElement('style');
-            style.id = 'popup-styles';
-            style.textContent = `
-                @keyframes slideIn {
-                    from { transform: translateX(100%); opacity: 0; }
-                    to { transform: translateX(0); opacity: 1; }
-                }
-                @keyframes slideOut {
-                    from { transform: translateX(0); opacity: 1; }
-                    to { transform: translateX(100%); opacity: 0; }
-                }
-            `;
-            document.head.appendChild(style);
-        }
-
-        document.body.appendChild(popup);
-
-        // Auto remove after 3 seconds
+      // Auto remove after 3 seconds
+      setTimeout(() => {
+        popup.style.animation = 'slideOut 0.2s ease-in';
         setTimeout(() => {
-            popup.style.animation = 'slideOut 0.3s ease-in';
-            setTimeout(() => {
-                if (popup.parentNode) {
-                    popup.remove();
-                }
-            }, 300);
-        }, 3000);
+          if (popup.parentNode) {
+            popup.remove();
+          }
+        }, 200);
+      }, 3000);
     }
 </script>
 
